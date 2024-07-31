@@ -2,41 +2,47 @@ package com.tia102g1.member.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
 
+@Entity
+@Table(name = "member")
 public class Member implements Serializable {
-      Integer memberId;
-      Integer memberLvId;
-      Integer staffId;
-      String account;
-      @JsonIgnore //必須隱藏起來不能再request body顯示給任何人看到
-      String password;
-      String name;
-      Date birthDt;
-      String phone;
-      String email;
-      Integer cntCode;
-      Integer distCode;
-      String  address;
-      Integer accumulate;
-      Integer coinBalance;
-      Date joinDate;
-      Integer noShow;
-      String cardHolder;
-      String cardNumber;
-      Integer cardYY;
-      Integer cardMM;
-      String cardVerifyCode;
-      Integer status;
-      Timestamp blockedTime;
-      String blockedReason;
-      String createdBy;
-      Timestamp dateCreated;
-      String lastUpdatedBy;
-      Timestamp lastUpdated;
+    @Id
+    Integer memberId;
+    Integer memberLvId;
+    Integer staffId;
+    String account;
+    @JsonIgnore //必須隱藏起來不能再request body顯示給任何人看到
+    String password;
+    String name;
+    Date birthDt;
+    String phone;
+    String email;
+    Integer cntCode;
+    Integer distCode;
+    String address;
+    Integer accumulate;
+    Integer coinBalance;
+    Date joinDate;
+    Integer noShow;
+    String cardHolder;
+    String cardNumber;
+    Integer cardYY;
+    Integer cardMM;
+    String cardVerifyCode;
+    Integer status;
+    Timestamp blockedTime;
+    String blockedReason;
+    String createdBy;
+    Timestamp dateCreated;
+    String lastUpdatedBy;
+    Timestamp lastUpdated;
 
     public Integer getMemberId() {
         return memberId;

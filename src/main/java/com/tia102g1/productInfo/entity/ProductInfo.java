@@ -1,14 +1,12 @@
 package com.tia102g1.productInfo.entity;
 
+import com.tia102g1.productType.model.ProductTypeVO;
+
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -24,7 +22,7 @@ public class ProductInfo {
 	
 //	@ManyToOne
 //	@JoinColumn(name = "productTypeId", referencedColumnName = "productTypeId")
-//	private Set<ProductType> productType;		
+//	private Set<ProductType> productType;
 	@Column(name = "productTypeId")
 	@NotNull(message="商品類型: 請勿空白")
 	private Integer productTypeId;
