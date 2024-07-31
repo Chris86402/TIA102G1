@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>所有系統通知訊息</title>
+</head>
+<body>
+<div align="center"><h2>所有系統通知訊息</h2></div>
+<h3><a th:href="@{/sysMsg/mainPageSysMsg}">回系統通知頁面</a></h3>
+<table class="display" style="width: 100%">
+	<thead>
+		<tr>
+			<th>系統通知編號</th>
+			<th>訊息類型</th>
+			<th>訊息標題</th>
+			<th>訊息內容</th>
+			<th>啟用狀態</th>
+			<th>建檔者</th>
+			<th>建檔時間</th>
+			<th>最後更新者</th>
+			<th>最後更新時間</th>
+			<th>修改</th>
+			<th>刪除</th>
+		</tr>
+	</thead>
+	<tbody>
+		<th:block th:each="sysMsgVO : ${sysMsgListData}">
+			<tr>
+				<td th:text="${sysMsgVO.sysMsgId}"></td>
+				<td th:text="${sysMsgVO.type}"></td>
+				<td th:text="${sysMsgVO.msgTitle}"></td>
+				<td th:text="${sysMsgVO.msgContent}"></td>
+				<td th:text="${sysMsgVO.status}"></td>
+				<td th:text="${sysMsgVO.createdBy}"></td>
+				<td th:text="${#dates.format(sysMsgVO.dateCreated, 'yyyy-MM-dd HH:mm:ss')}"></td>
+				<td th:text="${sysMsgVO.lastUpdatedBy}"></td>
+				<td th:text="${#dates.format(sysMsgVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
+				<td>
+					<form method="post" th:action="@{/sysMsg/getOne_For_Update}">
+						<input type="submit" value="修改">
+						<input type="hidden" name="sysMsgId" th:value="${sysMsgVO.sysMsgId}">
+					</form>
+				</td>
+				<td>
+					<form method="post" th:action="@{/sysMsg/delete}">
+						<input type="submit" value="刪除">
+						<input type="hidden" name="sysMsgId" th:value="${sysMsgVO.sysMsgId}">
+					</form>
+				</td>
+			</tr>
+		</th:block>
+	</tbody>
+</table>
+
+</body>
+</html>

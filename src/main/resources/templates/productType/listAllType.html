@@ -28,16 +28,15 @@
 				<td th:text="${#dates.format(productTypeVO.dateCreated, 'yyyy-MM-dd HH:mm:ss')}"></td>
 				<td th:text="${productTypeVO.lastUpdatedBy}"></td>
 				<td th:text="${#dates.format(productTypeVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
-			<td>
-				<form method="post" th:action="@{/productType/getOne_For_Update}">
-					<input type="submit" value="修改">
-					<input type="hidden" name="productTypeId" th:value="${productTypeVO.productTypeId}">
-				</form>
-			</td>
+				<td>
+					<form method="post" th:action="@{/productType/getOne_For_Update}">
+						<input type="submit" value="修改">
+						<input type="hidden" name="productTypeId" th:value="${productTypeVO.productTypeId}">
+					</form>
+				</td>
 			</tr>
 		</th:block>
 	</tbody>
-
 </table>
 </body>
 </html>

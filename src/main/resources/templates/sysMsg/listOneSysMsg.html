@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>系統通知訊息</title>
+</head>
+<body>
+<h3><a th:href="@{/sysMsg/mainPageSysMsg}">回系統通知頁面</a></h3>
+<div align="center" th:fragment="listOneMsg-div">
+<span>系統通知編號:</span><span th:text="${sysMsgVO.sysMsgId}"></span><br>
+<span>訊息類型:</span><span th:text="${sysMsgVO.type}"></span><br>
+<span>訊息標題:</span><span th:text="${sysMsgVO.msgTitle}"></span><br>
+<span>訊息內容:</span><span th:text="${sysMsgVO.msgContent}"></span><br>
+<span>啟用狀態:</span><span th:text="${sysMsgVO.status}"></span><br>
+<span>建檔者:</span><span th:text="${productTypeVO.createdBy}"></span><br>
+<span>建檔時間:</span><span th:text="${#dates.format(productTypeVO.dateCreated, 'yyyy-MM-dd HH:mm:ss')}"></span><br>				
+<span>最後更新者:</span><span th:text="${productTypeVO.lastUpdatedBy}"></span><br>
+<span>最後更新時間:</span><span th:text="${#dates.format(productTypeVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></span><br>
+</div>
+</body>
+</html>

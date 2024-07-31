@@ -3,7 +3,6 @@ package com.tia102g1.productType.model;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +11,6 @@ public class ProductTypeService {
 
 	@Autowired
 	ProductTypeRepository repo;
-
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	public void addType(ProductTypeVO productTypeVO) {
 		repo.save(productTypeVO);

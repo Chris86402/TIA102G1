@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>系統訊息修改</title>
+</head>
+<body>
+<div align="center"><h2>系統訊息修改</h2></div>
+<h3><a th:href="@{/sysMsg/mainPageSysMsg}">回系統通知頁面</a></h3>
+
+<form th:action="@{update}" method="post" th:object="$sysMsgVO}">
+	<div>
+		<label>系統通知編號:</label>
+		<input th:field="*{sysMsgId}" readonly/><br>
+	</div>
+	<div>
+		<label>訊息類型:</label>
+		<select name="type">
+			<option value="1">會員相關訊息</option>
+			<option value="2">付款相關訊息</option>
+			<option value="3">訂單相關訊息</option>
+		</select><br>
+	</div>
+	<div>
+		<label>訊息標題:</label>
+		<input type="text" th:field="*{msgTitle}" onclick="hideContent('msgTitle.errors');"/><br>
+		<span th:if="${#fields.hasErrors('msgTitle')" th:errors="*{msgTitle}" class="error" id="msgTitle.errors"></span>
+	</div>
+	<div>
+		<label>訊息內容:</label>
+		<input type="text" th:field="*{msgContent}" onclick="hideContent('msgContent.errors');"/><br>
+		<span th:if="${#fields.hasErrors('msgContent')" th:errors="*{msgContent}" class="error" id="msgContent.errors"></span>
+	</div>
+	<div>
+		<label>啟用狀態:</label>
+		<select name="status">
+			<option value="0">停用</option>
+			<option value="1">啟用中</option>
+		</select><br>
+	</div>
+	<div>
+		<label>建檔者:</label>
+		<input type="text" th:field="*{createdBy}" readonly/><br/>
+	</div>
+	<div>
+		<label>建檔時間:</label>
+		<input type="text" th:field="*{dateCreated}" readonly/><br/>
+	</div>
+	<div>
+		<label>最後更新者:</label>
+		<input type="text" th:field="*{lastUpdatedBy}" onclick="hideContent('lastUpdatedBy.errors');"/><br/>
+		<span th:if="${#fields.hasErrors('lastUpdatedBy')}" th:errors="*{lastUpdatedBy}" class="error" id="lastUpdatedBy"></span>
+	</div>
+</form>
+<script>
+	function hideContent(d){
+		document.getElementById(d).style.display="none";
+		}
+	}
+</script>
+</body>
+</html>
