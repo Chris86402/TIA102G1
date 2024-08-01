@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+	<title>Desserter - Wishlist</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="/frontend-app/img/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/frontend-app/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/frontend-app/css/styles.css" rel="stylesheet">
+	<link href="/frontend-app/css/animate.css" rel="stylesheet">
+	<link href="/frontend-app/css/owl-carousel.css" rel="stylesheet">
+	<link href="/frontend-app/css/lightbox.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+</head>
+
+<body>
+
+	<!-- header -->
+	<div th:replace="~{frontend-app/components/common.html :: app-header}"></div>
+
+	<div class="cart-area table-area pt-110 pb-95 float-left w-100">
+		<div class="container">
+			<div class=" cart-wrapper float-left w-100">
+				<div class="table-responsive">
+					<table class="table product-table text-center">
+						<thead>
+							<tr>
+								<th class="table-remove text-uppercase">remove</th>
+								<th class="table-image text-uppercase">image</th>
+								<th class="table-p-name text-uppercase">product</th>
+								<th class="table-p-price text-uppercase">price</th>
+								<th class="table-p-qty text-uppercase">Stock Status</th>
+								<th class="table-total text-uppercase">add to cart</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="table-remove"><button><i class="material-icons">delete</i></button></td>
+								<td class="table-image"><a href="product-details.html"><img src="frontend-app/img/products/02.jpg"
+                                                                                            alt=""></a></td>
+								<td class="table-p-name text-capitalize"><a href="product-details.html">aspetur autodit
+										autfugit</a></td>
+								<td class="table-p-price">
+									<p>$100.00</p>
+								</td>
+								<td class="table-p-qty">in stock</td>
+								<td class="table-addtocart"><a href="cart_page.html" class="btn-primary btn">Add to
+										cart</a></td>
+							</tr>
+							<tr>
+								<td class="table-remove"><button><i class="material-icons">delete</i></button></td>
+								<td class="table-image"><a href="product-details.html"><img src="frontend-app/img/products/03.jpg"
+                                                                                            alt=""></a></td>
+								<td class="table-p-name text-capitalize"><a href="product-details.html">magni dolores
+										eosquies</a></td>
+								<td class="table-p-price">
+									<p>$100.00</p>
+								</td>
+								<td class="table-p-qty">in stock</td>
+								<td class="table-addtocart"><a href="cart_page.html" class="btn-primary btn">Add to
+										cart</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Footer -->
+	<div th:replace="~{frontend-app/components/common :: app-footer}"></div>
+
+	<!-- Modals -->
+	<div th:replace="~{frontend-app/components/common :: app-modals}"></div>
+
+	<!-- Product Compare -->
+	<div th:replace="~{frontend-app/components/common :: index-product-compare-modal}"></div>
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/frontend-app/js/jquery.min.js"></script>
+	<script src="/frontend-app/js/bootstrap.min.js"></script>
+	<script src="/frontend-app/js/owl.carousel.min.js"></script>
+	<script src="/frontend-app/js/custom.js"></script>
+	<script src="/frontend-app/js/parallax.js"></script>
+	<script src="/frontend-app/js/lightbox-2.6.min.js"></script>
+	<script src="/frontend-app/js/ResizeSensor.min.js"></script>
+	<script src="/frontend-app/js/theia-sticky-sidebar.min.js"></script>
+	<script src="/frontend-app/js/inview.js"></script>
+	<script src="/frontend-app/js/cookiealert.js"></script>
+	<script src="/frontend-app/js/jquery.countdown.min.js"></script>
+	<script src="/frontend-app/js/masonry.pkgd.min.js"></script>
+	<script src="/frontend-app/js/imagesloaded.pkgd.min.js"></script>
+	<script src="/frontend-app/js/jquery.zoom.min.js"></script>
+
+</body>
+
+</html>

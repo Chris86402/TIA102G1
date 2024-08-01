@@ -13,13 +13,13 @@ import com.tia102g1.productType.model.ProductTypeVO;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class BackendController {
 
 	@Autowired
 	ProductTypeService typeSvc;
 
 	// 首頁
-	@GetMapping("/")
+	@GetMapping({"", "/admin", "/admin/index"})
 	public String index(Model model) {
 		return "index";
 	}
@@ -193,25 +193,4 @@ public class IndexController {
 		return "staff/mainPageStaff";
 	}
 
-	//前台頁面
-	//首頁
-	@RequestMapping({"/","index","/index.html"})
-	public String homePage() {
-		return "/frontend-app/index";
-	}
-	//購物車
-	@GetMapping("/cart-page.html")
-	public String cartPage(){
-		return "/frontend-app/cart-page";
-	}
-	//關於我們
-	@GetMapping("/about-us.html")
-	public String aboutUsPage(){
-		return "/frontend-app/about-us";
-	}
-	//聯絡我們
-	@GetMapping("/contact-us.html")
-	public String contactUsPage(){
-		return "/frontend-app/contact-us";
-	}
 }
