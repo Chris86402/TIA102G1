@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Desserter - Cart Page</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="/frontend-app/img/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/frontend-app/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/frontend-app/css/styles.css" rel="stylesheet">
+	<link href="/frontend-app/css/animate.css" rel="stylesheet">
+	<link href="/frontend-app/css/owl-carousel.css" rel="stylesheet">
+	<link href="/frontend-app/css/lightbox.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+</head>
+
+<body>
+
+	<!-- header -->
+	<div th:replace="~{frontend-app/components/common.html :: app-header}"></div>
+
+	<!-- bread-crumb  -->
+	<div th:replace="~{frontend-app/components/common :: app-bread-crumb}"></div>
+
+	<div class="cart-area table-area pt-110 pb-95 float-left w-100" id="shopping-cart">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12 col-sm-12 float-left cart-wrapper">
+					<div class="table-responsive">
+						<table class="table product-table text-center">
+							<thead>
+								<tr>
+									<th class="table-remove text-capitalize">remove</th>
+									<th class="table-image text-capitalize">image</th>
+									<th class="table-p-name text-capitalize">product</th>
+									<th class="table-p-price text-capitalize">price</th>
+									<th class="table-p-qty text-capitalize">quantity</th>
+									<th class="table-total text-capitalize">total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="table-remove"><button><i class="material-icons">delete</i></button></td>
+									<td class="table-image"><a href="product-details.html"><img
+												src="/frontend-app/img/products/02.jpg" alt=""></a></td>
+									<td class="table-p-name text-capitalize"><a href="product-details.html">aspetur
+											autodit autfugit</a></td>
+									<td class="table-p-price">
+										<p>$100.00</p>
+									</td>
+									<td class="table-p-qty"><input value="1" name="cart-qty" type="number"></td>
+									<td class="table-total">
+										<p>$100.00</p>
+									</td>
+								</tr>
+								<tr>
+									<td class="table-remove"><button><i class="material-icons">delete</i></button></td>
+									<td class="table-image"><a href="product-details.html"><img
+												src="/frontend-app/img/products/03.jpg" alt=""></a></td>
+									<td class="table-p-name text-capitalize"><a href="product-details.html">magni
+											dolores eosquies</a></td>
+									<td class="table-p-price">
+										<p>$100.00</p>
+									</td>
+									<td class="table-p-qty"><input value="1" name="cart-qty" type="number"></td>
+									<td class="table-total">
+										<p>$100.00</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="table-bottom-wrapper">
+						<div
+							class="table-coupon d-flex d-xs-block d-lg-flex d-sm-flex fix justify-content-start float-left">
+							<input type="text" placeholder="Coupon code">
+							<button type="submit" class="btn-primary btn">Apply coupon</button>
+						</div>
+						<div class="table-update d-flex d-xs-block d-lg-flex d-sm-flex justify-content-end">
+							<button type="button" class="btn-primary btn">Update cart</button>
+						</div>
+					</div>
+				</div>
+				<div
+					class="table-total-wrapper d-flex justify-content-end pt-60 col-md-12 col-sm-12 col-lg-4 float-left  align-items-center">
+					<div class="table-total-content">
+						<h2 class="pb-20">Cart totals</h2>
+						<div class="table-total-amount">
+							<div class="single-total-content d-flex justify-content-between float-left w-100">
+								<strong>Subtotal</strong>
+								<span class="c-total-price">$160.00</span>
+							</div>
+							<div class="single-total-content d-flex justify-content-between float-left w-100">
+								<strong>Shipping</strong>
+								<span class="c-total-price"><span>Flat Rate:</span> $5.00</span>
+							</div>
+							<div class="single-total-content d-flex justify-content-end float-left w-100">
+								<a href="#">Calculate shipping</a>
+							</div>
+							<div class="single-total-content tt-total d-flex justify-content-between float-left w-100">
+								<strong>Total</strong>
+								<span class="c-total-price">$165.00</span>
+							</div>
+							<a href="checkout_page.html" class="btn btn-primary float-left w-100 text-center">Proceed to
+								checkout</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<div th:replace="~{frontend-app/components/common :: app-footer}"></div>
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="/frontend-app/js/jquery.min.js"></script>
+	<script src="/frontend-app/js/bootstrap.min.js"></script>
+	<script src="/frontend-app/js/owl.carousel.min.js"></script>
+	<script src="/frontend-app/js/custom.js"></script>
+	<script src="/frontend-app/js/parallax.js"></script>
+	<script src="/frontend-app/js/lightbox-2.6.min.js"></script>
+	<script src="/frontend-app/js/ResizeSensor.min.js"></script>
+	<script src="/frontend-app/js/theia-sticky-sidebar.min.js"></script>
+	<script src="/frontend-app/js/inview.js"></script>
+	<script src="/frontend-app/js/cookiealert.js"></script>
+	<script src="/frontend-app/js/jquery.countdown.min.js"></script>
+	<script src="/frontend-app/js/masonry.pkgd.min.js"></script>
+	<script src="/frontend-app/js/imagesloaded.pkgd.min.js"></script>
+	<script src="/frontend-app/js/jquery.zoom.min.js"></script>
+
+
+	<script type="module" src="/frontend-app/js/vue/cart_page.js"></script>
+
+</body>
+
+</html>

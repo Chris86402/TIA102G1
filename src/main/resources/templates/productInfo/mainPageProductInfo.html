@@ -1,0 +1,230 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProductInfo</title>
+
+
+
+<style>
+table#table-1 {
+	width: 450px;
+	background-color: #CCCCFF;
+	margin-top: 5px;
+	border: 3px ridge Gray;
+	margin-bottom: 10px;
+	height: 80px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
+
+h4 {
+	color: blue;
+	display: inline;
+}
+
+div.select {
+	display: inline-block;
+	font-size: 12px;
+	margin-right: 18px;
+}
+
+div.addProductInfo {
+	margin-left: 10px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+th.th-productInfo {
+	font-size: 10px;
+	text-align: center;
+}
+
+a:hover, a:active {
+	color: red;
+	font-weight: bold;
+}
+
+.error {
+	color: #ff0000;
+	font-style: italic;
+	font-weight: lighter;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 5px;
+	margin: 5px;
+	width: 100%;
+	font-weight: normal;
+}
+
+.wrapper{
+	min-height:0 !important;
+}
+</style>
+
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+<!-- header-css etc. -->
+<div th:insert="~{/comPage1}">
+
+</div>
+
+	<!-- side bar -->
+<div th:insert="~{/comPage2}"></div>
+
+<!-- Content Wrapper. Contains page content -->
+<!-- 儀錶板上面那排 -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">商品</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+						<li class="breadcrumb-item active">商品</li>
+					</ol>
+					<br>
+				</div>
+
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+		<div class="addProductInfo">
+			<a th:href="addProductInfo">新 增 商 品</a>
+		</div>
+		<div class="errorblock" th:utext="${errorMessage}">${errorMessage}</div>
+		<br>
+		<div class="a"></div>
+		<!-- /.content-header -->
+
+		<!-- 功能內容開始 -->
+		<section class="content">
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">
+						<form method="post"
+							th:action="@{listProductInfos_ByCompositeQuery}">
+							<div class="select">
+								<label> 輸入商品編號</label><br> <input type="text"
+									name="productId" th:value="${param.productId}">
+							</div>
+
+							<div class="select">
+								<a><label> 勾選產品狀態</label></a><br> <input type="checkbox"
+									value="0"> <a>未上架</a> <input type="checkbox" value="1">
+								<a>上架中</a>
+							</div>
+
+							<div class="select">
+								<label>選擇商品類型</label><br> <select name="productTypeId">
+									<option th:each="productTypeVO:${typeListData}"
+										th:value="${productTypeVO.productTypeId}"
+										th:text="${productTypeVO.typeName}"></option>
+								</select>
+							</div>
+
+							<div class="select">
+								<label>價格區間搜尋</label><br> <a for="priceMin">最小價格:</a> <input
+									type="number" id="priceMin" name="priceMin" step="0" min="0">
+								<a for="priceMax">最大價格:</a> <input type="number" id="priceMax"
+									name="priceMax" step="0" max="1000000">
+							</div>
+
+
+							<input type="submit" value="送出查詢">
+						</form>
+					</h3>
+				</div>
+			</div>
+			<table class="table table-striped projects">
+				<thead>
+					<tr>
+						<th style="width: 5%" class="th-productInfo">商品<br>編號
+						</th>
+						<th style="width: 5%" class="th-productInfo">類型<br>編號
+						</th>
+						<th style="width: 5%" class="th-productInfo">品名</th>
+						<th style="width: 5%" class="th-productInfo">單價</th>
+						<th style="width: 5%" class="th-productInfo">安全<br>存量
+						</th>
+						<th style="width: 5%" class="th-productInfo">庫存量</th>
+						<th style="width: 5%" class="th-productInfo">總評價<br>人數
+						</th>
+						<th style="width: 5%" class="th-productInfo">總<br>星星數
+						</th>
+						<th style="width: 5%" class="th-productInfo">圖片</th>
+						<th style="width: 5%" class="th-productInfo">狀態</th>
+						<th style="width: 5%" class="th-productInfo">描述</th>
+						<th style="width: 5%" class="th-productInfo">建檔者</th>
+						<th style="width: 5%" class="th-productInfo">建檔<br>時間
+						</th>
+						<th style="width: 5%" class="th-productInfo">最後<br>更新者
+						</th>
+						<th style="width: 5%" class="th-productInfo">最後更<br>新時間
+						</th>
+						<th style="width: 5%" class="th-productInfo"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="productInfo : ${productInfoListData}">
+						<tr>
+							<td th:text="${productInfo.productId}"></td>
+							<td th:text="${productInfo.productTypeId}"></td>
+							<td th:text="${productInfo.proName}"></td>
+							<td th:text="${productInfo.proPrice}"></td>
+							<td th:text="${productInfo.proSafetyStock}"></td>
+							<td th:text="${productInfo.totalCount}"></td>
+							<td th:text="${productInfo.commentUsers}"></td>
+							<td th:text="${productInfo.commentStars}"></td>
+							<td><img
+								th:src="@{/productInfo/ProductInfoReader} + '?productId=' + ${productInfo.productId}" width="100px">
+							</td>
+							<td th:text="${productInfo.proStatus}"></td>
+							<td th:text="${productInfo.proDesc}"></td>
+							<td th:text="${productInfo.createdBy}"></td>
+							<td
+								th:text="${#dates.format(productInfo.dateCreated, 'yyyy-MM-dd HH:mm:ss')}"></td>
+							<td th:text="${productInfo.lastUpdatedBy}"></td>
+							<td
+								th:text="${#dates.format(productInfo.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
+							<td>
+								<form method="post"
+									th:action="@{/productInfo/getOne_For_Update}">
+									<input type="submit" value="修改"> <input type="hidden"
+										name="productInfo" th:value="${productInfo.productId}">
+								</form>
+							</td>
+						</tr>
+					</th:block>
+
+				</tbody>
+			</table>
+	</div>
+	
+		</section>
+		<!-- 功能內容結束 -->
+
+		<!-- footer and script link -->
+		<div th:insert="~{/comPage3}"></div>
+		
+		</body>
+</html>

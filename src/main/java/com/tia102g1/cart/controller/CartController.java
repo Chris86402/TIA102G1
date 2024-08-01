@@ -15,7 +15,12 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    //取得購物車內容
+    /**
+     * 取得購物車內容
+     *
+     * @param memberId
+     * @return cartList
+     */
     @GetMapping("cart/{memberId}")
     public ResponseEntity<List<Cart>> getAllItems(@PathVariable Integer memberId) {
 
@@ -27,7 +32,12 @@ public class CartController {
         }
     }
 
-    //新增商品至購物車
+    /**
+     * 新增商品至購物車
+     *
+     * @param cart
+     * @return newCart
+     */
     @PostMapping("/cart/{memberId}")
     public ResponseEntity<Cart> addItem(@RequestBody Cart cart) {
         Cart newCart = cartService.addItem(cart);
@@ -35,7 +45,13 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newCart);
     }
 
-    //更新商品數量
+    /**
+     * 更新商品數量
+     *
+     * @param cartId
+     * @param cart
+     * @return updateItem
+     */
     @PutMapping("/cart/{cartId}")
     public ResponseEntity<Cart> updateCart(@PathVariable Integer cartId, @RequestBody Cart cart) {
 
@@ -51,6 +67,12 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.OK).body(updateItem);
     }
 
+    /**
+     * 刪除商品
+     *
+     * @param cartId
+     * @return
+     */
     @DeleteMapping("/cart/{cartId}")
     public ResponseEntity<?> deleteItem(@PathVariable Integer cartId) {
         cartService.deleteItem(cartId);

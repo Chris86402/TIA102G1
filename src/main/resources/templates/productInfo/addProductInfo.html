@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>你的功能名稱</title>
+
+		<!-- header-css etc. -->
+		<head th:insert="~{/comPage1}"></head>
+		
+		<style>
+		  table#table-1 {
+			width: 450px;
+			background-color: #CCCCFF;
+			margin-top: 5px;
+			margin-bottom: 10px;
+		    border: 3px ridge Gray;
+		    height: 80px;
+		    text-align: center;
+		  }
+		  table#table-1 h4 {
+		    color: red;
+		    display: block;
+		    margin-bottom: 1px;
+		  }
+		  h4 {
+		    color: blue;
+		    display: inline;
+		  }
+		</style>
+		
+
+	</head>
+	
+	<body class="hold-transition sidebar-mini layout-fixed">
+
+	<!-- side bar -->
+	<body th:insert="~{/comPage2}"></body>
+	
+	<!-- Content Wrapper. Contains page content -->
+    <!-- 儀錶板上面那排 -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">你的功能名稱</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+                <li class="breadcrumb-item active">你的功能名稱</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+	<!-- 功能內容開始 -->
+	<section class="content">
+		
+	<!-- 把你的內容貼在這裡 -->
+	<!-- 把你的內容貼在這裡 -->
+	<!-- 把你的內容貼在這裡 -->
+	
+	
+	</section>
+	<!-- 功能內容結束 -->
+	
+	<!-- footer and script link -->
+	<body th:insert="~{/comPage3}"></body>
+
+	</body>
+</html>
