@@ -2,15 +2,14 @@ package com.tia102g1.member.service;
 
 import com.tia102g1.member.constant.AccountStatus;
 import com.tia102g1.member.dao.MemberDao;
-import com.tia102g1.member.dto.MemberLoginRequest;
-import com.tia102g1.member.dto.MemberQueryParams;
-import com.tia102g1.member.dto.MemberRegisterRequest;
-import com.tia102g1.member.dto.MemberUpdateDto;
+import com.tia102g1.member.dto.*;
 import com.tia102g1.member.model.Member;
+import org.apache.bcel.generic.RETURN;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,6 +27,8 @@ public class MemberServiceImpl implements MemberService {
     private MemberDao memberDao;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private EmailForForgetPassword emailForForgetPassword;
 
     @Override
 
@@ -124,4 +125,69 @@ public class MemberServiceImpl implements MemberService {
 
         return memberDao.unblockMember(memberId);
     }
+
+    @Override
+    public Member getMemberByAccount(String account) {
+        Member member = memberDao.getMemberByAccount(account);
+        if (member == null) {
+            throw new UsernameNotFoundException("找不到該帳號: " + account);
+
+        }
+        return memberDao.getMemberByAccount(account);
+    }
+
+    @Override
+    public Member getMemberByEmail(ForgetPasswordRequest forgetPasswordRequest) {
+
+        Member member = memberDao.getMemberByEmail(forgetPasswordRequest);
+        if (member == null) {
+            log.warn("信箱 {} 不存在 ", forgetPasswordRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+
+        }
+        return memberDao.getMemberByEmail(forgetPasswordRequest);
+    }
+
+    @Override
+    public void forgetPassword(ForgetPasswordRequest forgetPasswordRequest) {
+
+        // 1. 檢查使用者輸入的email是否存在
+        Member member = memberDao.getMemberByEmail(forgetPasswordRequest);
+        if (member == null) {
+            log.warn("輸入的信箱 {} 不存在", forgetPasswordRequest.getEmail());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "您輸入的信箱不存在");
+        }
+
+        // 2. 生成隨機密碼
+        String newPassword = generateRandomPassword(6);
+
+        // 3. 將新隨機密碼的加密並更新到該會員的資料庫
+        String hashedPassword = passwordEncoder.encode(newPassword);
+        member.setPassword(hashedPassword);
+        memberDao.updateMemberPassword(member.getMemberId(), member.getPassword());
+
+        // 4. 發送生成的隨機密碼到使用者的信箱
+        String subject = "忘記密碼通知";
+        String content = "您的新密碼是，" + newPassword + "，請使用該密碼登入，並修改您的密碼。";
+        emailForForgetPassword.sendPlainText(forgetPasswordRequest.getEmail(), subject, content);
+    }
+
+
+
+    /**
+     * 隨機生成密碼的方法，用於忘記密碼的功能
+     *
+     * @param length 預計隨機生成幾個數字
+     * @return 生成的密碼
+     */
+    private String generateRandomPassword(int length) {
+        String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        StringBuilder password = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int index = (int) (Math.random() * characters.length());
+            password.append(characters.charAt(index));
+        }
+        return password.toString();
+    }
+
 }

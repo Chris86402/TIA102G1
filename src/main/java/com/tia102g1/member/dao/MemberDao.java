@@ -1,5 +1,6 @@
 package com.tia102g1.member.dao;
 
+import com.tia102g1.member.dto.ForgetPasswordRequest;
 import com.tia102g1.member.dto.MemberQueryParams;
 import com.tia102g1.member.dto.MemberRegisterRequest;
 import com.tia102g1.member.dto.MemberUpdateDto;
@@ -88,4 +89,20 @@ public interface MemberDao {
      * @return 解除的會員ID
      */
     Integer unblockMember(Integer memberId);
+
+    /**
+     * 藉由email查詢會員ID的方法
+     * @param forgetPasswordRequest 會員的email
+     * @return 返回該會員的資訊
+     */
+    Member getMemberByEmail(ForgetPasswordRequest forgetPasswordRequest);
+
+    /**
+     * 更新會員密碼的方法(member)
+     * @param memberId 要更新密碼的會員ID
+     * @param password 要更新的密碼
+     * @return 返回更新密碼的會員ID
+     */
+    Integer updateMemberPassword(Integer memberId,String password);
+
 }

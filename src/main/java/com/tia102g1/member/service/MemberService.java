@@ -1,9 +1,6 @@
 package com.tia102g1.member.service;
 
-import com.tia102g1.member.dto.MemberLoginRequest;
-import com.tia102g1.member.dto.MemberQueryParams;
-import com.tia102g1.member.dto.MemberRegisterRequest;
-import com.tia102g1.member.dto.MemberUpdateDto;
+import com.tia102g1.member.dto.*;
 import com.tia102g1.member.model.Member;
 
 import java.util.List;
@@ -70,15 +67,41 @@ public interface MemberService {
 
     /**
      * 查詢黑名單的總數(分頁)
-     * @param memberQueryParams  要查詢的黑名單參數
+     *
+     * @param memberQueryParams 要查詢的黑名單參數
      * @return 返回查詢條件下的黑名單總數
      */
     Integer countBlockedMember(MemberQueryParams memberQueryParams);
 
     /**
      * 解除某會員的黑名單
+     *
      * @param memberId 要解除的會員ID
      * @return 解除的會員ID
      */
     Integer unblockMember(Integer memberId);
+
+    /**
+     * 藉由帳號查詢會員ID的方法
+     *
+     * @param account 要查詢的帳號
+     * @return 該帳號的會員資料，沒有該帳號則返回null
+     */
+    Member getMemberByAccount(String account);
+
+    /**
+     * 藉由email查詢會員ID的方法
+     *
+     * @param forgetPasswordRequest 會員的email
+     * @return 返回該會員的資訊
+     */
+    Member getMemberByEmail(ForgetPasswordRequest forgetPasswordRequest);
+
+    /**
+     * 忘記密碼的功能
+     *
+     * @param forgetPasswordRequest 要查詢密碼會員的信箱
+     */
+    void forgetPassword(ForgetPasswordRequest forgetPasswordRequest);
+
 }

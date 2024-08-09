@@ -2,6 +2,7 @@ package com.tia102g1.member.dao.impl;
 
 
 import com.tia102g1.member.dao.MemberDao;
+import com.tia102g1.member.dto.ForgetPasswordRequest;
 import com.tia102g1.member.dto.MemberQueryParams;
 import com.tia102g1.member.dto.MemberRegisterRequest;
 import com.tia102g1.member.dto.MemberUpdateDto;
@@ -265,5 +266,29 @@ public class MemberDaoImpl implements MemberDao {
         int unblockedMemberId = namedParameterJdbcTemplate.update(sql, map);
 
         return unblockedMemberId;
+    }
+
+    @Override
+    public Member getMemberByEmail(ForgetPasswordRequest forgetPasswordRequest) {
+        Map<String, Object> map = new HashMap<>();
+        String sql = "SELECT memberid,memberlvid,staffid,account,password,name,birthdt,phone,email,cntcode,distcode,address,accumulate,\n" +
+                "       coinbalance,joindate,noshow,cardholder,cardnumber,cardyy,cardmm,cardverifycode,status,blockedtime,blockedreason,\n" +
+                "       createdby,datecreated,lastupdatedby,lastupdated FROM member WHERE email =:email";
+        map.put("email", forgetPasswordRequest.getEmail());
+        List<Member> memberList = namedParameterJdbcTemplate.query(sql, map, new MemberRowMapper());
+        return memberList.isEmpty() ? null : memberList.get(0);
+    }
+
+    @Override
+    public Integer updateMemberPassword(Integer memberId, String password) {
+        Map<String, Object> map = new HashMap<>();
+        String sql = "UPDATE member SET password = :password ,lastUpdated = :lastUpdated WHERE memberId = :memberId";
+
+        map.put("password", password);
+        map.put("lastUpdated", new Date());
+        map.put("memberId", memberId);
+
+        int id = namedParameterJdbcTemplate.update(sql, map);
+        return id;
     }
 }

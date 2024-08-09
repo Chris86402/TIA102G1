@@ -16,11 +16,16 @@ public class FrontendController {
 	}
 
 	/* ====== 會員 ====== */
-	// 註冊登入
-	@GetMapping({ "/loginsignup", "/loginSignup.html" })
-	public String frontendLoginSignup(Model model) {
-		return "/frontendapp/loginSignup";
+//	// 註冊
+	@GetMapping({ "/register", "/register.html" })
+	public String frontendRegister(Model model) {
+		return "/frontendapp/register";
 	}
+	// 登入
+//	@GetMapping({ "/login", "/login.html" })
+//	public String frontendLoginSignup(Model model) {
+//		return "/frontendapp/login";
+//	}
 
 	// 我的最愛
 	@GetMapping({ "/favproduct", "/favProduct.html" })

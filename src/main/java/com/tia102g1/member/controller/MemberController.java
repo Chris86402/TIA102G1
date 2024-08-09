@@ -1,9 +1,6 @@
 package com.tia102g1.member.controller;
 
-import com.tia102g1.member.dto.MemberLoginRequest;
-import com.tia102g1.member.dto.MemberQueryParams;
-import com.tia102g1.member.dto.MemberRegisterRequest;
-import com.tia102g1.member.dto.MemberUpdateDto;
+import com.tia102g1.member.dto.*;
 import com.tia102g1.member.model.Member;
 import com.tia102g1.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,6 +140,16 @@ public class MemberController {
     public Integer unblockMember(@PathVariable Integer memberId) {
 
         return memberService.unblockMember(memberId);
+    }
+
+    @PutMapping("/forgotPassword")
+    public ResponseEntity<Member> forgetPassword(
+            @RequestBody @Valid ForgetPasswordRequest forgetPasswordRequest) {
+
+        Member member = memberService.getMemberByEmail(forgetPasswordRequest);
+
+        return ResponseEntity.status(HttpStatus.OK).body(member);
+
     }
 
 }

@@ -130,10 +130,12 @@ public class ThymeleafMemberController {
 
         return "member/mainPageBlockedMember";
     }
+
     @GetMapping("/unblock/{memberId}")
     public String unblockMember(@PathVariable Integer memberId) {
         memberService.unblockMember(memberId);
         return "redirect:/member/mainPageBlockedMember";
     }
+
 
 }
