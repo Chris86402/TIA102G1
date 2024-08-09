@@ -47,7 +47,6 @@ public class NewsVO {
 	@Column(name = "NEWSPIC")
 	private byte[] newsPic;
 	
-	@NotEmpty(message="請輸入員工編號")
 	@Column(name = "CREATEDBY")
 	private String createdBy;
 	

@@ -46,7 +46,7 @@ public class StaffController {
 	}
 	
 	@PostMapping("insert")
-	public String insert(@RequestParam("employDt") String employDt ,@Valid StaffVO staffVO, BindingResult result, ModelMap model) throws IOException{
+	public String insert(@RequestParam("employDt") String employDt ,@Valid StaffVO staffVO, BindingResult result, ModelMap model, HttpSession session) throws IOException{
 		result = removeFieldError(staffVO, result, "employDt");
 		
 		 if (employDt == null || employDt.trim().length() == 0) {
@@ -63,8 +63,10 @@ public class StaffController {
 		staffVO.setDateCreated(now);
 		staffVO.setLastUpdated(now);
 		
-		staffVO.setLastUpdatedBy(staffVO.getCreatedBy());
-		
+		String createdBy = (String) session.getAttribute("staffId");
+
+		staffVO.setCreatedBy(createdBy);
+		staffVO.setLastUpdatedBy(createdBy);		
 		staffSvc.addStaff(staffVO);
 		
 		List<StaffVO> list = staffSvc.getAll();
@@ -90,7 +92,7 @@ public class StaffController {
 	}
 	
 	@PostMapping("update")
-	public String update(@Valid StaffVO staffVO, BindingResult result, ModelMap model, @RequestParam(value = "leaveDt", required = false) String leaveDtStr) {
+	public String update(@Valid StaffVO staffVO, BindingResult result, ModelMap model, @RequestParam(value = "leaveDt", required = false) String leaveDtStr, HttpSession session) {
 		
 		result = removeFieldError(staffVO, result, "leaveDt");
 		
@@ -110,6 +112,9 @@ public class StaffController {
 	        return "staff/updateStaff";
 		}
 		
+		String lastUpdatedBy = (String) session.getAttribute("staffId");
+		staffVO.setLastUpdatedBy(lastUpdatedBy);
+
 	    staffVO.setLeaveDt(leaveDt);
 		staffVO.setLastUpdated(now);
 		
@@ -141,7 +146,7 @@ public class StaffController {
 	}
 	
 	@PostMapping("login")
-	public String login(@RequestParam("staffId") String staffIdStr, @RequestParam("password") String password, HttpSession session,Model model) {
+	public String login(@RequestParam("staffId") String staffIdStr, @RequestParam("password") String password, @RequestParam(value = "redirect") String redirect,HttpServletRequest req,HttpSession session,Model model) {
 		
 		if(staffIdStr == null || staffIdStr.trim().length() == 0 || !staffIdStr.matches("^\\d{4}$")) {
 			model.addAttribute("errorMessage", "請輸入員工編號");
@@ -164,7 +169,13 @@ public class StaffController {
 		}else if(password.equals(staff.getPassword())) {
 			model.addAttribute("staffId", staffIdStr);
 			session.setAttribute("staffName", staff.getName());
-			return "redirect:/staff/mainPageStaff";
+			session.setAttribute("permission",staff.getPermission());
+			session.setAttribute("staffId", staffIdStr);
+			if(redirect == null || redirect.trim().length() == 0) {
+				redirect = "/";
+			}
+			session.removeAttribute("location");
+			return "redirect:" + redirect;
 		}else {
 			model.addAttribute("errorMessage", "登入失敗!!!");
 			return "staff/staffLogin";

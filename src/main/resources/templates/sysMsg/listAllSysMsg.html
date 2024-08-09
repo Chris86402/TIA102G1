@@ -110,13 +110,13 @@
 						<td	th:text="${#dates.format(sysMsgVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
 						<td>
 							<form method="post" th:action="@{/sysMsg/getOne_For_Update}">
-								<input type="submit" class="btn btn-primary btn-sm" value="修改"> 
+								<input type="submit" class="btn btn-primary btn-sm" th:if="${session.permission != null}" value="修改"> 
 								<input type="hidden" name="sysMsgId" th:value="${sysMsgVO.sysMsgId}">
 							</form>
 						</td>
 						<td>
 							<form method="post" th:action="@{/sysMsg/delete}">
-								<input type="submit" class="btn btn-danger btn-sm" onclick="return confirm('是否要刪除資料?');" value="刪除"> 
+								<input type="submit" class="btn btn-danger btn-sm" th:if="${session.permission != null}" onclick="return confirm('是否要刪除資料?');" value="刪除"> 
 								<input type="hidden" name="sysMsgId" th:value="${sysMsgVO.sysMsgId}">
 							</form>
 						</td>

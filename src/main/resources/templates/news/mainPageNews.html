@@ -68,7 +68,7 @@
 					<div class="form-grout">
 						<button type="reset" class="btn btn-secondary">清 除</button>
 						<button type="submit" class="btn btn-primary">送 出</button>
-						<a href="addNews"><button type="button" class="btn btn-success">新 增</button></a>
+						<a href="addNews"><button type="button" class="btn btn-success" th:if="${session.permission != null}">新 增</button></a>
 					</div>
 					</div>
 			</form>

@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,16 +38,19 @@ public class ProductTypeController {
 	}
 	
 	@PostMapping("insert")
-	public String insert(@Valid ProductTypeVO typeVO, BindingResult result, ModelMap model) throws IOException{
-		
+	public String insert(@Valid ProductTypeVO typeVO, BindingResult result, ModelMap model, HttpSession session) throws IOException{
+		System.out.println("============================" + result);
 		if(result.hasErrors()) {
 			return "productType/addType";
 		}
 		
+		
 		typeVO.setDateCreated(now);
 		typeVO.setLastUpdated(now);
-		
-		typeVO.setLastUpdatedBy(typeVO.getCreatedBy());
+		String createdBy = (String) session.getAttribute("staffId");
+
+	    typeVO.setCreatedBy(createdBy);
+		typeVO.setLastUpdatedBy(createdBy);
 		
 		typeSvc.addType(typeVO);
 		
@@ -76,12 +80,14 @@ public class ProductTypeController {
 	}
 	
 	@PostMapping("update")
-	public String update(@Valid ProductTypeVO typeVO, BindingResult result, ModelMap model) throws IOException{
+	public String update(@Valid ProductTypeVO typeVO, BindingResult result, ModelMap model, HttpSession session) throws IOException{
 		
 		if(result.hasErrors()) {
 			return "productType/updateProductType";
 		}
-		
+		String lastUpdatedBy = (String) session.getAttribute("staffId");
+
+	    typeVO.setLastUpdatedBy(lastUpdatedBy);
 		typeVO.setLastUpdated(now);
 		typeSvc.updateType(typeVO);
 		

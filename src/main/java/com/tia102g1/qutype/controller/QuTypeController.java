@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class QuTypeController {
 	}
 	
 	@PostMapping("insert")
-	public String insert(@Valid QuTypeVO quTypeVO,BindingResult result, ModelMap model) {
+	public String insert(@Valid QuTypeVO quTypeVO,BindingResult result, ModelMap model, HttpSession session) {
 		if(result.hasErrors()) {
 			return "quType/addQuType";
 		}
@@ -43,8 +44,10 @@ public class QuTypeController {
 		quTypeVO.setDateCreated(now);
 		quTypeVO.setLastUpdated(now);
 		
-		quTypeVO.setLastUpdatedBy(quTypeVO.getCreatedBy());
-		
+		String createdBy = (String) session.getAttribute("staffId");
+
+		quTypeVO.setCreatedBy(createdBy);
+		quTypeVO.setLastUpdatedBy(createdBy);		
 		quTypeSvc.addQuType(quTypeVO);
 		
 		List<QuTypeVO> list = quTypeSvc.getAll();
@@ -63,11 +66,13 @@ public class QuTypeController {
 	}
 	
 	@PostMapping("update")
-	public String update(@Valid QuTypeVO quTypeVO, BindingResult result, ModelMap model) {
+	public String update(@Valid QuTypeVO quTypeVO, BindingResult result, ModelMap model, HttpSession session) {
 		if(result.hasErrors()) {
 			return "quType/updateQuType";
 		}
-		
+		String lastUpdatedBy = (String) session.getAttribute("staffId");
+	   
+		quTypeVO.setLastUpdatedBy(lastUpdatedBy);
 		quTypeVO.setLastUpdated(now);
 		quTypeSvc.updateQuType(quTypeVO);
 		

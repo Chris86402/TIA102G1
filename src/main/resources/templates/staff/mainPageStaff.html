@@ -60,7 +60,7 @@
 				<label style="display: inline-block;">到職日期區間:</label>
 					<input type="date" id="startEmployDt" name="startEmployDt" onclick="this.showPicker();" onchange="validateDate()" style="width: 120px; display: inline-block; margin-left: 10px;margin-right: 10px;">
 				   到<input type="date" id="endEmployDt" name="endEmployDt" onclick="this.showPicker();" onchange="validateDate()"style="width: 120px; display: inline-block; margin-left: 10px;"><br>
-				<label style="margin-top: 10px;">是否還在職:</label>
+				<label style="margin-top: 10px;">是否仍在職:</label>
 					<select name="status" style="margin-left: 10px;">
 						<option value = " "></option>
 						<option value = "1">在職</option>
@@ -69,7 +69,7 @@
 				<button type="submit" class="btn btn-primary" style="margin-top: 10px;">送 出</button></div></div>
 			<div class="form-group">
 				<a href="listAllStaff"><button type="submit" class="btn btn-primary" style="margin-left: 20px;">全部員工</button></a>
-				<a href="addStaff"><button type="button" class="btn btn-success">新 增</button></a>
+				<a href="addStaff"><button type="button" class="btn btn-success" th:if="${session.permission == 1}">新 增</button></a>
 			</div>
 		</form></div></div></div></div>
 	</section>

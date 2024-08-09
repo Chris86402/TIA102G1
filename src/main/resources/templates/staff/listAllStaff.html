@@ -82,9 +82,10 @@
 				<tr>
 					<th>員工編號</th>
 					<th>員工姓名</th>
+					<th>權限</th>
 					<th>員工電話</th>
 					<th>電子信箱</th>
-					<th>到職日</th>
+					<th>到職日期</th>
 					<th>是否仍在職</th>
 					<th>離職日</th>
 					<th>修改</th>
@@ -95,6 +96,8 @@
 					<tr>
 						<td th:text="${staffVO.staffId}"></td>
 						<td th:text="${staffVO.name}"></td>
+						<td><span th:if="${staffVO.permission} == 1">管理者</span>
+							<span th:if="${staffVO.permission} == 0">一般員工</span></td>
 						<td th:text="${staffVO.phone}"></td>
 						<td th:text="${staffVO.email}"></td>
 						<td th:text="${staffVO.employDt}"></td>
@@ -103,7 +106,7 @@
 						<td th:text="${staffVO.leaveDt}"></td>
 						<td>
 							<form method="post" th:action="@{/staff/getOne_For_Update}">
-								<button type="submit" class="btn btn-primary btn-sm" style="width:100%">修改</button>
+								<button type="submit" class="btn btn-primary btn-sm" style="width:100%" th:if="${session.permission == 1}">修改</button>
 								<input type="hidden" name="staffId" th:value="${staffVO.staffId}">
 							</form>
 						</td>

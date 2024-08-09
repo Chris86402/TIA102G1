@@ -72,8 +72,8 @@
 							th:text="${#dates.format(productTypeVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
 						<td>
 							<form method="post" th:action="@{/productType/getOne_For_Update}">
-								<input type="submit" value="修改"> <input type="hidden"
-									name="productTypeId" th:value="${productTypeVO.productTypeId}">
+								<button type="submit" class="btn btn-primary btn-sm" style="width:100%" th:if="${session.permission == 1}">修改</button>
+								<input type="hidden" name="productTypeId" th:value="${productTypeVO.productTypeId}">
 							</form>
 						</td>
 					</tr>

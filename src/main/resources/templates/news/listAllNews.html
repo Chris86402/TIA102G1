@@ -102,7 +102,7 @@
 						<td><img th:src="@{/news/DBGifReader} + '?newsId=' + ${newsVO.newsId}" width="100px"></td>
 						<td>
 							<form method="post" th:action="@{/news/getOne_For_Update}" style="margin-bottom: 0px;">
-								<button type="submit" class="btn btn-primary btn-sm" style="width:100%">修改</button>
+								<button type="submit" class="btn btn-primary btn-sm" style="width:100%" th:if="${session.permission != null}">修改</button>
 								<input type="hidden" name="newsId" th:value="${newsVO.newsId}">
 							</form>
 						</td>

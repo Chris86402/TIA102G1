@@ -33,7 +33,6 @@ public class ProductTypeVO implements java.io.Serializable{
 	@Column(name = "TYPENAME", unique = true)
 	private String typeName;
 	
-	@NotEmpty(message="請輸入員工編號")
 	@Column(name = "CREATEDBY")
 	private String createdBy;
 	

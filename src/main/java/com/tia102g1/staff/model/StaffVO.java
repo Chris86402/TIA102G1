@@ -31,6 +31,9 @@ public class StaffVO {
 	@Column(name = "NAME")
 	private String name;
 	
+	@Column(name = "PERMISSION")
+	private Integer permission;
+	
 	@NotEmpty(message="員工電話:請勿空白")
 	@Pattern(regexp="^\\d{10}$", message = "員工電話:請輸入10碼手機號碼")
 	@Column(name = "PHONE")
@@ -49,7 +52,6 @@ public class StaffVO {
 	@Column(name = "STATUS")
 	private Integer status;
 	
-	@NotEmpty(message="請輸入員工編號")
 	@Column(name = "CREATEDBY", updatable = false)
 	private String createdBy;
 	
@@ -88,6 +90,14 @@ public class StaffVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Integer getPermission() {
+		return permission;
+	}
+
+	public void setPermission(Integer permission) {
+		this.permission = permission;
 	}
 
 	public String getPhone() {

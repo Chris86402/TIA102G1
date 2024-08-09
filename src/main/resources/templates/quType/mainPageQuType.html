@@ -101,7 +101,7 @@
 					<td th:text="${#dates.format(quTypeVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
 					<td>
 						<form method="post" th:action="@{/quType/getOne_For_Update}">
-							<button type="submit" class="btn btn-primary btn-sm" style="width:100%">修改</button>
+							<button type="submit" class="btn btn-primary btn-sm" style="width:100%" th:if="${session.permission != null}">修改</button>
 							<input type="hidden" name="quTypeId" th:value="${quTypeVO.quTypeId}">
 						</form>
 					</td>
@@ -109,7 +109,7 @@
 		</tbody>
 	</table>
 		<div class="form-grout">
-			<a href="addQuType"><button type="button" class="btn btn-success">新 增</button></a></div>
+			<a href="addQuType"><button type="button" class="btn btn-success" th:if="${session.permission != null}">新 增</button></a></div>
 	</section>
 	<!-- 功能內容結束 -->
 	

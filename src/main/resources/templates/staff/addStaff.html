@@ -55,6 +55,11 @@
 					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error" id="name.errors"></span>
 			</div>
 			<div class="form-group">
+				<label>權限:</label>
+					<label><input type="radio" name="permission" value="1">管理者</label>
+					<label><input type="radio" name="permission" value="0" checked>一般員工</label>
+			</div>
+			<div class="form-group">
 				<label>員工電話:</label>
 					<input type="text" th:field="*{phone}" onclick="hideContent('phone.errors');"/><br>
 					<span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="error" id="phone.errors"></span>
@@ -71,8 +76,7 @@
 			</div>
 			<div class="form-group">
 				<label>建檔者:</label> 
-					<input type="text" th:field="*{createdBy}" onclick="hideContent('createdBy.errors');" /><br /> 
-					<span th:if="${#fields.hasErrors('createdBy')}" th:errors="*{createdBy}" class="error" id="createdBy.errors"></span>
+            		<span th:text="${session.staffName}"></span><br/>
 			</div>
 			<div class="form-group">
 				<button type="reset" class="btn btn-secondary">清除重填</button>

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class NewsController {
 	}
 	
 	@PostMapping("insert")
-	public String insert(@Valid NewsVO newsVO, BindingResult result, ModelMap model, @RequestParam("newsDate") String newsDateStr, @RequestParam("startDt") String startDtStr,@RequestParam("endDt") String endDtStr,@RequestParam("newsPic") MultipartFile[] parts) throws IOException{
+	public String insert(@Valid NewsVO newsVO, BindingResult result, ModelMap model, @RequestParam("newsDate") String newsDateStr, @RequestParam("startDt") String startDtStr,@RequestParam("endDt") String endDtStr,@RequestParam("newsPic") MultipartFile[] parts, HttpSession session) throws IOException{
 		
 		result = removeFieldError(newsVO, result, "newsDate");
 		result = removeFieldError(newsVO, result, "startDtStr");
@@ -89,7 +90,10 @@ public class NewsController {
 		newsVO.setNewsPic(buf);
 		newsVO.setDateCreated(now);
 		newsVO.setLastUpdated(now);
-		newsVO.setLastUpdatedBy(newsVO.getCreatedBy());
+		String createdBy = (String) session.getAttribute("staffId");
+
+		newsVO.setCreatedBy(createdBy);
+		newsVO.setLastUpdatedBy(createdBy);
 		
 		newsSvc.addNews(newsVO);
 		
@@ -115,7 +119,7 @@ public class NewsController {
 	}
 	
 	@PostMapping("update")
-	public String update(@Valid NewsVO newsVO, BindingResult result, ModelMap model, @RequestParam("newsDate") String newsDateStr, @RequestParam("startDt") String startDtStr,@RequestParam("endDt") String endDtStr,@RequestParam("newsPic") MultipartFile[] parts) throws IOException{
+	public String update(@Valid NewsVO newsVO, BindingResult result, ModelMap model, @RequestParam("newsDate") String newsDateStr, @RequestParam("startDt") String startDtStr,@RequestParam("endDt") String endDtStr,@RequestParam("newsPic") MultipartFile[] parts, HttpSession session) throws IOException{
 		
 		Date newsDate = null;
 		Date startDt = null;
@@ -184,6 +188,10 @@ public class NewsController {
 		if(result.hasErrors() || model.containsAttribute("errorMessage1") || model.containsAttribute("errorMessage2") || model.containsAttribute("errorMessage3") || model.containsAttribute("errorMessage4")) {
 			return "/news/updateNews";
 		}
+		
+		String lastUpdatedBy = (String) session.getAttribute("staffId");
+		
+		newsVO.setLastUpdatedBy(lastUpdatedBy);
 		
 		newsVO.setNewsDate(newsDate);
 	    newsVO.setStartDt(startDt);

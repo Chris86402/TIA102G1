@@ -86,8 +86,7 @@
 			<input type="hidden" th:field="*{dateCreated}" readonly />
 			<div class="form-group">
 				<label>最後更新者:</label>
-					<input type="text" th:field="*{lastUpdatedBy}" onclick="hideContent('lastUpdatedBy.errors');" class="form-control"/><br /> 
-					<span th:if="${#fields.hasErrors('lastUpdatedBy')}"	th:errors="*{lastUpdatedBy}" class="error" id="lastUpdatedBy.errors"></span>
+            		<span th:text="${session.staffName}"></span><br/>
 			</div>
 			<div>
 				<button type="submit" class="btn btn-primary" id="submit">送出修改</button>

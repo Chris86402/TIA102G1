@@ -58,6 +58,11 @@
 					<td th:text="${staffVO.name}"></td>
 				</tr>
 				<tr>
+					<th>權限:</th>
+					<td><span th:if="${staffVO.permission} == 1">管理者</span>
+						<span th:if="${staffVO.permission} == 0">一般員工</span></td>
+				</tr>
+				<tr>
 					<th>電話:</th>
 					<td th:text="${staffVO.phone}"></td>
 				</tr>
@@ -66,12 +71,17 @@
 					<td th:text="${staffVO.email}"></td>
 				</tr>
 				<tr>
-					<th>入職日期:</th>
+					<th>到職日期:</th>
 					<td th:text="${#dates.format(staffVO.employDt, 'yyyy-MM-dd')}"></td>
 				</tr>
 				<tr>
 					<th>離職日期:</th>
 					<td th:text="${#dates.format(staffVO.leaveDt, 'yyyy-MM-dd')}"></td>
+				</tr>
+				<tr>
+					<th>是否仍在職</th>
+						<td><span th:if="${staffVO.status} == 1">在職</span>
+						<span th:if="${staffVO.status} == 0">已離職</span>
 				</tr>
 				<tr>
 					<th>建檔者:</th>
@@ -91,7 +101,7 @@
 				</tr>
 			</table></div></div></div></div>
 			<form method="post" th:action="@{/staff/getOne_For_Update}" style="display: inline-block; margin-left: 10px;">
-				<button type="submit" class="btn btn-primary">修改</button>
+				<button type="submit" class="btn btn-primary" th:if="${session.permission == 1}">修改</button>
 				<input type="hidden" name="staffId" th:value="${staffVO.staffId}">
 			</form>
 			<a th:href="@{mainPageStaff}"  style="display: inline-block;"><button type="button" class="btn btn-info">回主頁</button></a>

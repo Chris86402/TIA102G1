@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class SysMsgController {
 	}
 	
 	@PostMapping("insert")
-	public String insert(@Valid SysMsgVO sysMsgVO, BindingResult result, ModelMap model) {
+	public String insert(@Valid SysMsgVO sysMsgVO, BindingResult result, ModelMap model, HttpSession session) {
 		
 		if(result.hasErrors()) {
 			return "sysMsg/addSysMsg";
@@ -49,8 +50,10 @@ public class SysMsgController {
 		sysMsgVO.setDateCreated(now);
 		sysMsgVO.setLastUpdated(now);
 		
-		sysMsgVO.setLastUpdatedBy(sysMsgVO.getCreatedBy());
-		
+		String createdBy = (String) session.getAttribute("staffId");
+
+		sysMsgVO.setCreatedBy(createdBy);
+		sysMsgVO.setLastUpdatedBy(createdBy);		
 		sysMsgSvc.addSysMsg(sysMsgVO);
 		
 		List<SysMsgVO> list = sysMsgSvc.getAll();
@@ -68,11 +71,13 @@ public class SysMsgController {
 	}
 	
 	@PostMapping("update")
-	public String update(@Valid SysMsgVO sysMsgVO, BindingResult result, ModelMap model) {
+	public String update(@Valid SysMsgVO sysMsgVO, BindingResult result, ModelMap model, HttpSession session) {
 		if(result.hasErrors()) {
 			return "sysMsg/update_sysMsg_input";
 		}
-		
+		String lastUpdatedBy = (String) session.getAttribute("staffId");
+
+		sysMsgVO.setLastUpdatedBy(lastUpdatedBy);
 		sysMsgVO.setLastUpdated(now);
 		
 		sysMsgSvc.updateSysMsg(sysMsgVO);

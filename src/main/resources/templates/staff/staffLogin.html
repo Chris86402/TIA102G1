@@ -44,6 +44,7 @@
         <div class="col-12">
 		<p class="lead" style="font-weight:bold;">員工登入</p>
 			<form th:action="@{login}" method="post">
+			<input type="hidden" name="redirect" th:value="${param.redirect}">
 	        	<table class="table" border = 1>
 					<tr>
 						<th style="width: 100px;">員工編號:</th>

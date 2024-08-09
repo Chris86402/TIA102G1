@@ -97,7 +97,7 @@
 								th:text="${#dates.format(productTypeVO.lastUpdated, 'yyyy-MM-dd HH:mm:ss')}"></td>
 							<td>
 								<form method="post" th:action="@{/productType/getOne_For_Update}" style="margin-bottom: 0px;">
-									<button type="submit" class="btn btn-primary btn-sm" style="width:100%">修改</button>
+									<button type="submit" class="btn btn-primary btn-sm" style="width:100%"  th:if="${session.permission != null}">修改</button>
 									<input type="hidden" name="productTypeId" th:value="${productTypeVO.productTypeId}">
 								</form>
 							</td>
@@ -106,7 +106,7 @@
 				</tbody>
 			</table>
 				<div class="form-grout">
-				<a href="addType"><button type="button" class="btn btn-success">新 增</button></a>
+				<a href="addType"><button type="button" class="btn btn-success" th:if="${session.permission != null}">新 增</button></a>
 			</div>	</section>
 	
 	<body th:insert="~{/comPage3}"></body>

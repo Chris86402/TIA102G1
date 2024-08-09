@@ -56,9 +56,8 @@
 					<span th:if="${#fields.hasErrors('quTypeDesc')}" th:errors="*{quTypeDesc}" class="error" id="quTypeDesc.errors"></span>
 				</div>
 				<div class="form-group">
-					<label>建檔者:</label> <input type="text" th:field="*{createdBy}" onclick="hideContent('createdBy.errors');" style="margin-left: 10px;"/><br /> 
-					<span th:if="${#fields.hasErrors('createdBy')}" th:errors="*{createdBy}" class="error" id="createdBy.errors">
-					</span>
+					<label>建檔者:</label> 
+            			<span th:text="${session.staffName}"></span><br/>
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary">送出新增</button>
