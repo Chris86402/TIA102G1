@@ -494,3 +494,32 @@ insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, coupon
 insert into store (storeName, cntCode, distCode, storeAddress, longitude, latitude, storePhone, openingHours, storeMail, createdBy, lastUpdatedBy) values ('慶城店', 1, 105, '台北市松山區慶城街2號', '25.2', '23.2', '0227163388', '09:00-21:00', 'teamagichand@gmail.com', 'chris', 'chris');
 insert into store (storeName, cntCode, distCode, storeAddress, longitude, latitude, storePhone, openingHours, storeMail, createdBy, lastUpdatedBy) values ('內壢店', 7, 320, '桃園市中壢區文化路348號', '23.5', '22.4', '034351331', '11:00-21:00', 'abc@gmail.com', 'chris', 'chris');
 insert into store (storeName, cntCode, distCode, storeAddress, longitude, latitude, storePhone, openingHours, storeMail, createdBy, lastUpdatedBy) values ('臨江通化店', 1, 106, '台北市大安區通化街72號', '22.1', '24.3', '0227331914', '10:00-22:00', 'dfg@gmail.com', 'chris', 'chris');
+
+#優惠券
+INSERT INTO coupon (couponCode, couponName, couponStatus, startDt, endDt, discType, discAmount, discPercentage, createdBy, lastUpdatedBy)
+VALUES
+    ('MOTHERSDAY', '母親節感恩優惠: 全館82折', 1, '2024-05-08', '2024-05-12', 2, NULL, 0.82, 'Nicole Kidman', 'Nicole Kidman'),
+    ('QINGMING', '清明節追思優惠: 折抵80元', 1, '2024-04-04', '2024-04-06', 1, 80, NULL, 'Jackie Chan', 'Jackie Chan'),
+    ('SHOPPING618', '618購物節: 全場68折', 1, '2024-06-18', '2024-06-20', 2, NULL, 0.68, 'Gal Gadot', 'Gal Gadot'),
+    ('CNNEWYEAR', '農曆春節大禮包: 折抵288元', 1, '2025-01-29', '2025-02-02', 1, 288, NULL, 'Keanu Reeves', 'Keanu Reeves'),
+    ('FATHERSDAY', '父親節感謝優惠: 全館88折', 1, '2024-08-08', '2024-08-09', 2, NULL, 0.88, 'Dwayne Johnson', 'Dwayne Johnson'),
+    ('NEWYEAR2024', '新年優惠: 全館9折', 1, '2024-01-01', '2024-01-15', 2, NULL, 0.90, 'Emma Watson', 'Emma Watson'),
+    ('VALENTINE14', '情人節特惠: 折抵100元', 1, '2024-02-10', '2024-02-14', 1, 100, NULL, 'Tom Hardy', 'Tom Hardy'),
+    ('MARCH8WOMEN', '三八婦女節: 全館85折', 1, '2024-03-06', '2024-03-08', 2, NULL, 0.85, 'Scarlett Johansson', 'Scarlett Johansson'),
+    ('FOOL1APR', '愚人節促銷: 折抵50元', 1, '2024-04-01', '2024-04-02', 1, 50, NULL, 'Chris Hemsworth', 'Chris Hemsworth'),
+    ('LABORMAY1', '勞動節優惠: 全館88折', 1, '2024-04-29', '2024-05-01', 2, NULL, 0.88, 'Natalie Portman', 'Natalie Portman'),
+    ('DRAGONBOAT', '端午節折扣: 折抵150元', 1, '2024-06-10', '2024-06-12', 1, 150, NULL, 'Robert Downey Jr.', 'Robert Downey Jr.'),
+    ('SUMMER2024', '夏日清涼價: 全館8折', 1, '2024-07-01', '2024-07-31', 2, NULL, 0.80, 'Jennifer Lawrence', 'Jennifer Lawrence'),
+    ('GHOST95', '中元節全館95折', 1, '2024-08-15', '2024-08-30', 2, NULL, 0.95, 'Chris Evans', 'Chris Evans'),
+    ('MOONFEST', '中秋節優惠: 折抵200元', 1, '2024-09-15', '2024-09-17', 1, 200, NULL, 'Margot Robbie', 'Margot Robbie'),
+    ('NATIONAL10', '國慶日特惠: 全館9折', 1, '2024-10-01', '2024-10-07', 2, NULL, 0.90, 'Ryan Gosling', 'Ryan Gosling'),
+    ('SINGLES11', '光棍節促銷: 折抵111元', 1, '2024-11-11', '2024-11-11', 1, 111, NULL, 'Emma Stone', 'Emma Stone'),
+    ('XMAS2024', '聖誕節大促: 全館75折', 1, '2024-12-24', '2024-12-26', 2, NULL, 0.75, 'Hugh Jackman', 'Hugh Jackman'),
+    ('YEAREND24', '年終大清倉: 全館7折', 1, '2024-12-28', '2024-12-31', 2, NULL, 0.70, 'Anne Hathaway', 'Anne Hathaway'),
+    ('NEWMEMBER', '會員優惠: 折抵50元', 1, '2024-01-01', '2024-12-31', 1, 50, NULL, 'Leonardo DiCaprio', 'Leonardo DiCaprio'),
+    ('BDAYTREAT', '周年慶優惠: 全館85折', 1, '2024-01-01', '2024-12-31', 2, NULL, 0.85, 'Meryl Streep', 'Meryl Streep'),
+    ('VIPCLUB', 'VIP會員專屬: 全館88折', 1, '2024-01-01', '2024-12-31', 2, NULL, 0.88, 'Brad Pitt', 'Brad Pitt'),
+    ('FLASHSALE', '限時閃購: 全館7折', 0, '2024-05-01', '2024-05-03', 2, NULL, 0.70, 'Angelina Jolie', 'Angelina Jolie'),
+    ('FREESHIP100', '限時免運', 1, '2024-03-01', '2024-03-31', 1, 80, NULL, 'Tom Hanks', 'Tom Hanks'),
+    ('GREENEARTH', '餅乾85折優惠', 1, '2024-04-22', '2024-04-22', 2, NULL, 0.85, 'Julia Roberts', 'Julia Roberts'),
+    ('BACKSCHOOL', '開學季折扣: 折抵100元', 1, '2024-08-20', '2024-09-05', 1, 100, NULL, 'Will Smith', 'Will Smith');
