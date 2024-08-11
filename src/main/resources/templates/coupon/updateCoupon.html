@@ -49,7 +49,6 @@
     <!-- 功能內容開始 -->
     <main class="content">
 
-        <!-- ==================== 編輯優惠券互動視窗 Modal ========================-->
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">編輯優惠券</h5>
@@ -60,22 +59,19 @@
             <div class="modal-body">
                 <form class="form was-validated py-1" id="editCouponForm" th:method="put"
                       th:action="@{'/coupon/{id}'(id=${couponToUpdate.couponId})}">
-
-
                     <div class="row">
                         <div class="col">
-
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="startDt">開始時間</label>
+                                        <label for="startDt">開始</label>
                                         <input class="form-control" type="date" placeholder="yyyy-mm-dd"
                                                id="startDt" name="startDt" th:value="${couponToUpdate.startDt}" required>  <!-- th:value="${couponList[id].startDt}"-->
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="endDt">結束時間</label>
+                                        <label for="endDt">結束</label>
                                         <input class="form-control" type="date" placeholder="yyyy-mm-dd"
                                                id="endDt" name="endDt" th:value="${couponToUpdate.endDt}" required>
                                     </div>
@@ -178,7 +174,7 @@
         </div>
 
 
-        <!-- ======= 打折和現金抵用二選一的邏輯 for編輯優惠券Modal==================-->
+        <!-- ======= 打折和現金抵用二選一的邏輯==================-->
         <script>
             // 啟用選項對應的輸入框
             document.querySelectorAll('input[name="discountOption"]').forEach(function (radio) {
