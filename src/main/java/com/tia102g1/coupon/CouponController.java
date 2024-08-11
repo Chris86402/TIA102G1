@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,7 @@ public class CouponController {
      * @return 重導回 coupon 管理首頁
      */
     @PostMapping("coupon/add")
-    public String addCoupon(@ModelAttribute("coupon") Coupon coupon) {
+    public String addCoupon(@Valid @ModelAttribute("coupon") Coupon coupon) {
         couponService.addCoupon(coupon);
         return "redirect:/coupon/mainPageCoupon";
     }
@@ -68,7 +69,7 @@ public class CouponController {
      * @return 引導回 coupon 管理首頁。
      */
     @PutMapping("coupon/{couponId}")
-    public String updateCoupon(@PathVariable Integer couponId,
+    public String updateCoupon(@Valid @PathVariable Integer couponId,
                                @ModelAttribute("coupon") Coupon coupon) {
         coupon.setLastUpdated(new Timestamp(new Date().getTime()));
         couponService.updateCoupon(coupon);

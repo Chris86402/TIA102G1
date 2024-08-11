@@ -98,7 +98,7 @@
                                                         <td th:if="${coupon.discPercentage == null}" th:text=" 'N/A' " class="text-nowrap align-middle"></td>
                                                     </th:block>
                                                     <th:block>
-                                                        <td th:if="${coupon.discAmount != null}" th:text=" '-' + ${coupon.discAmount}" class="text-nowrap align-middle"></td>
+                                                        <td th:if="${coupon.discAmount != null}" th:text="${coupon.discAmount}" class="text-nowrap align-middle"></td>
                                                         <td th:if="${coupon.discAmount == null}" th:text=" 'N/A' " class="text-nowrap align-middle"></td>
                                                     </th:block>
                                                     <td th:text="${coupon.startDt}" class="text-nowrap align-middle"></td>
@@ -210,14 +210,14 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label for="startDt" class="form-label">開始</label>
-                                                            <input class="form-control" type="date" placeholder="yyyy-mm-dd" value="2024-01-01"
+                                                            <input class="form-control" type="date" placeholder="yyyy-mm-dd" value=""
                                                                    id="startDt" name="startDt" required>
                                                         </div>
                                                     </div>
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label for="endDt" class="form-label">結束</label>
-                                                            <input class="form-control" type="date" placeholder="yyyy-mm-dd" value="2024-01-01"
+                                                            <input class="form-control" type="date" placeholder="yyyy-mm-dd" value=""
                                                                    id="endDt" name="endDt" required>
                                                         </div>
                                                     </div>
@@ -227,7 +227,7 @@
                                                         <div class="form-group">
                                                             <label for="couponName" class="form-label">名稱</label>
                                                             <input class="form-control" type="text" placeholder="XX節全館XX折"
-                                                                   id="couponName" name="couponName"  value="中元節九折"  required>
+                                                                   id="couponName" name="couponName"  value=""  required>
                                                             <div class="invalid-feedback">必填</div>
                                                         </div>
                                                     </div>
@@ -237,7 +237,7 @@
                                                         <div class="form-group">
                                                             <label for="couponCode" class="form-label">優惠代碼</label>
                                                             <input class="form-control" type="text" placeholder="XXXX00"
-                                                                   id="couponCode" name="couponCode" maxlength="20" value="hello03" required>
+                                                                   id="couponCode" name="couponCode" maxlength="20" value="" required>
                                                             <div class="invalid-feedback">必填</div>
                                                         </div>
                                                     </div>
