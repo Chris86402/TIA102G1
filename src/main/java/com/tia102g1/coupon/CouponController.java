@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,19 +51,28 @@ public class CouponController {
 
     /**
      * 編輯優惠券
-     * @param couponRequest: 修改用的 Coupon.java
-     * @return 重導回 coupon 管理首頁
+     * @param couponId: 用來拿到要更新的 coupon
+     * @return 引導到更新頁 updateCoupon.html
+     */
+    @GetMapping("coupon/edit/{couponId}")
+    public String editingCoupon(@PathVariable Integer couponId, Model model) {
+        Coupon toUpdate = couponService.getCoupon(couponId);
+        model.addAttribute("couponToUpdate", toUpdate);
+        return "/coupon/updateCoupon";
+    }
+
+    /**
+     * 編輯優惠券
+     * @param couponId: 用來拿到要更新的 coupon
+     * @param coupon: 從 updateCoupon.html 傳來要更改的 coupon 資料
+     * @return 引導回 coupon 管理首頁。
      */
     @PutMapping("coupon/{couponId}")
-    public String updateCoupon(@PathVariable Integer couponId, @ModelAttribute("coupon") CouponRequest couponRequest, RedirectAttributes redirectAttributes) {
-        couponRequest.setEditCouponId(couponId);
-        System.out.println(couponRequest);
-        Coupon updatedCoupon = couponService.updateCoupon(couponRequest);
-
-        // 若需要傳遞更新後的優惠券信息到重定向的頁面，可以使用 RedirectAttributes
-        redirectAttributes.addFlashAttribute("updatedCoupon", updatedCoupon);
-
-        return "redirect:/coupon/mainPageCoupon";
+    public String updateCoupon(@PathVariable Integer couponId,
+                               @ModelAttribute("coupon") Coupon coupon) {
+        coupon.setLastUpdated(new Timestamp(new Date().getTime()));
+        couponService.updateCoupon(coupon);
+        return "redirect:/admin/coupon";
     }
 
     /**

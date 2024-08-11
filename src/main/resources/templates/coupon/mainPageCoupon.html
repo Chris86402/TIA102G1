@@ -93,8 +93,14 @@
                                                         <td th:if="${coupon.discType == 1}" th:text="現金抵用" class="text-nowrap align-middle"></td>
                                                         <td th:if="${coupon.discType == 2}" th:text="售價折扣" class="text-nowrap align-middle"></td>
                                                     </th:block>
-                                                    <td th:text="${coupon.discPercentage}" class="text-nowrap align-middle"></td>
-                                                    <td th:text="${coupon.discAmount}" class="text-nowrap align-middle"></td>
+                                                    <th:block>
+                                                        <td th:if="${coupon.discPercentage != null}" th:text="${coupon.discPercentage}" class="text-nowrap align-middle"></td>
+                                                        <td th:if="${coupon.discPercentage == null}" th:text=" 'N/A' " class="text-nowrap align-middle"></td>
+                                                    </th:block>
+                                                    <th:block>
+                                                        <td th:if="${coupon.discAmount != null}" th:text=" '-' + ${coupon.discAmount}" class="text-nowrap align-middle"></td>
+                                                        <td th:if="${coupon.discAmount == null}" th:text=" 'N/A' " class="text-nowrap align-middle"></td>
+                                                    </th:block>
                                                     <td th:text="${coupon.startDt}" class="text-nowrap align-middle"></td>
                                                     <td th:text="${coupon.endDt}" class="text-nowrap align-middle"></td>
                                                     <td class="text-center align-middle">
@@ -104,9 +110,9 @@
                                                     </td>
                                                     <td class="text-center align-middle">
                                                     <div class="btn-group align-top btn-nowrap">
-                                                        <form action="#" th:action="@{'/coupon/{id}'(id=${coupon.couponId})}" th:method="put">
-                                                            <button class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal"
-                                                                    th:data-target="'#editCouponModal'+${coupon.couponId}">
+                                                        <form action="#" th:action="@{'/coupon/edit/{id}'(id=${coupon.couponId})}" th:method="get">
+                                                            <button class="btn btn-sm btn-outline-secondary badge" type="submit">
+                                                                <a th:href="@{'/coupon/edit/' + ${coupon.couponId} }"></a>
                                                                 Edit
                                                             </button>
                                                         </form>
