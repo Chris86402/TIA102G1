@@ -74,7 +74,6 @@ public class CouponController {
     public String updateCoupon(@PathVariable Integer couponId,
                                @Valid @ModelAttribute("coupon") Coupon coupon) {
         coupon.setLastUpdated(new Timestamp(new Date().getTime()));
-        System.out.println(coupon);
         couponService.updateCoupon(coupon);
         return "redirect:/admin/coupon";
     }

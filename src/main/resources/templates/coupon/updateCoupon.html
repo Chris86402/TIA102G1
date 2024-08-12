@@ -153,10 +153,11 @@
                             <div>
                                 <label><input id=" couponId" name="couponId" th:value="${couponToUpdate.couponId}" type="hidden"></label>
                                 <label><input id="couponStatus" name="couponStatus" th:value="${couponToUpdate.couponStatus}" type="hidden"></label>
-                                <label><input id="discType" name="discType" th:value="${couponToUpdate.discType}" type="hidden"></label>
                                 <label><input id="createdBy" name="createdBy" th:value="${couponToUpdate.createdBy}" type="hidden"></label>
-                                <label><input id="lastUpdatedBy" name="lastUpdatedBy" th:value="${couponToUpdate.lastUpdatedBy}" type="hidden"></label>
                                 <label><input id="dateCreated" name="dateCreated" th:value="${couponToUpdate.dateCreated}" type="hidden"></label>
+<!--      ===================== TODO discType 跟 lastUpdatedBy 目前都是寫死，未來可以修 =================== -->
+                                <label><input id="discType" name="discType" th:value="${couponToUpdate.discType}" type="hidden"></label>
+                                <label><input id="lastUpdatedBy" name="lastUpdatedBy" th:value="${couponToUpdate.lastUpdatedBy}" type="hidden"></label>
                             </div>
 
 
