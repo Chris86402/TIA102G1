@@ -6,11 +6,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -69,13 +71,35 @@ public class CouponController {
      * @return 引導回 coupon 管理首頁。
      */
     @PutMapping("coupon/{couponId}")
-    public String updateCoupon(@Valid @PathVariable Integer couponId,
-                               @ModelAttribute("coupon") Coupon coupon) {
+    public String updateCoupon(@PathVariable Integer couponId,
+                               @Valid @ModelAttribute("coupon") Coupon coupon) {
         coupon.setLastUpdated(new Timestamp(new Date().getTime()));
         System.out.println(coupon);
         couponService.updateCoupon(coupon);
         return "redirect:/admin/coupon";
     }
+
+//    @PutMapping("coupon/{couponId}")
+//    public String updateCoupon(@PathVariable Integer couponId,
+//                               @Valid @ModelAttribute("coupon") Coupon coupon,
+//                               BindingResult bindingResult,
+//                               Model model) {
+//        if (bindingResult.hasErrors()) {
+//            // 如果有驗證錯誤，返回編輯頁面並顯示錯誤
+//            model.addAttribute("couponToUpdate", coupon);
+//            return "/coupon/updateCoupon";
+//        }
+//        coupon.setLastUpdated(new Timestamp(new Date().getTime()));
+//        try {
+//            couponService.updateCoupon(coupon);
+//            return "redirect:/admin/coupon";
+//        } catch (Exception e) {
+//            // 處理其他可能的錯誤
+//            model.addAttribute("error", e.getMessage());
+//            model.addAttribute("couponToUpdate", coupon);
+//            return "/coupon/updateCoupon";
+//        }
+//    }
 
     /**
      * 刪除優惠券

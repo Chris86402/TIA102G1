@@ -7,6 +7,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
