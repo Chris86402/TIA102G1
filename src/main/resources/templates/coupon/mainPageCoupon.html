@@ -279,36 +279,22 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="active" required>
-                                                            <label class="form-check-label" for="inlineRadio1">啟用</label>
+                                                            <input class="form-check-input" type="radio" name="couponStatusOption" id="couponStatusOn" value="active" required>
+                                                            <label class="form-check-label" for="couponStatusOn">啟用</label>
                                                         </div>
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="disabled" required>
-                                                            <label class="form-check-label" for="inlineRadio2">停用</label>
+                                                            <input class="form-check-input" type="radio" name="couponStatusOption" id="couponStatusOff" value="disabled" required>
+                                                            <label class="form-check-label" for="couponStatusOff">停用</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- 隱藏欄位 -->
                                                 <div>
-<!--                                                    <label class="form-label">-->
-<!--                                                        <input type="hidden" class="form-control" id="couponId" name="couponId" required>-->
-<!--                                                    </label>-->
-
-                                                    <label class="form-label">
-                                                        <input type="hidden" class="form-control" id="couponStatus" name="couponStatus" value="0" required>
-                                                    </label>
-
-                                                    <label class="form-label">
-                                                        <input type="hidden" class="form-control" id="discType" name="discType" value="1" required>
-                                                    </label>
-
-                                                    <label>
-                                                        <input type="hidden" class="form-control" id="createdBy" name="createdBy" value="Chris">
-                                                    </label>
-                                                    <label>
-                                                        <input type="hidden" class="form-control" id="lastUpdatedBy" name="lastUpdatedBy" value="Chris">
-                                                    </label>
-
+                                                    <label><input id="couponStatus" name="couponStatus" value="0" type="hidden"></label>
+<!--                            ===================== TODO discType 跟 createdBy 目前都是寫死，未來可以修 =================== -->
+                                                    <label><input class="form-control" id="discType" name="discType" value="1" type="hidden"></label>
+                                                    <label><input class="form-control" id="createdBy" name="createdBy" value="Chris" type="hidden"></label>
+                                                    <label><input class="form-control" id="lastUpdatedBy" name="lastUpdatedBy" value="Chris" type="hidden"></label>
                                                 </div>
 
                                             </div>
@@ -328,18 +314,36 @@
                     <script>
                         // 啟用選項對應的輸入框
                         document.querySelectorAll('input[name="discountOption"]').forEach(function (radio) {
-                            radio.addEventListener('change', function () {
-                                if (this.id === 'discountCheck') {
-                                    document.getElementById('discPercentage').disabled = false;
-                                    document.getElementById('discAmount').disabled = true;
-                                    document.getElementById('discAmount').value = ''; // 清除另一個選項的值
-                                } else if (this.id === 'cashDiscountCheck') {
-                                    document.getElementById('discAmount').disabled = false;
-                                    document.getElementById('discPercentage').disabled = true;
-                                    document.getElementById('discPercentage').value = ''; // 清除另一個選項的值
-                                }
-                            });
+                            radio.addEventListener('change', addDiscountHandler);
                         });
+
+                        document.querySelectorAll('input[name="couponStatusOption"]').forEach(function (radio) {
+                            radio.addEventListener('change', addCouponStatusHandler);
+                        });
+
+                        function addDiscountHandler(){
+                            if (this.id === 'discountCheck') {
+                                document.getElementById('discPercentage').disabled = false;
+                                document.getElementById('discAmount').disabled = true;
+                                document.getElementById('discAmount').value = ''; // 清除另一個選項的值
+                            } else if (this.id === 'cashDiscountCheck') {
+                                document.getElementById('discAmount').disabled = false;
+                                document.getElementById('discPercentage').disabled = true;
+                                document.getElementById('discPercentage').value = ''; // 清除另一個選項的值
+                            }
+                        }
+
+                        function addCouponStatusHandler(){
+                            let couponStatus = document.getElementById('couponStatus');
+                            if(this.id ==='couponStatusOn'){
+                                couponStatus.value = 1;
+                                console.log(this)
+                            } else if(this.id === 'couponStatusOff'){
+                                couponStatus.value = 0;
+                                console.log(this)
+                            }
+                        }
+
                     </script>
 
                 </div>
