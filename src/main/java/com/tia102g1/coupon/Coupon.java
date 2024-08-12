@@ -11,7 +11,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
-import org.hibernate.annotations.Check;
 
 
 @Data
@@ -48,25 +47,23 @@ public class Coupon implements Serializable {
     @Column(name = "DISCTYPE", nullable = false)
     private Integer discType;
 
-    @Min(1)
-    @Max(500)
+    @Min(value = 0, message = "抵用金額必須介於0~500")
+    @Max(value = 500, message = "抵用金額必須介於0~500")
     @Column(name = "DISCAMOUNT")
     private Integer discAmount;
 
-    @DecimalMin(value = "0.00", inclusive = true)
-    @DecimalMax(value = "1.00", inclusive = true)
-    @Digits(integer = 1, fraction = 2)
+    @DecimalMin(value = "0.00", inclusive = true, message = "折扣百分比必須為0~1之間的2位小數")
+    @DecimalMax(value = "1.00", inclusive = true, message = "折扣百分比必須為0~1之間的2位小數")
+    @Digits(integer = 1, fraction = 2, message = "折扣百分比必須為0~1之間的2位小數")
     @Column(name = "DISCPERCENTAGE", precision = 3, scale = 2)
     private BigDecimal discPercentage;
 
-    @Size(max = 20)
     @Column(name = "CREATEDBY", updatable = false)
     private String createdBy;
 
     @Column(name = "DATECREATED", insertable = false, updatable = false)
     private Timestamp dateCreated;
 
-    @Size(max = 20)
     @Column(name = "LASTUPDATEDBY")
     private String lastUpdatedBy;
 
@@ -77,6 +74,5 @@ public class Coupon implements Serializable {
     @OneToMany(mappedBy = "coupon", fetch = FetchType.EAGER)
     @OrderBy("orderListId asc")
     private Set<OrderListVO> orderLists = new HashSet<OrderListVO>();
-
 
 }
