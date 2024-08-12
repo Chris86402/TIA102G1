@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>優惠券管理</title>
+    <title>優惠券更新</title>
 
     <!-- header-css etc. -->
     <th:block th:insert="~{/comPage1}"></th:block>
@@ -138,12 +138,12 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="active" required>
-                                        <label class="form-check-label" for="inlineRadio3">啟用</label>
+                                        <input class="form-check-input" type="radio" name="couponStatusOption" id="couponStatusOn" value="active" required>
+                                        <label class="form-check-label" for="couponStatusOn">啟用</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="disabled" required>
-                                        <label class="form-check-label" for="inlineRadio4">停用</label>
+                                        <input class="form-check-input" type="radio" name="couponStatusOption" id="couponStatusOff" value="disabled" required>
+                                        <label class="form-check-label" for="couponStatusOff">停用</label>
                                     </div>
                                 </div>
                             </div>
@@ -176,20 +176,65 @@
 
         <!-- ======= 打折和現金抵用二選一的邏輯==================-->
         <script>
+            const discPercentageInput = document.getElementById('discPercentage');
+            const discAmountInput = document.getElementById('discAmount');
+            let couponStatus = document.getElementById('couponStatus');
+            console.log(document.getElementById('couponStatus'))
+
+
+            discountInitial();
+            couponStatusInitial();
+
             // 啟用選項對應的輸入框
             document.querySelectorAll('input[name="discountOption"]').forEach(function (radio) {
-                radio.addEventListener('change', function () {
-                    if (this.id === 'discountCheck') {
-                        document.getElementById('discPercentage').disabled = false;
-                        document.getElementById('discAmount').disabled = true;
-                        document.getElementById('discAmount').value = ''; // 清除另一個選項的值
-                    } else if (this.id === 'cashDiscountCheck') {
-                        document.getElementById('discAmount').disabled = false;
-                        document.getElementById('discPercentage').disabled = true;
-                        document.getElementById('discPercentage').value = ''; // 清除另一個選項的值
-                    }
-                });
+                radio.addEventListener('change', discountHandler);
             });
+            document.querySelectorAll('input[name="couponStatusOption"]').forEach(function (radio) {
+                radio.addEventListener('change', couponStatusHandler);
+            });
+
+            function discountInitial(){
+                const discountOptionInputs = document.getElementsByName('discountOption');
+                // options = [discountCheckInput, cashDiscountCheckInput]
+
+                if(discPercentageInput.value) {
+                    discountOptionInputs[0].checked = true;
+                    discPercentageInput.disabled = false;
+                    discAmountInput.disabled = true;
+                }
+                else if(discAmountInput.value) {
+                    discountOptionInputs[1].checked = true;
+                    discAmountInput.disabled = false;
+                    discPercentageInput.disabled = true;
+                }
+            }
+            function discountHandler() {
+                if (this.id === 'discountCheck') {
+                    discPercentageInput.disabled = false;
+                    discAmountInput.disabled = true;
+                    discAmountInput.value = ''; // 清除另一個選項的值
+                } else if (this.id === 'cashDiscountCheck') {
+                    discAmountInput.disabled = false;
+                    discPercentageInput.disabled = true;
+                    discPercentageInput.value = ''; // 清除另一個選項的值
+                }
+            }
+
+            function couponStatusInitial(){
+                const onInput = document.getElementById('couponStatusOn');
+                const offInput = document.getElementById('couponStatusOff');
+                if(couponStatus.value === "0") offInput.checked = true;
+                else if(couponStatus.value === "1") onInput.checked = true;
+            }
+            function couponStatusHandler(){
+                if(this.id ==='couponStatusOn'){
+                    couponStatus.value = 1;
+                    console.log(this)
+                } else if(this.id === 'couponStatusOff'){
+                    couponStatus.value = 0;
+                    console.log(this)
+                }
+            }
         </script>
 
 
