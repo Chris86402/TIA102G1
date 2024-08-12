@@ -36,11 +36,9 @@ public class Coupon implements Serializable {
     @Column(name = "COUPONSTATUS", nullable = false)
     private Integer couponStatus;
 
-    @FutureOrPresent(message = "開始日期必須是未來日期")
     @Column(name = "STARTDT", nullable = false)
     private Date startDt;
 
-    @FutureOrPresent(message = "結束日期必須是未來日期")
     @Column(name = "ENDDT", nullable = false)
     private Date endDt;
 
