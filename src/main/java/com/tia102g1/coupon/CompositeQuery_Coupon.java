@@ -5,6 +5,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class CompositeQuery_Coupon {
                 predicate = builder.equal(root.get(columnName), Date.valueOf(value));
                 break;
             case "discPercentage":
-                predicate = builder.equal(root.get(columnName), Float.valueOf(value));
+                predicate = builder.equal(root.get(columnName), new BigDecimal(value));
                 break;
             case "dateCreated":
             case "lastUpdated":
