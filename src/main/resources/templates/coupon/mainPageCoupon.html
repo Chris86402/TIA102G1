@@ -109,19 +109,19 @@
                                                         <i th:if="${coupon.couponStatus == 0}" class="fa fa-fw fa-toggle-off"></i>
                                                     </td>
                                                     <td class="text-center align-middle">
-                                                    <div class="btn-group align-top btn-nowrap">
-                                                        <form action="#" th:action="@{'/coupon/edit/{id}'(id=${coupon.couponId})}" th:method="get">
-                                                            <button class="btn btn-sm btn-outline-secondary badge" type="submit">
-                                                                <a th:href="@{'/coupon/edit/' + ${coupon.couponId} }"></a>
-                                                                Edit
-                                                            </button>
-                                                        </form>
-                                                        <form action="#" th:action="@{'/coupon/{id}'(id=${coupon.couponId})}" th:method="delete">
-                                                            <button class="btn btn-sm btn-outline-secondary badge ml-0" type="submit">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                        <div class="btn-group align-top btn-nowrap">
+                                                            <form action="#" th:action="@{'/coupon/edit/{id}'(id=${coupon.couponId})}" th:method="get">
+                                                                <button class="btn btn-sm btn-outline-secondary badge" type="submit">
+                                                                    <a th:href="@{'/coupon/edit/' + ${coupon.couponId} }"></a>
+                                                                    Edit
+                                                                </button>
+                                                            </form>
+                                                            <form action="#" th:action="@{'/coupon/{id}'(id=${coupon.couponId})}" th:method="delete">
+                                                                <button class="btn btn-sm btn-outline-secondary badge ml-0" type="submit">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 </tbody>

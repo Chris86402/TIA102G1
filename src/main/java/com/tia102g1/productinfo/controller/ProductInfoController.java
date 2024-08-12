@@ -103,7 +103,6 @@ public class ProductInfoController {
 	    productInfoServiceS.addProductInfo(productInfo);
 
 	    List<ProductInfo> list = productInfoServiceS.getAll();
-//	    model.addAttribute("productInfoListData", list);
 	    model.addAttribute("success", "- (新增成功)");
 
 	    return "redirect:/productInfo/mainPageProductInfo"; // 確認重定向路徑是否正確

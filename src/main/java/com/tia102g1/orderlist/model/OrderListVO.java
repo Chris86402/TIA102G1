@@ -173,8 +173,8 @@ public class OrderListVO implements Serializable {
 			@NotEmpty(message = "收件人姓名: 請勿空白") String recipientName,
 			@Pattern(regexp = "\\d+", message = "收件人電話: 請輸入數字") String recipientPhone, CountyVO countyVO, DistVO distVO,
 			@NotBlank(message = "收件人地址: 請勿空白") String recipientAddress, String createdBy, Timestamp dateCreated,
-			@NotEmpty(message = "最後更新者: 請勿空白") String lastUpdatedBy, Timestamp lastUpdated,
-			Set<MemberCoinVO> memCoins) {
+			@NotEmpty(message = "最後更新者: 請勿空白") String lastUpdatedBy, Timestamp lastUpdated, Set<MemberCoinVO> memCoins,
+			Set<OrderListInfoVO> orderListInfoVO) {
 		super();
 		this.orderListId = orderListId;
 		this.member = member;
@@ -209,6 +209,7 @@ public class OrderListVO implements Serializable {
 		this.lastUpdatedBy = lastUpdatedBy;
 		this.lastUpdated = lastUpdated;
 		this.memCoins = memCoins;
+		this.orderListInfoVO = orderListInfoVO;
 	}
 
 	public Integer getOrderListId() {
@@ -475,6 +476,14 @@ public class OrderListVO implements Serializable {
 		this.memCoins = memCoins;
 	}
 
+	public Set<OrderListInfoVO> getOrderListInfoVO() {
+		return orderListInfoVO;
+	}
+
+	public void setOrderListInfoVO(Set<OrderListInfoVO> orderListInfoVO) {
+		this.orderListInfoVO = orderListInfoVO;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -491,7 +500,9 @@ public class OrderListVO implements Serializable {
 				+ invoiceTaxNo + ", invoiceMobileCode=" + invoiceMobileCode + ", recipientName=" + recipientName
 				+ ", recipientPhone=" + recipientPhone + ", countyVO=" + countyVO + ", distVO=" + distVO
 				+ ", recipientAddress=" + recipientAddress + ", createdBy=" + createdBy + ", dateCreated=" + dateCreated
-				+ ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdated=" + lastUpdated + ", memCoins=" + memCoins + "]";
+				+ ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdated=" + lastUpdated + ", memCoins=" + memCoins
+				+ ", orderListInfoVO=" + orderListInfoVO + "]";
 	}
 
+	
 }

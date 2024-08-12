@@ -47,9 +47,9 @@ public class OrderListInfoController {
 		return "/orderListInfo/mainPageOrderListInfo";
 	}
 	
-	@ModelAttribute("orderListData")
-	protected List<OrderListVO> referenceListData(Model model) {
-		List<OrderListVO> list = orderListService.getAll();
+	@ModelAttribute("orderListInfoListData")
+	protected List<OrderListInfoVO> referenceorderListInfoListListData(Model model) {
+		List<OrderListInfoVO> list = orderListInfoService.getAll();
 		return list;
 	}
 	

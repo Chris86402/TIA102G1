@@ -36,6 +36,8 @@ import com.tia102g1.member.model.Member;
 import com.tia102g1.member.model.MemberService;
 import com.tia102g1.orderlist.model.OrderListService;
 import com.tia102g1.orderlist.model.OrderListVO;
+import com.tia102g1.orderlistinfo.model.OrderListInfoService;
+import com.tia102g1.orderlistinfo.model.OrderListInfoVO;
 
 @Controller
 @RequestMapping("/orderList")
@@ -49,7 +51,6 @@ public class OrderListController {
 	@Autowired
 	MemberService memberService;
 
-	// 等CouponService出來補上
 	@Autowired
 	CouponService couponService;
 
@@ -61,6 +62,10 @@ public class OrderListController {
 
 	@Autowired
 	CountyService countyService;
+	
+	@Autowired
+	OrderListInfoService orderListInfoService;
+	
 
 	@GetMapping({ "", "/mainPageOrderList" })
 	public String referenceOrderListData(Model model) {
@@ -105,16 +110,22 @@ public class OrderListController {
 		List<CountyVO> list = countyService.getAll();
 		return list;
 	}
+	
+	@ModelAttribute("orderListInfoListData")
+	protected List<OrderListInfoVO> referenceorderListInfoListListData(Model model) {
+		List<OrderListInfoVO> list = orderListInfoService.getAll();
+		return list;
+	}
+	
 
 	@GetMapping("listOneOrderList")
 	public String listOneOrderList(@RequestParam("orderListId") Integer orderListId, Model model) {
 		// 查詢指定的OrderListVO
 		OrderListVO orderListVO = orderListService.getOneOrderList(orderListId);
 		model.addAttribute("orderListVO", orderListVO);
-
-//		// 查詢與此OrderListVO相關的ProductInfo
-//		List<ProductInfoVO> productInfoList = productInfoServiceS.getProductsByOrderListId(orderListId);
-//		model.addAttribute("productInfoList", productInfoList);
+		
+		List<OrderListInfoVO> orderListInfoList = orderListService.getOrderListInfos(orderListId);
+		model.addAttribute("orderListInfoListData", orderListInfoList);
 
 		return "/orderList/listOneOrderList";
 	}
@@ -170,7 +181,7 @@ public class OrderListController {
 		/*************************** 3.查詢完成,準備轉交(Send the Success view) **************/
 		model.addAttribute("orderListVO", orderListVO);
 
-		return "/orderList/updateOrderList";
+		return "orderList/updateOrderList";
 	}
 
 	@PostMapping("update")

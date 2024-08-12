@@ -3,16 +3,64 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>商品評價管理</title>
+		<style>
+		
+			.dataTables_wrapper {
+			    position: relative;
+			    clear: both;
+			    width: 100%;
+			}
+			
+			.wrapper {
+				min-height: 0 !important;
+			}
 
-		<!-- header-css etc. -->
-		<head th:insert="~{/comPage1}"></head>
-
+		</style>
 	</head>
 	
 	<body class="hold-transition sidebar-mini layout-fixed">
+	<!-- header-css etc. -->
+		<div th:insert="~{/comPage1}"></div>	
+		
+		<script	src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>        
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" /> 		
+
+		
+		<!-- jquery datatables 設定 -->
+		<script>
+			$(document).ready(function() {
+				$('#example').DataTable({
+					"lengthMenu": [3 ,5, 10, 20, 50, 100],
+					"searching": true,  //搜尋功能, 預設是開啟
+				    "paging": true,     //分頁功能, 預設是開啟
+				    "ordering": true,   //排序功能, 預設是開啟
+				    "language": {
+				        "processing": "處理中...",
+				        "loadingRecords": "載入中...",
+				        "lengthMenu": "顯示 _MENU_ 筆結果",
+				        "zeroRecords": "沒有符合的結果",
+				        "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+				        "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+				        "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+				        "infoPostFix": "",
+				        "search": "搜尋:",
+				        "paginate": {
+				            "first": "第一頁",
+				            "previous": "上一頁",
+				            "next": "下一頁",
+				            "last": "最後一頁"
+				        },
+				        "aria": {
+				            "sortAscending":  ": 升冪排列",
+				            "sortDescending": ": 降冪排列"
+				        }
+				    }
+				});
+			});
+		</script>
 
 	<!-- side bar -->
-	<body th:insert="~{/comPage2}"></body>
+	<div th:insert="~{/comPage2}"></div>
 	
 	<!-- Content Wrapper. Contains page content -->
     <!-- 儀錶板上面那排 -->
@@ -22,12 +70,17 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">商品評價管理</h1>
+              <h1 class="m-0" font-style="bold">商品評價管理</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
+              
                 <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
-                <li class="breadcrumb-item active">商品評價管理</li>
+				<!-- ==============後台人員登入登出用 =============-->
+				<div class="breadcrumb-item"><a th:insert="~{/comLogin}"></div>
+                <!-- ==============寫入你的mainPage名稱 =============-->
+                <li class="breadcrumb-item active">商品評價總覽</li>
+                
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -37,18 +90,71 @@
 
 	<!-- 功能內容開始 -->
 	<section class="content">
-		
-	<p>商品評價管理 主頁 測試</p>
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	
-	
+	<div class="container-fluid">
+		<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">查詢資料</h3>
+			</div>
+			<!-- /.card-header -->
+			<!-- form start -->
+			<form th:action="@{listXXXXXXs_ByCompositeQuery}" method="post">
+			<div class="card-body">			
+					<div class="card-body" style="border: 0px; width: 49%; display: inline-block; ">				
+					<div class="form-group">
+					<label style="font-size: 1rem;">選擇會員編號:</label><br>
+					<!-- 查詢欄位1內容 -->
+						<select id="roll" name="memberId">
+							<option value="" disabled selected>請選擇會員編號</option>
+							<option th:each="member:${memberListData}"
+								th:value="${member.memberId}"
+								th:text="|${member.memberId} - ${member.name}|"></option>
+						</select>
+					</div>
+					<div class="form-group">
+					<button type="submit" class="btn btn-primary">查　詢</button>
+					</div>
+					</div>
+					
+					<div class="card-body" style="border: 0px; width: 49%; display: inline-block; ">	
+					<div class="form-group">
+					<label style="font-size: 1rem;">選擇商品編號:</label><br>
+					<!-- 查詢欄位2內容 -->
+						<select id="roll" name="productId">
+							<option value="" disabled selected>請選擇商品編號</option>
+							<option th:each="productInfo:${productInfoListData}"
+								th:value="${productInfo.productId}"
+								th:text="|${productInfo.productId} - ${productInfo.proName}|"></option>
+						</select>					
+					</div>
+					<div class="form-group">
+					<button type="submit" class="btn btn-primary">查　詢</button>
+					</div>
+					</div>
+					
+				</div>
+				<!-- /.card-body -->
+
+			</form>
+		</div>
+		<!-- /.card -->
+	</div>
+
 	</section>
 	<!-- 功能內容結束 -->
 	
 	<!-- footer and script link -->
-	<body th:insert="~{/comPage3}"></body>
+	<div th:insert="~{/comPage3}"></div>
+
+	<script type="text/javascript">
+	//清除提示信息
+	function hideContent(d) {
+	     document.getElementById(d).style.display = "none";
+	}
+	</script>
 
 	</body>
 </html>

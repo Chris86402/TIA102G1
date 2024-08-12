@@ -73,10 +73,10 @@ public class Coupon implements Serializable {
     @Column(name = "LASTUPDATED", insertable = false, updatable = false)
     private Timestamp lastUpdated;
 
- // 此優惠券下關聯的訂單明細紀錄
- 	@OneToMany(mappedBy = "coupon", fetch = FetchType.EAGER)
- 	@OrderBy("orderListId asc")
- 	private Set<OrderListVO> orderLists = new HashSet<OrderListVO>();
+    // 此優惠券下關聯的訂單明細紀錄
+    @OneToMany(mappedBy = "coupon", fetch = FetchType.EAGER)
+    @OrderBy("orderListId asc")
+    private Set<OrderListVO> orderLists = new HashSet<OrderListVO>();
 
 
 }
