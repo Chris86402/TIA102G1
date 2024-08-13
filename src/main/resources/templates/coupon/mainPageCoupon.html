@@ -12,6 +12,8 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css'>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js'></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <style>
         body{
             margin-top:20px;
@@ -66,16 +68,11 @@
             <div class="row flex-lg-nowrap">
                 <div class="col">
                     <div class="row flex-lg-nowrap">
-                        <div class="col mb-3">
-                            <div class="e-panel card">
+                        <div class="card col mb-3">
                                 <div class="card-body">
-                                    <div class="card-title">
-                                        <h6 class="mr-2"></h6>
-                                    </div>
 
-                                    <div class="e-table">
-                                        <div th:if="${not #lists.isEmpty(couponList)}" class="table-responsive table-lg mt-3">
-                                            <table class="table table-bordered">
+                                        <div th:if="${not #lists.isEmpty(couponList)}" class="table-responsive table-lg mt-5">
+                                            <table id="dataTable" class="table table-striped table-bordered">
                                                 <thead>
                                                 <tr class="text-nowrap">
                                                     <th >名稱</th>
@@ -83,10 +80,10 @@
                                                     <th>類型</th>
                                                     <th>折數</th>
                                                     <th>抵用金</th>
-                                                    <th class="sortable">開始</th>
-                                                    <th class="sortable">結束</th>
+                                                    <th>開始</th>
+                                                    <th>結束</th>
                                                     <th>狀態</th>
-                                                    <th class="max-width"></th>
+                                                    <th></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -136,33 +133,18 @@
                                         <div th:if="${isSearchOperation != null and isSearchOperation and #lists.isEmpty(couponList)}" class="alert alert-info">
                                             查無結果，請嘗試其他搜尋條件。
                                         </div>
-                                <!-- ====== 分頁 =========-->
-                                        <div class="d-flex justify-content-center">
-                                            <ul class="pagination mt-3 mb-0">
-                                                <li class="disabled page-item"><a href="#" class="page-link">‹</a></li>
-                                                <li class="active page-item"><a href="#" class="page-link">1</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">›</a></li>
-                                                <li class="page-item"><a href="#" class="page-link">»</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
                                 </div>
-                            </div>
                         </div>
 <!-- =================== 右邊欄  ================================-->
                         <div class="col-12 col-lg-3 mb-3">
-                            <div class="card">
                                 <div class="card-body">
-                                    <hr class="my-3">
                                     <div class="text-center px-xl-3">
                                         <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#addCouponModal">
                                             新增優惠券
                                         </button>
                                     </div>
+                                    <hr class="my-3">
                                     <br>
 
                                         <div class="form-group">
@@ -216,12 +198,13 @@
                                                         開始查詢
                                                     </button>
                                                 </div>
+                                                <br>
 
                                             </form>
                                         </div>
                                     <hr class="my-3">
+
                                 </div>
-                            </div>
                         </div>
                     </div>
 <!-- =============== 新增優惠券互動視窗 Modal =============== -->
@@ -382,7 +365,6 @@
             </div>
         </div>
 
-
     </section>
     <!-- 功能內容結束 -->
 </div>
@@ -395,5 +377,21 @@
             document.getElementById(d).style.display = "none";
         }
     </script>
+<!-- for datatable -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js'></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/zh-HANT.json"
+            },
+            "searching": false  // 禁用搜索功能
+        });
+    });
+</script>
+
 </body>
 </html>
