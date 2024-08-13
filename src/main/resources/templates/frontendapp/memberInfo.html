@@ -3,140 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <title>會員資料</title>
-    <!-- 共同引入 headTag-import meta tag-->
     <meta th:replace="~{frontendapp/components/common :: headtag-import}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-content {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #1e3a8a;
+            border-color: #1e3a8a;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d2558;
+            border-color: #0d2558;
+        }
+
+        .required {
+            color: red;
+        }
+
+        .text-danger {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-<!-- 共用元件 header:圖示按鈕, navbar...-->
 <div th:replace="~{frontendapp/components/common :: app-header}"></div>
-<!-- 共用元件(index除外) bread crumb -->
 <div th:replace="~{frontendapp/components/common :: app-bread-crumb(title=${'會員資料'})}"></div>
 
 <main>
-    <!-- 把你的內容貼在這裡-->
-    <div class="main-content w-100 float-left blog-list">
-        <div class="container">
-            <div class="row">
-                <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
-                    <div class="row">
-                        <div class="col-lg-12 order-lg-last account-content">
-                            <h4>Edit Account Information</h4>
-                            <form action="#" class="myacoount-form">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group required-field">
-                                                    <label for="acc-name">First Name <span class="required">*</span></label>
-                                                    <input type="text" class="form-control" id="acc-name" name="acc-name"
-                                                           required="">
-                                                </div>
-                                                <!-- End .form-group -->
-                                            </div>
-                                            <!-- End .col-md-4 -->
+    <div class="main-content">
+        <h4>編輯會員資料</h4>
+        <form th:action="@{/member/myaccount/{memberId}/updateMemberInfo(memberId=${member.memberId})}"
+              th:object="${member}" method="post">
 
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="acc-mname">Middle Name <span
-                                                            class="required">*</span></label>
-                                                    <input type="text" class="form-control" id="acc-mname" name="acc-mname">
-                                                </div>
-                                                <!-- End .form-group -->
-                                            </div>
-                                            <!-- End .col-md-4 -->
-
-                                            <div class="col-md-4">
-                                                <div class="form-group required-field">
-                                                    <label for="acc-lastname">Last Name <span
-                                                            class="required">*</span></label>
-                                                    <input type="text" class="form-control" id="acc-lastname"
-                                                           name="acc-lastname" required="">
-                                                </div>
-                                                <!-- End .form-group -->
-                                            </div>
-                                            <!-- End .col-md-4 -->
-                                        </div>
-                                        <!-- End .row -->
-                                    </div>
-                                    <!-- End .col-sm-11 -->
-                                </div>
-                                <!-- End .row -->
-
-                                <div class="form-group required-field">
-                                    <label for="acc-email">Email</label>
-                                    <input type="email" class="form-control" id="acc-email" name="acc-email" required="">
-                                </div>
-                                <!-- End .form-group -->
-
-                                <div class="form-group required-field">
-                                    <label for="account-password">Password</label>
-                                    <input type="password" class="form-control" id="account-password"
-                                           name="account-password" required="">
-                                </div>
-                                <!-- End .form-group -->
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="change-password-checkbox"
-                                           value="1">
-                                    <label class="custom-control-label" for="change-password-checkbox">Change
-                                        Password</label>
-                                </div>
-                                <!-- End .custom-checkbox -->
-
-                                <div id="account-change-password" class="">
-                                    <h4>Change Password</h4>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group required-field">
-                                                <label for="account-pass2">Password</label>
-                                                <input type="password" class="form-control" id="account-pass2"
-                                                       name="account-pass2">
-                                            </div>
-                                            <!-- End .form-group -->
-                                        </div>
-                                        <!-- End .col-md-6 -->
-
-                                        <div class="col-md-6">
-                                            <div class="form-group required-field">
-                                                <label for="account-pass3">Confirm Password</label>
-                                                <input type="password" class="form-control" id="account-pass3"
-                                                       name="account-pass3">
-                                            </div>
-                                            <!-- End .form-group -->
-                                        </div>
-                                        <!-- End .col-md-6 -->
-                                    </div>
-                                    <!-- End .row -->
-                                </div>
-                                <!-- End #account-chage-pass -->
-
-                                <div class="required text-right">* Required Field</div>
-                                <div class="form-footer d-flex justify-content-between align-items-center">
-                                    <a href="#"><i class="material-icons">navigate_before</i>Back</a>
-
-                                    <div class="form-footer-right">
-                                        <button type="submit" class="btn btn-primary btn-primary">Save</button>
-                                    </div>
-                                </div>
-                                <!-- End .form-footer -->
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="memberId">會員編號</label>
+                <input readonly type="text" id="memberId" th:field="*{memberId}" class="form-control"/>
             </div>
-        </div>
+
+            <div class="form-group">
+                <label for="memberLvId">會員等級</label>
+                <input readonly type="text" id="memberLvId" th:field="*{memberLvId}" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="name">姓名 <span class="required">*</span></label>
+                <input type="text" id="name" th:field="*{name}" class="form-control"/>
+                <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">錯誤訊息</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">電話 <span class="required">*</span></label>
+                <input type="text" id="phone" th:field="*{phone}" class="form-control"/>
+                <div class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">錯誤訊息</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" th:field="*{email}" class="form-control"/>
+                <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">錯誤訊息</div>
+            </div>
+
+            <div class="form-group">
+                <label for="county-select">縣市區</label>
+                <select id="county-select" th:field="*{cntCode}" class="form-control" onchange="loadDistricts()">
+                    <option value="" disabled>選擇縣市</option>
+                    <option th:each="county : ${counties}"
+                            th:value="${county.cntCode}"
+                            th:text="${county.cntName}"
+                            th:selected="${county.cntCode == member.cntCode}">
+                    </option>
+                </select>
+                <div class="text-danger" th:if="${#fields.hasErrors('cntCode')}" th:errors="*{cntCode}">錯誤訊息</div>
+            </div>
+
+            <div class="form-group">
+                <label for="district-select">鄉鎮市區</label>
+                <select id="district-select" th:field="*{distCode}" class="form-control">
+                    <option value="" disabled>選擇鄉鎮市區</option>
+                </select>
+                <div class="text-danger" th:if="${#fields.hasErrors('distCode')}" th:errors="*{distCode}">錯誤訊息</div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">地址</label>
+                <input type="text" id="address" th:field="*{address}" class="form-control"/>
+                <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">錯誤訊息</div>
+            </div>
+
+
+            <input type="hidden" th:field="*{password}">
+            <input type="hidden" th:field="*{accumulate}">
+            <input type="hidden" th:field="*{coinBalance}">
+            <input type="hidden" th:field="*{noShow}">
+            <input type="hidden" th:field="*{status}" th:value="${member.status}"/>
+            <input type="hidden" th:field="*{lastUpdatedBy}">
+
+            <div class="form-footer">
+                <button type="submit" class="btn btn-primary">儲存</button>
+            </div>
+        </form>
     </div>
-
-
-
-    <!-- 把你的內容貼在這裡-->
 </main>
 
-<!-- 共用元件 footer和一些按鈕功能 -->
 <div th:replace="~{frontendapp/components/common :: app-footer}"></div>
-<!-- 選用元件 app-modals互動視窗 -->
 <div th:replace="~{frontendapp/components/common :: app-modals}"></div>
-<!-- 共同引入 置底 import-in-the-end -->
 <div th:replace="~{frontendapp/components/common :: import-in-the-end}"></div>
-</body>
 
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var cntCode = document.getElementById('county-select').value;
+        var distCode = '[[${member.distCode}]]';
+
+        if (cntCode) {
+            loadDistricts(cntCode, distCode);
+        }
+    });
+
+    function loadDistricts(cntCode, distCode) {
+        fetch('/api/districts?cntCode=' + cntCode)
+            .then(response => response.json())
+            .then(data => {
+                var districtSelect = document.getElementById('district-select');
+                districtSelect.innerHTML = '<option value="" disabled>選擇鄉鎮市區</option>';
+                data.forEach(function (district) {
+                    var option = document.createElement('option');
+                    option.value = district.distCode;
+                    option.text = district.distName;
+                    if (district.distCode == distCode) {
+                        option.selected = true; // 設置為選中狀態
+                    }
+                    districtSelect.appendChild(option);
+                });
+            });
+    }
+
+    document.getElementById('county-select').addEventListener('change', function () {
+        loadDistricts(this.value, null);
+    });
+</script>
+</body>
 </html>

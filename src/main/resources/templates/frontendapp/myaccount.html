@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>會員中心</title>
+    <!-- 共同引入 headTag-import meta tag-->
+    <meta th:replace="~{frontendapp/components/common :: headtag-import}">
+    <style>
+        .member-center-section {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .button {
+            padding: 15px;
+            text-align: center;
+            background-color: #e0e7ff;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #1e3a8a;
+            text-decoration: none;
+            display: block;
+        }
+
+        .button:hover {
+            background-color: #c7d2fe;
+        }
+
+        .info {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+    </style>
+</head>
+<body>
+<!-- 共用元件 header:圖示按鈕, navbar...-->
+<div th:replace="~{frontendapp/components/common :: app-header}"></div>
+<!-- 共用元件(index除外) bread crumb -->
+<div th:replace="~{frontendapp/components/common :: app-bread-crumb(title=${'會員中心'})}"></div>
+
+<main>
+    <div class="member-center-section">
+        <!-- 個人 -->
+        <div class="section">
+            <div class="section-title">👤 個人</div>
+            <div class="button-grid">
+                <a th:href="@{/member/myaccount/{memberId}/memberInfo(memberId=${member.memberId})}" class="button">會員資料管理</a>
+                <div class="info">LV.2 黃金會員</div>
+            </div>
+        </div>
+
+        <!-- 消費 -->
+        <div class="section">
+            <div class="section-title">🔒 訂單</div>
+            <div class="button-grid">
+                <a href="#" class="button">訂單紀錄</a>
+                <div class="info">已出貨 1</div>
+                <a href="#" class="button">優惠券管理</a>
+                <div class="info">可用優惠券 2</div>
+                <a href="#" class="button">購物金管理</a>
+                <div class="info">可用購物金 430</div>
+            </div>
+        </div>
+
+        <!-- 服務 -->
+        <div class="section">
+            <div class="section-title">❤ 服務</div>
+            <div class="button-grid">
+                <a href="#" class="button">最愛商品管理</a>
+                <a href="#" class="button">客服表單管理</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 共用元件 footer和一些按鈕功能 -->
+<div th:replace="~{frontendapp/components/common :: app-footer}"></div>
+<!-- 選用元件 app-modals互動視窗 -->
+<div th:replace="~{frontendapp/components/common :: app-modals}"></div>
+<!-- 共同引入 置底 import-in-the-end -->
+<div th:replace="~{frontendapp/components/common :: import-in-the-end}"></div>
+</body>
+</html>

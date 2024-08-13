@@ -1,15 +1,11 @@
 package com.tia102g1.productcomment.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.tia102g1.productinfo.entity.ProductInfo;
-import com.tia102g1.productinfo.model.CompositeQuery_ProductInfo;
 
 @Service("ProductCommentService")
 public class ProductCommentService {
@@ -36,6 +32,14 @@ public class ProductCommentService {
 
 	public List<ProductCommentVO> getAll() {
 		return repository.findAll();
+	}
+	
+	public List<ProductCommentVO> getOneMemberComment(Integer memberId) {
+		return repository.findByMember_MemberId(memberId);
+	}
+	
+	public List<ProductCommentVO> getOneProdComment(Integer productId) {
+		return repository.findByProductInfo_ProductId(productId);
 	}
 
 //	public List<ProductCommentVO> getAll(Map<String, String[]> map) {

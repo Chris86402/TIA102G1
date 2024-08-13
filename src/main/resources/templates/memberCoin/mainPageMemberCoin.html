@@ -62,28 +62,28 @@
 					<div class="col-6">
 						<div class="form-group">
 						<label>購物金紀錄編號:</label>
-						<input type="text" name="memCoinId" value="" placeholder="1" class="form-control"/>
+						<input type="text" name="memCoinId" value="" placeholder="請輸入紀錄編號" class="form-control"/>
 						</div>
 						
 						<div class="form-group">
 						<label>會員編號:</label>
-						<input type="text" th:field="*{member.memberId}" value="" placeholder="1" class="form-control"/>
+						<input type="text" th:field="*{member.memberId}" value="" placeholder="請輸入會員編號" class="form-control"/>
 						</div>
 						
 						<div class="form-group">
 						<label>會員姓名:</label>
-	        			<input type="text" th:field="*{member.name}" value="" placeholder="1" class="form-control"/>
+	        			<input type="text" th:field="*{member.name}" value="" placeholder="請輸入會員姓名" class="form-control"/>
 						</div>
 						
 						<div class="form-group">
 						<label>訂單編號:</label>
-				        <input type="text" th:field="*{orderListVO.orderListId}" placeholder="20001" class="form-control"/>
+				        <input type="text" th:field="*{orderListVO.orderListId}" placeholder="請輸入訂單編號，例如20001" class="form-control"/>
 				        </div>
 				        
 				        <div class="form-group">   
 				        <label>購物金類型(摘要):</label> 
 				        <select name="summary" class="form-control custom-select">
-				        	<option value="">-</option>
+				        	<option value="">請選擇購物金類型</option>
 				        	<option value="訂單回饋">訂單回饋</option>
 				        	<option value="生日禮金">生日禮金</option>
 				        	<option value="折抵消費">折抵消費</option>
@@ -94,18 +94,18 @@
 					<div class="col-6">
 				        <div class="form-group">
 				        <label>最低購物金金額:</label>
-				        <input type="number" step="10" name="amountMin" value="" placeholder="10" class="form-control">
+				        <input type="number" step="1" name="amountMin" value="" placeholder="請輸入金額" class="form-control">
 				        </div>
 				        
 				        <div class="form-group">
 				        <label>最高購物金金額:</label>
-				        <input type="number" step="10" name="amountMax" value="" placeholder="10" class="form-control">
+				        <input type="number" step="1" name="amountMax" value="" placeholder="請輸入金額" class="form-control">
 				        </div>
 				        
 				        <div class="form-group">
 				        <label>異動類型:</label>
 				        <select name="type" class="form-control custom-select">
-				        	<option value="">-</option>
+				        	<option value="">請選擇異動類型</option>
 							<option value="1">獲得</option>
 							<option value="-1">減少</option>
 						</select>
@@ -135,6 +135,7 @@
 		</div>
 		<!-- /.card -->
 	</div>
+	
 
 
 	</section>

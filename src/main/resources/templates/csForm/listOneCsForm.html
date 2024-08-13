@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>客服紀錄管理</title>
+
+    <!-- header-css etc. -->
+
+    <head th:insert="~{/comPage1}"></head>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <!-- side bar -->
+
+    <body th:insert="~{/comPage2}"></body>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- 儀錶板上面那排 -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0" font-style="bold">客服紀錄管理</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+
+                            <!-- ==============後台人員登入登出用 =============-->
+
+                            <body th:insert="~{/comLogin}"></body>
+
+                            <!-- ==============寫入你的mainPage名稱 =============-->
+                            <li class="breadcrumb-item"><a th:href="@{../csForm/mainPageCsForm}">客服紀錄管理</a></li>
+                            <li class="breadcrumb-item active">客服紀錄</li>
+
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- 功能內容開始 -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="callout callout-info">
+                            <h6><i class="fas fa-info"></i> 修改成功!</h6>
+                        </div>
+
+                        <!-- Main content -->
+                        <div class="invoice p-3 mb-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="lead" font-style="bold">客服紀錄</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th>客服紀錄編號:</th>
+                                                <td th:text="${csFormVO.csFormId}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>會員編號:</th>
+                                                <td th:text="${csFormVO.member.name} + '-[' + ${csFormVO.member.memberId} + ']'"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>訂單編號:</th>
+                                                <td th:text="${csFormVO.orderListVO.orderListId}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>回覆客服人員:</th>
+                                                <td th:text="${csFormVO.staffVO.staffId} + '-[' + ${csFormVO.staffVO.name} + ']'"></td>
+                                            </tr>                                       
+                                            <tr>
+                                                <th>客訴日期:</th>
+                                                <td th:text="${csFormVO.quDate}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>客訴內容:</th>
+                                                <td th:text="${csFormVO.quContent}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>客訴圖片:</th>
+                                                <td><img th:src="@{/csForm/DBGifReader} + '?csFormId=' + ${csFormVO.csFormId}" width="100px"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>可聯繫時間:</th>
+                                                <td th:text="${csFormVO.quAvTime}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>回覆日期:</th>
+                                                <td th:text="${csFormVO.replyDt}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>回覆內容:</th>
+                                                <td th:text="${csFormVO.replyContent}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>處理狀態:</th>
+                                                <td th:text="${csFormVO.status}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>建檔者:</th>
+                                                <td th:text="${csFormVO.createdBy}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>建檔時間:</th>
+                                                <td th:text="${csFormVO.dateCreated}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>最後更新者:</th>
+                                                <td th:text="${csFormVO.lastUpdatedBy}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>最後更新時間:</th>
+                                                <td th:text="${csFormVO.lastUpdated}"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <div>
+                                <a th:href="@{../csForm/listAllCsForm}"><button type="button" class="btn btn-primary">返回</button></a>
+                            </div>
+                        </div>
+                        <!-- /.invoice -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- 功能內容結束 -->
+
+        <!-- footer and script link -->
+
+        <body th:insert="~{/comPage3}"></body>
+
+        <script type="text/javascript">
+            //清除提示信息
+            function hideContent(d) {
+                document.getElementById(d).style.display = "none";
+            }
+        </script>
+
+</body>
+
+</html>

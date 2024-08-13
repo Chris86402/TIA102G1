@@ -13,10 +13,8 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.gson.annotations.Expose;
 import com.tia102g1.dist.model.DistVO;
-import com.tia102g1.orderlist.model.OrderListVO;
 import com.tia102g1.store.model.StoreVO;
 
 @Entity
@@ -52,20 +50,15 @@ public class CountyVO implements java.io.Serializable {
 	@OneToMany(mappedBy = "countyVO", fetch=FetchType.EAGER)
 	@OrderBy("distCode asc")
 	@Expose
-	@JsonManagedReference
 	private Set<DistVO> dists = new HashSet<DistVO>();
-	
-	@OneToMany(mappedBy = "countyVO", fetch=FetchType.EAGER)
-	@OrderBy("orderListId asc")
-	private Set<OrderListVO> orderListVOs = new HashSet<OrderListVO>();
 
 	public CountyVO() {
 		super();
 	}
 
 	public CountyVO(Integer cntCode, @NotEmpty(message = "縣市名稱: 請勿空白") String cntName, String createdBy,
-			Timestamp dateCreated, String lastUpdatedBy, Timestamp lastUpdated, Set<StoreVO> stores, Set<DistVO> dists,
-			Set<OrderListVO> orderListVOs) {
+			Timestamp dateCreated, String lastUpdatedBy, Timestamp lastUpdated, Set<StoreVO> stores,
+			Set<DistVO> dists) {
 		super();
 		this.cntCode = cntCode;
 		this.cntName = cntName;
@@ -75,7 +68,6 @@ public class CountyVO implements java.io.Serializable {
 		this.lastUpdated = lastUpdated;
 		this.stores = stores;
 		this.dists = dists;
-		this.orderListVOs = orderListVOs;
 	}
 
 	public Integer getCntCode() {
@@ -142,26 +134,12 @@ public class CountyVO implements java.io.Serializable {
 		this.dists = dists;
 	}
 
-	public Set<OrderListVO> getOrderListVOs() {
-		return orderListVOs;
-	}
-
-	public void setOrderListVOs(Set<OrderListVO> orderListVOs) {
-		this.orderListVOs = orderListVOs;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public String toString() {
 		return "CountyVO [cntCode=" + cntCode + ", cntName=" + cntName + ", createdBy=" + createdBy + ", dateCreated="
 				+ dateCreated + ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdated=" + lastUpdated + ", stores="
-				+ stores + ", dists=" + dists + ", orderListVOs=" + orderListVOs + "]";
+				+ stores + ", dists=" + dists + "]";
 	}
-
-	
 	
 	
 }

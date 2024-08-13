@@ -29,14 +29,14 @@
                 type: "GET",
                 data: { "cntCode": selectedCounty },
                 headers: { 'X-CSRFToken': csrftoken },
-                url: "../counties/",
+                url: "../dists/",
                 dataType: "json",
                 success: function (data) {   
 					let pageType = $("#pageType").val();                 
                     let distSelect = $("#distSelect");
                     distSelect.empty();
                     if(pageType == "mainPage"){
-                    	distSelect.append(new Option("-", ""));
+                    	distSelect.append(new Option("不限鄉鎮區", ""));
                     }
                     data["dists"].forEach(function (item, i) {
                         distSelect.append(new Option(item["distName"], item["distCode"]));

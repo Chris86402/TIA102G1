@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>客服紀錄管理</title>
+
+		<!-- header-css etc. -->
+		<head th:insert="~{/comPage1}"></head>
+		<link rel="stylesheet" th:href="@{/css/error.css}">
+	</head>
+	
+	<body class="hold-transition sidebar-mini layout-fixed">
+
+	<!-- side bar -->
+	<body th:insert="~{/comPage2}"></body>
+	
+	<!-- Content Wrapper. Contains page content -->
+    <!-- 儀錶板上面那排 -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0" font-style="bold">客服紀錄管理</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+				
+				<!-- ==============後台人員登入登出用 =============-->
+				<body th:insert="~{/comLogin}"></body>
+
+                <!-- ==============寫入你的mainPage名稱 =============-->
+                <li class="breadcrumb-item"><a th:href="@{../csForm/mainPageCsForm}">客服紀錄管理</a></li>
+                <li class="breadcrumb-item active">編輯客服紀錄</li>
+                
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+	<!-- 功能內容開始 -->
+	<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">編輯客服紀錄</h3>
+			</div>
+			<!-- /.card-header -->
+			<!-- form start block1 -->
+			<form th:action="." method="post" th:object="${csFormVO}" enctype="multipart/form-data">
+				<div class="card-body">
+
+					<div class="form-group">
+					<label>客服紀錄編號:</label>
+					<input type="text" th:field="*{csFormId}" onclick="hideContent('csFormId.errors');" class="form-control" readonly/><br/>
+					</div>
+					
+					<div class="form-group">
+					<label>會員編號:</label>
+					<input type="text" th:field="*{member.memberId}" onclick="hideContent('member.memberId.errors');" class="form-control" readonly/><br/>
+					</div>
+					
+					<div class="form-group">
+					<label>訂單編號:</label>
+					<input type="text" th:field="*{orderListVO.orderListId}" onclick="hideContent('orderListVO.orderListId.errors');" class="form-control" readonly/><br/>
+					</div>
+
+					<div class="form-group">
+					<label>客訴日期:</label>
+					<input type="date" th:field="*{quDate}" onclick="hideContent('quDate.errors');" class="form-control" readonly/><br/>
+					</div>
+					
+					<div class="form-group">
+					<label>問題類型:</label>
+					<select th:field="*{quTypeVO.quTypeId}" class="form-control custom-select" readonly>
+						<option value="">-</option>
+						<option th:each="quTypeVO : ${quTypeListData}" th:value="${quTypeVO.quTypeId}" th:text="${quTypeVO.quTypeDesc}" />
+					</select>		
+					</div>
+					
+					<div class="form-group">
+					<label>可聯繫時間:</label>
+						<select th:field="*{quAvTime}" onclick="hideContent('quAvTime.errors');" class="form-control" readonly>
+							<option value="1">平日白天</option>
+							<option value="2">平日晚上</option>
+							<option value="3">假日白天</option>
+							<option value="4">假日晚上</option>
+						</select>
+					</div>
+					
+					<div class="form-group">
+					<label>客訴內容:</label>
+					<input type="text" th:field="*{quContent}" onclick="hideContent('quContent.errors');" class="form-control" readonly/><br/>
+					</div>
+
+					<div class="form-group">
+					<label>客訴圖片:</label>
+					<div>
+					<img th:src="@{/csForm/DBGifReader} + '?csFormId=' + ${csFormVO.csFormId}" width="100px">
+					</div>
+					</div>
+
+				</div>
+				<!-- /.card-body -->
+
+			</form>
+		</div>
+		<!-- /.card-block1 -->
+		
+		<!-- card-block2 -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">客服人員回覆</h3>
+			</div>
+			<!-- /.card-header -->
+			<!-- form start -->
+			<form th:action="@{update}" method="post" th:object="${csFormVO}" enctype="multipart/form-data">
+				<div class="card-body">
+
+					<input type="hidden" th:field="*{csFormId}"/>
+					<input type="hidden" th:field="*{member.memberId}"/>
+					<input type="hidden" th:field="*{orderListVO.orderListId}"/>
+					<input type="hidden" th:field="*{quDate}"/>
+					<input type="hidden" th:field="*{quTypeVO.quTypeId}"/>
+					<input type="hidden" th:field="*{quAvTime}"/>
+					<input type="hidden" th:field="*{quContent}"/>
+<!-- 					<input type="hidden" th:field="*{quPic}"/> -->
+					
+					<div class="form-group">
+					<label>回覆日期:</label>
+					<input type="date" th:field="*{replyDt}" onclick="hideContent('replyDt.errors');" class="form-control"/><br/>
+					<span  th:if="${#fields.hasErrors('replyDt')}" th:errors="*{replyDt}" class="error" id="replyDt.errors"></span>
+					</div>
+					
+					<div class="form-group">
+					<label>回覆客服人員編號:</label>
+					<input type="text" th:field="*{staffVO.staffId}" onclick="hideContent('staffVO.staffId.errors');" class="form-control"/><br/>
+					<span  th:if="${#fields.hasErrors('staffVO.staffId')}" th:errors="*{staffVO.staffId}" class="error" id="staffVO.staffId.errors"></span>
+					</div>
+					
+					<div class="form-group">
+					<label>回覆內容:</label>
+					<input type="text" th:field="*{replyContent}" onclick="hideContent('replyContent.errors');" class="form-control"/><br/>
+					<span  th:if="${#fields.hasErrors('replyContent')}" th:errors="*{replyContent}" class="error" id="replyContent.errors"></span>
+					</div>
+					
+					<div class="form-group">
+					<label>處理狀態:</label>
+						<select th:field="*{status}" class="form-control">
+							<option value="1" selected>未處理</option>
+							<option value="2">處理中</option>
+							<option value="3">已處理</option>
+						</select>
+					</div>
+													
+					<div>
+					<input type="hidden" th:field="*{createdBy}" />
+					</div>
+					
+					<div class="form-group">
+					<label>最後更新者:</label>
+					<input type="text" th:field="*{lastUpdatedBy}" onclick="hideContent('lastUpdatedBy.errors');" class="form-control"/><br />
+					<span th:if="${#fields.hasErrors('lastUpdatedBy')}" th:errors="*{lastUpdatedBy}" class="error" id="lastUpdatedBy.errors"></span>
+					</div>
+					
+					<div class="form-group">
+					<a th:href="@{../csForm/listAllCsForm}"><button type="button" class="btn btn-danger">返回</button></a>
+					<button type="submit" class="btn btn-primary">儲存</button>
+					</div>
+					
+				</div>
+				<!-- /.card-body -->
+
+			</form>
+		</div>
+		<!-- /.card-block2 -->
+	</div>
+
+
+	</section>
+	<!-- 功能內容結束 -->
+	
+	<!-- footer and script link -->
+	<body th:insert="~{/comPage3}"></body>
+
+	<script type="text/javascript">
+	//清除提示信息
+	function hideContent(d) {
+	     document.getElementById(d).style.display = "none";
+	}
+	</script>
+
+	</body>
+</html>

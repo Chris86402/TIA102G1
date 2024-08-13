@@ -61,18 +61,18 @@
 				
 					<div class="form-group">
 					<label>門市編號:</label>
-					<input type="text" name="storeId" value="" placeholder="1" class="form-control" />
+					<input type="text" name="storeId" value="" placeholder="請輸入門市編號" class="form-control" />
 					</div>
 					
 					<div class="form-group">
 					<label>門市名稱:</label>
-					<input type="text" name="storeName" value="" placeholder="慶城店" class="form-control"/>
+					<input type="text" name="storeName" value="" placeholder="請輸入門市名稱" class="form-control"/>
 					</div>
 
 					<div class="form-group">
 					<label>選擇縣市</label>
 			  		<select th:field="*{countyVO.cntCode}" id="countySelect" class="form-control custom-select">
-						<option value="">-</option>
+						<option value="">不限縣市</option>
 						<option th:each="countyVO : ${countyListData}" th:value="${countyVO.cntCode}" th:text="${countyVO.cntName}" />
 					</select>
 					</div>
@@ -80,7 +80,7 @@
 					<div class="form-group">
 					<label>選擇鄉鎮區</label>
 			  		<select th:field="*{distVO.distCode}" id="distSelect" class="form-control custom-select">
-						<option value="">-</option>
+						<option value="">不限鄉鎮區</option>
 					</select>
 					</div>
 					

@@ -1,15 +1,21 @@
 package com.tia102g1.qutype.model;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import com.tia102g1.csform.model.CsFormVO;
 
 @Entity
 @Table(name = "QUTYPE")
@@ -35,6 +41,10 @@ public class QuTypeVO {
 	
 	@Column(name = "LASTUPDATED")
 	private Timestamp lastUpdated;
+	
+	//屬於該問題類型的客服表單紀錄
+	@OneToMany(mappedBy = "quTypeVO", fetch=FetchType.EAGER)
+	private Set<CsFormVO> csforms = new HashSet<CsFormVO>();
 
 	public QuTypeVO() {
 		super();

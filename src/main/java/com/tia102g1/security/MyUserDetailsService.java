@@ -34,11 +34,11 @@ public class MyUserDetailsService implements UserDetailsService {
 
         } else {
 
-            if (member.getStatus().equals((AccountStatus.BLOCKED))) {
-                System.out.println("您為黑名單，無法登入");
-            } else if (member.getStatus().equals(AccountStatus.NORMAL)) {
-                System.out.println("可以正常登入");
-            }
+//            if (member.getStatus().equals((AccountStatus.BLOCKED))) {
+//                System.out.println("您為黑名單，無法登入");
+//            } else if (member.getStatus().equals(AccountStatus.NORMAL)) {
+//                System.out.println("可以正常登入");
+//            }
 
             String memberAccount = member.getAccount();
             String memberPassword = member.getPassword();

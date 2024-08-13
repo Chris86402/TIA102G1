@@ -1,9 +1,17 @@
 package com.tia102g1;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import com.tia102g1.county.model.CountyService;
 import com.tia102g1.county.model.CountyVO;
-import com.tia102g1.coupon.Coupon;
-import com.tia102g1.coupon.CouponService;
+import com.tia102g1.csform.model.CsFormService;
+import com.tia102g1.csform.model.CsFormVO;
 import com.tia102g1.dist.model.DistService;
 import com.tia102g1.dist.model.DistVO;
 import com.tia102g1.event.model.EventService;
@@ -26,13 +34,6 @@ import com.tia102g1.store.model.StoreService;
 import com.tia102g1.store.model.StoreVO;
 import com.tia102g1.sysmsg.model.SysMsgService;
 import com.tia102g1.sysmsg.model.SysMsgVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
-import java.util.List;
 
 @Controller
 public class BackendController {
@@ -68,6 +69,9 @@ public class BackendController {
 
 	@Autowired
 	QuTypeService quTypeSvc;
+
+	@Autowired
+	CsFormService csFormSvc;
 
 	@Autowired
 	StaffService staffSvc;
@@ -247,6 +251,46 @@ public class BackendController {
 	public String mainPageCsForm(Model model) {
 		return "/csForm/mainPageCsForm";
 	}
+	
+	@GetMapping("/csForm/listAllCsForm")
+	public String listAllCsForm(Model model) {
+		return "csForm/listAllCsForm";
+	}
+
+	@ModelAttribute("csFormListData")
+	protected List<CsFormVO> referenceCsFormListData(Model model) {
+		List<CsFormVO> list = csFormSvc.getAll();
+		return list;
+	}
+	
+	@ModelAttribute("memberListData")
+	protected List<Member> referenceListData_MemberCS(Model model) {
+		model.addAttribute("member", new Member());
+		List<Member> list = memberSvc.getAll();
+		return list;
+	}
+	
+	@ModelAttribute("orderListListData")
+	protected List<OrderListVO> referenceListData_OrderListCS(Model model) {
+		model.addAttribute("orderListVO", new OrderListVO());
+		List<OrderListVO> list = orderListSvc.getAll();
+		return list;
+	}
+	
+	@ModelAttribute("staffListData_cs")
+	protected List<StaffVO> referenceListData_Staff(Model model) {
+		model.addAttribute("staffVO", new StaffVO());
+		List<StaffVO> list = staffSvc.getAll();
+		return list;
+	}
+	
+	@ModelAttribute("quTypeListData_cs")
+	protected List<QuTypeVO> referenceListData_QuType(Model model) {
+		model.addAttribute("quTypeVO", new QuTypeVO());
+		List<QuTypeVO> list = quTypeSvc.getAll();
+		return list;
+	}
+	
 
 	// 報表分析管理
 	@GetMapping({ "/report", "report/mainPageReport" })
@@ -315,10 +359,10 @@ public class BackendController {
 	}
 
 	// 鄉鎮區代碼對照
-	@GetMapping({ "/dist", "/dist/mainPageDist" })
-	public String mainPageDist(Model model) {
-		return "/dist/mainPageDist";
-	}
+//	@GetMapping({ "/dist", "/dist/mainPageDist" })
+//	public String mainPageDist(Model model) {
+//		return "/dist/mainPageDist";
+//	}
 
 	// 系統通知訊息
 	@GetMapping({ "/sysMsg", "/sysMsg/mainPageSysMsg" })

@@ -1,12 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>你的功能名稱</title>
+		<title>縣市鄉鎮代碼查詢</title>
 
 		<!-- header-css etc. -->
 		<head th:insert="~{/comPage1}"></head>
-		
+		<link rel="stylesheet" th:href="@{/css/error.css}">
 	</head>
 	
 	<body class="hold-transition sidebar-mini layout-fixed">
@@ -22,12 +23,19 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">你的功能名稱</h1>
+              <h1 class="m-0" font-style="bold">縣市鄉鎮代碼查詢</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
-                <li class="breadcrumb-item active">你的功能名稱</li>
+				
+				<!-- ==============後台人員登入登出用 =============-->
+				<body th:insert="~{/comLogin}"></body>
+
+                <!-- ==============寫入你的mainPage名稱 =============-->
+                <li class="breadcrumb-item"><a th:href="@{../county/mainPageCounty}">縣市鄉鎮代碼查詢</a></li>
+                <li class="breadcrumb-item active">查詢資料</li>
+                
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -37,18 +45,54 @@
 
 	<!-- 功能內容開始 -->
 	<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">查詢資料</h3>
+			</div>
+			<!-- /.card-header -->
+			<!-- form start -->
+			<form th:action="@{getZipCode}" method="post">
+				<div class="card-body">
+				
+					<div class="form-group">
+					<label>選擇縣市</label>
+			  		<select th:field="*{countyVO.cntCode}" id="countySelect" class="form-control custom-select">
+						<option value="0">不限縣市</option>
+						<option th:each="countyVO : ${countyListData}" th:value="${countyVO.cntCode}" th:text="${countyVO.cntName}" />
+					</select>
+					</div>
+
+					<div class="form-group">
+					<button type="reset" class="btn btn-secondary">清　除</button>
+					<button type="submit" class="btn btn-primary">查　詢</button>
+					</div>
+				</div>
+				<!-- /.card-body -->
+			</form>
+		</div>
+		<!-- /.card -->
+	</div>
 	
-	<p>縣市代碼管理 主頁 測試</p>	
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	
-	
+	<div class="col-md-12" th:insert="~{/county/listAllCounty}"></div>
+
+
 	</section>
 	<!-- 功能內容結束 -->
 	
 	<!-- footer and script link -->
 	<body th:insert="~{/comPage3}"></body>
+
+	<script type="text/javascript">
+	//清除提示信息
+	function hideContent(d) {
+	     document.getElementById(d).style.display = "none";
+	}
+	</script>
 
 	</body>
 </html>

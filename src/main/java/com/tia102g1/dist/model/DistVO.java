@@ -15,10 +15,8 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.google.gson.annotations.Expose;
 import com.tia102g1.county.model.CountyVO;
-import com.tia102g1.orderlist.model.OrderListVO;
 import com.tia102g1.store.model.StoreVO;
 
 @Entity
@@ -35,8 +33,8 @@ public class DistVO implements java.io.Serializable {
 //	private Integer cntCode;
 	
 	@ManyToOne
-	@JsonBackReference
 	@JoinColumn(name = "CNTCODE", referencedColumnName = "CNTCODE")
+	@OrderBy("cntCode asc")
 	private CountyVO countyVO;
 	
 	@Column(name = "DISTNAME")
@@ -58,18 +56,13 @@ public class DistVO implements java.io.Serializable {
 	
 	@OneToMany(mappedBy = "distVO", fetch=FetchType.EAGER)
 	private Set<StoreVO> stores = new HashSet<StoreVO>();
-	
-	@OneToMany(mappedBy = "distVO", fetch=FetchType.EAGER)
-	@OrderBy("orderListId asc")
-	private Set<OrderListVO> orderListVOs = new HashSet<OrderListVO>();
 
 	public DistVO() {
 		super();
 	}
 
 	public DistVO(Integer distCode, CountyVO countyVO, @NotEmpty(message = "鄉鎮區名稱: 請勿空白") String distName,
-			String createdBy, Timestamp dateCreated, String lastUpdatedBy, Timestamp lastUpdated, Set<StoreVO> stores,
-			Set<OrderListVO> orderListVOs) {
+			String createdBy, Timestamp dateCreated, String lastUpdatedBy, Timestamp lastUpdated, Set<StoreVO> stores) {
 		super();
 		this.distCode = distCode;
 		this.countyVO = countyVO;
@@ -79,7 +72,6 @@ public class DistVO implements java.io.Serializable {
 		this.lastUpdatedBy = lastUpdatedBy;
 		this.lastUpdated = lastUpdated;
 		this.stores = stores;
-		this.orderListVOs = orderListVOs;
 	}
 
 	public Integer getDistCode() {
@@ -145,26 +137,6 @@ public class DistVO implements java.io.Serializable {
 	public void setStores(Set<StoreVO> stores) {
 		this.stores = stores;
 	}
-
-	public Set<OrderListVO> getOrderListVOs() {
-		return orderListVOs;
-	}
-
-	public void setOrderListVOs(Set<OrderListVO> orderListVOs) {
-		this.orderListVOs = orderListVOs;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "DistVO [distCode=" + distCode + ", countyVO=" + countyVO + ", distName=" + distName + ", createdBy="
-				+ createdBy + ", dateCreated=" + dateCreated + ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdated="
-				+ lastUpdated + ", stores=" + stores + ", orderListVOs=" + orderListVOs + "]";
-	}
-
 	
 	
 }

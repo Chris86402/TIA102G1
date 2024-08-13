@@ -97,14 +97,25 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Integer updateMember(Integer memberId, MemberUpdateDto memberUpdateDto) {
-        Member member = memberDao.getMemberByUpdatedPasswordMemberId(memberUpdateDto.getPassword());
+        Member member = memberDao.getMemberById(memberId);
 
-        //將更新過後的密碼加密
-        String hashedPassword = passwordEncoder.encode(memberUpdateDto.getPassword());
-        memberUpdateDto.setPassword(hashedPassword);
+
+        //========================更新密碼必須要獨立開發一個API====================
+//        //如果有更新密碼就將密碼加密
+//        // (要判斷是否修改過密碼，因為BCrypt加密機制，就算密碼沒改還是會加密一次密碼，所以要判斷有修改才加密)
+//        //必須使用passwordEncoder.matches，不能用equal，詳見notion debug筆記
+//        if (!passwordEncoder.matches(memberUpdateDto.getPassword(), member.getPassword())) {
+//            String hashedPassword = passwordEncoder.encode(memberUpdateDto.getPassword());
+//            memberUpdateDto.setPassword(hashedPassword);
+//        }else {
+//            // 如果密碼沒有更改，保持現有的加密密碼
+//            memberUpdateDto.setPassword(member.getPassword());
+//        }
+
+
 
         //如果有設置黑名單的話，要將停權日期更新
-        if (memberUpdateDto.getStatus().equals(AccountStatus.BLOCKED.getStatus())) {
+        if (memberUpdateDto.getStatus().getStatus() == AccountStatus.BLOCKED.getStatus()) {
             Timestamp now = new Timestamp(System.currentTimeMillis());
             memberUpdateDto.setBlockedTime(now);
         }

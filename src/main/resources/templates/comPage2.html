@@ -148,7 +148,7 @@
       <!-- Brand Logo -->
       <a th:href="@{/}" class="brand-link">
         <img th:src="@{/dist/img/g1/logo_cookie.png}" alt="Dessert Logo" class="brand-image img-circle elevation-3">
-        <span class="brand-text font-weight-light">Dessert</span>
+        <span class="brand-text font-weight-light">Desserter</span>
       </a>
 
       <!-- Sidebar -->
@@ -283,14 +283,41 @@
             </li>
 
             <!-- 客服中心管理 -->
+<!--             <li class="nav-item"> -->
+<!--               <a th:href="@{/csForm/mainPageCsForm}" class="nav-link"> -->
+<!--                 <i class="nav-icon fas fa-hand-holding-heart"></i> -->
+<!--                 <p> -->
+<!--                   客服中心管理 -->
+<!--                   <span class="right badge badge-danger">87</span> -->
+<!--                 </p> -->
+<!--               </a> -->
+<!--             </li> -->
+            
+			<!-- 客服中心管理 -->
             <li class="nav-item">
-              <a th:href="@{/csForm/mainPageCsForm}" class="nav-link">
+              <a href="#" class="nav-link">
+                <!-- <i class="nav-icon fas fa-box"></i> -->
                 <i class="nav-icon fas fa-hand-holding-heart"></i>
                 <p>
                   客服中心管理
-                  <span class="right badge badge-danger">87</span>
+                  <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/csForm/mainPageCsForm}" class="nav-link">
+                    <i class="nav-icon fas fa-regular fa-clipboard"></i>
+                    <p>客服問題紀錄</p>
+                    <span class="right badge badge-danger">87</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/quType/mainPageQuType}" class="nav-link">
+                    <i class="far fas fa-solid fa-question nav-icon"></i>
+                    <p>客服問題類型管理</p>
+                  </a>
+                </li>
+              </ul>
             </li>
 
             <!-- 報表分析管理 -->
@@ -314,12 +341,6 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a th:href="@{/quType/mainPageQuType}" class="nav-link">
-                    <i class="far fas fa-solid fa-question nav-icon"></i>
-                    <p>客服問題類型管理</p>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a th:href="@{/productType/mainPageProductType}" class="nav-link">
                     <i class="far fas fa-filter nav-icon"></i>
                     <p>商品類型管理</p>
@@ -334,13 +355,7 @@
                 <li class="nav-item">
                   <a th:href="@{/county/mainPageCounty}" class="nav-link">
                     <i class="far fas fa-flag nav-icon"></i>
-                    <p>縣市代碼管理</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a th:href="@{/dist/mainPageDist}" class="nav-link">
-                    <i class="far fas fa-flag nav-icon"></i>
-                    <p>鄉鎮區代碼管理(暫)</p>
+                    <p>縣市鄉鎮代碼查詢</p>
                   </a>
                 </li>
                 <li class="nav-item">

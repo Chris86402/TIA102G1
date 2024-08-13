@@ -1,12 +1,13 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>客服中心管理</title>
+		<title>客服紀錄管理</title>
 
 		<!-- header-css etc. -->
-		<head th:insert="~{/comPage1}"></head>		
-
+		<head th:insert="~{/comPage1}"></head>
+		<link rel="stylesheet" th:href="@{/css/error.css}">
 	</head>
 	
 	<body class="hold-transition sidebar-mini layout-fixed">
@@ -22,12 +23,19 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">客服中心管理</h1>
+              <h1 class="m-0" font-style="bold">客服紀錄管理</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
-                <li class="breadcrumb-item active">客服中心管理</li>
+				
+				<!-- ==============後台人員登入登出用 =============-->
+				<body th:insert="~{/comLogin}"></body>
+
+                <!-- ==============寫入你的mainPage名稱 =============-->
+                <li class="breadcrumb-item"><a th:href="@{../csForm/mainPageCsForm}">客服紀錄管理</a></li>
+                <li class="breadcrumb-item active">查詢資料</li>
+                
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -37,18 +45,103 @@
 
 	<!-- 功能內容開始 -->
 	<section class="content">
-		
-	<p>客服中心管理 主頁 測試</p>
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	
-	
+	<div class="container-fluid">
+		<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="card card-primary">
+			<div class="card-header">
+				<h3 class="card-title">查詢資料</h3>
+			</div>
+			<!-- /.card-header -->
+			<!-- form start -->
+			<form th:action="@{listCsForms_ByCompositeQuery}" method="post">
+				<div class="card-body">
+				<div class="row">
+					<div class="col-6">
+					<div class="form-group">
+					<label>客服紀錄編號:</label>
+					<input type="text" name="csFormId" value="" placeholder="請輸入紀錄編號，例如10001" class="form-control"/>
+					</div>
+					
+					<div class="form-group">
+					<label>會員編號:</label>
+					<input type="text" th:field="*{member.memberId}" value="" placeholder="請輸入會員編號" class="form-control"/>
+					</div>
+					
+					<div class="form-group">
+					<label>會員姓名:</label>
+	        		<input type="text" th:field="*{member.name}" value="" placeholder="請輸入會員姓名" class="form-control"/>
+					</div>
+					
+					<div class="form-group">
+					<label>訂單編號:</label>
+				    <input type="text" th:field="*{orderListVO.orderListId}" placeholder="請輸入訂單編號，例如20001" class="form-control"/>
+				    </div>
+				    </div>
+				    
+				    <div class="col-6">
+				    <div class="form-group">
+					<label>客服問題類型</label>
+			  		<select th:field="*{quTypeVO.quTypeId}" class="form-control custom-select">
+						<option value="">請選擇客服問題類型</option>
+						<option th:each="quTypeVO : ${quTypeListData_cs}" th:value="${quTypeVO.quTypeId}" th:text="${quTypeVO.quTypeDesc}" />
+					</select>
+					</div>
+					
+					<div class="form-group">
+					<label>客訴日期:</label>
+					<input type="date" name="quDate" class="form-control"/>
+					</div>
+					
+					<div class="form-group">
+					<label>客訴處理狀態:</label>
+			  		<select name="status" class="form-control custom-select">
+			        	<option value="">請選擇客訴處理狀態</option>
+						<option value="1">未處理</option>
+						<option value="2">處理中</option>
+						<option value="3">已處理</option>
+					</select>
+					</div>
+					
+				    <div class="form-group">
+					<label>客服人員姓名</label>
+			  		<select th:field="*{staffVO.staffId}" class="form-control custom-select">
+						<option value="">請選擇客服人員姓名</option>
+						<option th:each="staffVO : ${staffListData_cs}" th:value="${staffVO.staffId}" th:text="${staffVO.name}" />
+					</select>
+					</div>
+					</div>
+					
+					<div class="form-group">
+					<button type="reset" class="btn btn-secondary">清　除</button>
+					<button type="submit" class="btn btn-primary">查　詢</button>
+					<a href="addCsForm"><button type="button" class="btn btn-success">新　增</button></a>
+					</div>
+				</div>
+				</div>
+				<!-- /.card-body -->
+
+			</form>
+		</div>
+		<!-- /.card -->
+	</div>
+	</div>
+
+
 	</section>
 	<!-- 功能內容結束 -->
 	
 	<!-- footer and script link -->
 	<body th:insert="~{/comPage3}"></body>
+
+	<script type="text/javascript">
+	//清除提示信息
+	function hideContent(d) {
+	     document.getElementById(d).style.display = "none";
+	}
+	</script>
 
 	</body>
 </html>

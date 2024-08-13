@@ -93,14 +93,8 @@ public class LoginRegisterController {
                                  BindingResult result, Model model) {
         // 檢查表單驗證錯誤
         if (result.hasErrors()) {
-            // 加載縣市資料
             List<CountyVO> counties = countyService.getAllCounties();
             model.addAttribute("counties", counties);
-            // 將表單驗證錯誤記錄到模型中
-            result.getFieldErrors().forEach(error -> {
-                log.error("Validation error on field {}: {}", error.getField(), error.getDefaultMessage());
-                model.addAttribute(error.getField() + "Error", error.getDefaultMessage());
-            });
             return "frontendapp/register";
         }
         try {
@@ -122,6 +116,7 @@ public class LoginRegisterController {
             return "frontendapp/register";
         }
         // 註冊成功後，重定向到成功頁面
+        model.addAttribute("registrationSuccess", true);
         return "redirect:/login";
     }
 }

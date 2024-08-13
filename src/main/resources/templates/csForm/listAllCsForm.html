@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>客服紀錄管理</title>
+
+		<!-- header-css etc. -->
+		<head th:insert="~{/comPage1}"></head>	
+		
+	<script	src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>        
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" /> 
+	
+	<!-- jquery datatables 設定 -->
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"lengthMenu": [3 ,5, 10, 20, 50, 100],
+				"searching": true,  //搜尋功能, 預設是開啟
+			    "paging": true,     //分頁功能, 預設是開啟
+			    "ordering": true,   //排序功能, 預設是開啟
+			    "language": {
+			        "processing": "處理中...",
+			        "loadingRecords": "載入中...",
+			        "lengthMenu": "顯示 _MENU_ 筆結果",
+			        "zeroRecords": "沒有符合的結果",
+			        "info": "顯示第 _START_ 至 _END_ 筆結果，共<font color=red> _TOTAL_ </font>筆",
+			        "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+			        "infoFiltered": "(從 _MAX_ 筆結果中過濾)",
+			        "infoPostFix": "",
+			        "search": "搜尋:",
+			        "paginate": {
+			            "first": "第一頁",
+			            "previous": "上一頁",
+			            "next": "下一頁",
+			            "last": "最後一頁"
+			        },
+			        "aria": {
+			            "sortAscending":  ": 升冪排列",
+			            "sortDescending": ": 降冪排列"
+			        }
+			    }
+			});
+		});
+	</script>
+	</head>
+	
+	<body class="hold-transition sidebar-mini layout-fixed">
+
+	<!-- side bar -->
+	<body th:insert="~{/comPage2}"></body>
+	
+	<!-- Content Wrapper. Contains page content -->
+    <!-- 儀錶板上面那排 -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0" font-style="bold">客服紀錄管理</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+				
+				<!-- ==============後台人員登入登出用 =============-->
+				<body th:insert="~{/comLogin}"></body>
+
+                <!-- ==============寫入你的mainPage名稱 =============-->
+                <li class="breadcrumb-item"><a th:href="@{../csForm/mainPageCsForm}">客服紀錄管理</a></li>
+                <li class="breadcrumb-item active">顯示全部資料</li>
+                
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+	<!-- 功能內容開始 -->
+	<section class="content">
+		<table id="example" class="display" style="width: 100%">
+		  <thead>
+			<tr style="background-color:#434b52; color:#ffffff">
+				<th>項次</th>
+				<th>客服紀錄編號</th>
+				<th>會員編號</th>
+				<th>客訴日期</th>
+				<th>問題類型</th>
+				<th>客訴內容</th>
+				<th>處理狀態</th>
+				<th>編輯</th>
+				<th>刪除</th>
+			</tr>
+		  </thead>
+			
+		  <tbody>
+				<th:block th:each="csFormVO : ${csFormListData}">
+					<tr>
+						<td th:text="${csFormVOStat.count}"></td>
+						<td th:text="${csFormVO.csFormId}"></td>
+						<td th:text="${csFormVO.member.name} + '-[' + ${csFormVO.member.memberId} + ']'"></td>
+						<td th:text="${csFormVO.quDate}"></td>
+						<td th:text="${csFormVO.quTypeVO.quTypeDesc} + '-[' + ${csFormVO.quTypeVO.quTypeId} + ']'"></td>
+						<td th:text="${csFormVO.quContent}"></td>
+						<td th:text="${csFormVO.status}"></td>
+
+					<td>
+					  <form method="post" th:action="@{/csForm/getOne_For_Update}" style="margin-bottom: 0px;">
+					     <button type="submit" class="btn btn-primary btn-sm">編輯</button>
+					     <input type="hidden" name="csFormId" th:value="${csFormVO.csFormId}"></form>
+					</td>
+					
+					<td>
+					  <form method="post" th:action="@{/csForm/delete}" style="margin-bottom: 0px;">
+					     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('是否要刪除資料?');">刪除</button>
+					     <input type="hidden" name="csFormId" th:value="${csFormVO.csFormId}"></form>
+					</td>
+					</tr>
+				</th:block>
+		  </tbody>
+		</table>
+	
+	</section>
+	<!-- 功能內容結束 -->
+	
+	<!-- footer and script link -->
+	<body th:insert="~{/comPage3}"></body>
+	
+	</body>
+</html>

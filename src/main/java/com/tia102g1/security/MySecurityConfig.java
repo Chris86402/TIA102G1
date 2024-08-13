@@ -36,24 +36,25 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                    .csrf().disable() // 關閉 CSRF 保護
-                    .authorizeRequests()
-                    .mvcMatchers("/css/**", "/js/**", "/frontendapp/**", "/plungins/**").permitAll()
-                    .mvcMatchers("/members/register", "/index", "/register", "/login/**").permitAll()
-                    .anyRequest().permitAll()
+                .csrf().disable() // 關閉 CSRF 保護
+                .authorizeRequests()
+                .mvcMatchers("/css/**", "/js/**", "/frontendapp/**", "/plungins/**").permitAll()
+                .mvcMatchers("/members/register", "/index", "/register", "/login/**").permitAll()
+                .mvcMatchers("/member/myaccount/**").authenticated()
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/login") // 指定自定義的登入頁面
-                    .permitAll()
-                    .loginProcessingUrl("/login") // 登入表單提交的 URL
-                    .defaultSuccessUrl("/index", false) // 登入成功後的響應的 URL
-                    .failureHandler(customAuthenticationFailureHandler)
+                .loginPage("/login") // 指定自定義的登入頁面
+                .permitAll()
+                .loginProcessingUrl("/login") // 登入表單提交的 URL
+                .defaultSuccessUrl("/index", false) // 登入成功後的響應的 URL
+                .failureHandler(customAuthenticationFailureHandler)
                 .and()
                 .oauth2Login()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/index", false)
-                    .userInfoEndpoint()
-                    .userService(myOAuth2UserService)
-                    .oidcUserService(myOidcUserService);
+                .loginPage("/login")
+                .defaultSuccessUrl("/index", false)
+                .userInfoEndpoint()
+                .userService(myOAuth2UserService)
+                .oidcUserService(myOidcUserService);
     }
 }

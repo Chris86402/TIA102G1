@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,23 @@
 			.wrapper {
 				min-height: 0 !important;
 			}
+			
+			 .form-container {
+            display: flex;
+            gap: 20px; /* 調整間距 */
+        	}
 
+	        .form-group {
+	            margin-bottom: 15px;
+	        }
+	
+	        .form-container form {
+	            width: 100%;
+	        }
+	
+	        .form-container select {
+	            width: 50%;
+			}
 		</style>
 	</head>
 	
@@ -101,29 +117,30 @@
 			</div>
 			<!-- /.card-header -->
 			<!-- form start -->
-			<form th:action="@{listXXXXXXs_ByCompositeQuery}" method="post">
-			<div class="card-body">			
-					<div class="card-body" style="border: 0px; width: 49%; display: inline-block; ">				
+			<div class="card-body">	
+			<div class="form-container">		
+			<form th:action="@{listComment_byMember}" method="post" onsubmit="return validateForm()">
+<!-- 			<div class="card-body" style="border: 0px; width: 49%; display: inline-block; ">				 -->
 					<div class="form-group">
 					<label style="font-size: 1rem;">選擇會員編號:</label><br>
 					<!-- 查詢欄位1內容 -->
-						<select id="roll" name="memberId">
+						<select id="memberId" name="memberId" >
 							<option value="" disabled selected>請選擇會員編號</option>
 							<option th:each="member:${memberListData}"
 								th:value="${member.memberId}"
 								th:text="|${member.memberId} - ${member.name}|"></option>
 						</select>
-					</div>
+						</div>
+<!-- 					<div class="card-body">			 -->
 					<div class="form-group">
-					<button type="submit" class="btn btn-primary">查　詢</button>
+						<button type="submit" class="btn btn-primary">查　詢</button>
 					</div>
-					</div>
-					
-					<div class="card-body" style="border: 0px; width: 49%; display: inline-block; ">	
-					<div class="form-group">
+			</form>
+			<form th:action="@{listComment_byProduct}" method="post" onsubmit="return validateForm()">
+				 <div class="form-group">	
 					<label style="font-size: 1rem;">選擇商品編號:</label><br>
 					<!-- 查詢欄位2內容 -->
-						<select id="roll" name="productId">
+						<select id="productId" name="productId">
 							<option value="" disabled selected>請選擇商品編號</option>
 							<option th:each="productInfo:${productInfoListData}"
 								th:value="${productInfo.productId}"
@@ -133,13 +150,39 @@
 					<div class="form-group">
 					<button type="submit" class="btn btn-primary">查　詢</button>
 					</div>
-					</div>
-					
-				</div>
+			</form>
+				</div></div>
 				<!-- /.card-body -->
 
-			</form>
-		</div>
+		
+			
+			<table id="example" class="table display" style="width: 100%">
+				<thead>
+					<tr>
+						<th>會員編號:</th>
+						<th>商品編號:</th>
+						<th>回覆評價員工:</th>
+						<th>店家回覆:</th>
+						<th>評論內容:</th>
+						<th>評論圖片:</th>
+						<th>滿意度:</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="productCommentVO : ${productCommentListData}">
+						<tr>
+							<td th:text="${productCommentVO.member.memberId} + '-[' + ${productCommentVO.member.memberId} + ']'"></td>
+							<td th:text="${productCommentVO.productInfo.productId} + '[' + ${productCommentVO.productInfo.productId} + ']'"></td>
+							<td th:text="${productCommentVO.staff.staffId} + '[' +${productCommentVO.staff.staffId} + ']'"></td>
+							<td th:text="${productCommentVO.storeReply}"></td>
+							<td th:text="${productCommentVO.commentText}"></td>
+							<td><img th:src="@{/productComment/ProductCommentReader} + '?proCommentId' +${productCommentVO.proCommentId}" width="100px"></td>
+							<td th:text="${productCommentVO.commentRate}"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div></div></div>
 		<!-- /.card -->
 	</div>
 
@@ -153,6 +196,16 @@
 	//清除提示信息
 	function hideContent(d) {
 	     document.getElementById(d).style.display = "none";
+	}
+	
+	function validateForm(){
+		var memberId = document.getElementById("memberId").value;
+		var productId = document.getElementById("productId").value;
+		if(memberId === "" && productId === ""){
+			alert("編號請勿空白!!!!");
+			return false;
+		}
+		return true;
 	}
 	</script>
 

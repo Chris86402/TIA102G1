@@ -1,10 +1,9 @@
 package com.tia102g1.member.dto;
 
+import com.tia102g1.member.constant.AccountStatus;
+
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -31,7 +30,7 @@ public class MemberUpdateDto implements Serializable {
     Integer cntCode;
     @NotNull
     Integer distCode;
-    @NotNull
+    @NotBlank
     String address;
     @NotNull
     Integer accumulate = 0;
@@ -45,7 +44,7 @@ public class MemberUpdateDto implements Serializable {
     Integer cardMM;
     String cardVerifyCode;
     @NotNull
-    Integer status = 0;
+    AccountStatus status;
     Timestamp blockedTime;
     String blockedReason;
     @NotNull
@@ -195,11 +194,11 @@ public class MemberUpdateDto implements Serializable {
         this.cardVerifyCode = cardVerifyCode;
     }
 
-    public Integer getStatus() {
+    public AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(AccountStatus status) {
         this.status = status;
     }
 

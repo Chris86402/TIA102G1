@@ -208,7 +208,9 @@ public class MemberDaoImpl implements MemberDao {
         map.put("cardYY", memberUpdateDto.getCardYY());
         map.put("cardMM", memberUpdateDto.getCardMM());
         map.put("cardVerifyCode", memberUpdateDto.getCardVerifyCode());
-        map.put("status", memberUpdateDto.getStatus());
+        map.put("status", memberUpdateDto.getStatus().getStatus());
+
+//        map.put("status", memberUpdateDto.getStatus()); //此為Dto status為int類的寫法
         map.put("blockedReason", memberUpdateDto.getBlockedReason());
         map.put("lastUpdatedBy", memberUpdateDto.getLastUpdatedBy());
         map.put("lastUpdated", new Date());

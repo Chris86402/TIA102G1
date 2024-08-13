@@ -32,7 +32,7 @@ public class FrontendController {
 	}
 
 	/* ====== 會員 ====== */
-//	// 註冊
+//	// 註冊 ===註冊登入controller放在login中====
 //	@GetMapping({ "/register", "/register.html" })
 //	public String frontendRegister(Model model) {
 //		return "/frontendapp/register";
@@ -49,11 +49,11 @@ public class FrontendController {
 		return "/frontendapp/favProduct";
 	}
 
-	// 會員資料
-	@GetMapping({ "/memberinfo", "/memberInfo.html" })
-	public String frontendMemberInfo(Model model) {
-		return "/frontendapp/memberInfo";
-	}
+//	// 會員資料
+//	@GetMapping({ "/memberinfo", "/memberInfo.html" })
+//	public String frontendMemberInfo(Model model) {
+//		return "/frontendapp/memberInfo";
+//	}
 
 	/* ====== 購物流程 ====== */
 	// 商品總覽

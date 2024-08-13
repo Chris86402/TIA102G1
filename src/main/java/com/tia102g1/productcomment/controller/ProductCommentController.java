@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,12 @@ public class ProductCommentController {
 		List<ProductCommentVO> list = productCommentService.getAll();
 		model.addAttribute("productCommentListData", list);
 		return "/productComment/mainPageProductComment";
+	}
+	
+	@ModelAttribute("productCommentListData")
+	protected List<ProductCommentVO> referenceListData_ProComment(Model model){
+		List<ProductCommentVO> list = productCommentService.getAll();
+		return list;
 	}
 
 	@ModelAttribute("memberListData")
@@ -213,6 +221,20 @@ public class ProductCommentController {
 		model.addAttribute("productCommentVO", productCommentVO);
 
 		return "/productComment/listOneProductComment";
+	}
+	
+	@PostMapping("listComment_byMember")
+	public String listMemberComments(@RequestParam("memberId") String memberId, Model model) {
+		List<ProductCommentVO> list = productCommentService.getOneMemberComment(Integer.valueOf(memberId));
+		model.addAttribute("productCommentListData", list);
+		return "productComment/mainPageProductComment";
+	}
+	
+	@PostMapping("listComment_byProduct")
+	public String listProdComments(@RequestParam("productId") String productId, Model model) {
+		List<ProductCommentVO> list = productCommentService.getOneProdComment(Integer.valueOf(productId));
+		model.addAttribute("productCommentListData", list);
+		return "productComment/mainPageProductComment";
 	}
 
 }
