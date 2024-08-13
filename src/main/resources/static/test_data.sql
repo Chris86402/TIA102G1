@@ -414,48 +414,48 @@ insert into district (distCode ,cntCode ,distName ,createdBy, lastUpdatedBy) val
 insert into district (distCode ,cntCode ,distName ,createdBy, lastUpdatedBy) values (212 ,22 ,'東引鄉' ,'chris' ,'chris');
 
 #會員資料
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test01', 'w7764z38', '陳沛聖', '1992-12-29', '0952780126', 'alexis9984@gmail.com', 14, 643, '公園79號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test02', 'BQC7r43e', '黎拓苑', '1991-07-13', '0987448924', 'parker5394@gmail.com', 16, 829, '忠孝街19號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test03', '52k2X8v2', '廖嘉銀', '1988-09-04', '0913556230', 'christina4998@outlook.com', 8, 350, '福德路22號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test04', 'PNbmhAkN', '宋愛永', '1995-07-15', '0923443082', 'maria5390@gmail.com', 9, 408, '龍富十一街90號', 1, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test01', 'w7764z38', '陳沛聖', '1992-12-29', '0952780126', 'alexis9984@gmail.com', 14, 643, '公園79號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test02', 'BQC7r43e', '黎拓苑', '1991-07-13', '0987448924', 'parker5394@gmail.com', 16, 829, '忠孝街19號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test03', '52k2X8v2', '廖嘉銀', '1988-09-04', '0913556230', 'christina4998@outlook.com', 8, 350, '福德路22號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test04', 'PNbmhAkN', '宋愛永', '1995-07-15', '0923443082', 'maria5390@gmail.com', 9, 408, '龍富十一街90號', 0, 'chris', 'chris');
 insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test05', 'G4qX79vF', '鄒巖風', '1965-10-30', '0912639012', 'schuyler6816@yahoo.com', 1, 103, '市民大道1段39號之8', 0, 'chris', 'chris');
 insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test06', 'fewXctD3', '王小明', '1986-04-06', '0912410805', 'hart9626@gmail.com', 16, 813, '軍校路66號之6', 0, 'chris', 'chris');
 insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test07', '355uKDhy', '呂靖駱', '2010-01-04', '0932086114', 'reynes5203@gmail.com', 13, 621, '江厝店42號', 0, 'chris', 'chris');
 insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test08', '8v59wwg6', '曾盧碧', '1999-10-22', '0915121211', 'erin607@gmail.com', 19, 983, '吳江8號', 0, 'chris', 'chris');
 insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test09', 'mHc87w6U', '陳慶方', '1986-01-26', '0971533998', 'rodney9753@outlook.com', 2, 227, '聖南89號6樓', 0, 'chris', 'chris');
 insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test10', 'd2uy4X3E', '李真鈺', '1961-06-11', '0986509620', 'selina3163@gmail.com', 17, 909, '信義路22號', 0, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test11', 'HB67c9En', '張小明', '2013-09-20', '0919788045', 'bates2631@gmail.com', 7, 326, '新農街24號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test12', 'u477Uz79', '郭汶瑋', '2019-10-30', '0934960786', 'riperton4256@outlook.com', 7, 338, '上竹四街66號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test13', 'agb38xh8', '溫冠琦', '1995-03-15', '0987408646', 'maria8056@yahoo.com', 16, 842, '竹箋寮巷81號之12', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test14', '57L6KzDb', '劉山杉', '1966-06-07', '0956902732', 'chet8352@gmail.com', 7, 334, '豐田三路64號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test15', 'bL38ZAC6', '蘇以冠', '1995-01-01', '0989153074', 'cassidy975@hotmail.com', 11, 557, '大明路36號3樓', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test16', '5372EWU5', '張嬋艾', '2002-12-11', '0923010423', 'anna5108@outlook.com', 18, 961, '民富路30號之4', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test17', '9746y72E', '林森楚', '1987-01-13', '0933318243', 'bailey5829@hotmail.com', 9, 411, '大源十六街26號3樓', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test18', 'gddrXw8f', '張泓鑾', '1976-03-12', '0927778560', 'jalen2425@gmail.com', 12, 300031, '後厝仔67號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test19', 'cLK858CE', '巫月樹', '1996-08-19', '0963280161', 'donovan8470@gmail.com', 15, 712, '茄冬坑78號', 1, 'chris', 'chris');
-insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test20', '3Q6x3nV6', '黎天洪', '1982-10-09', '0970521356', 'morgan7795@yahoo.com', 2, 231, '直潭六街17號', 1, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test11', 'HB67c9En', '張小明', '2013-09-20', '0919788045', 'bates2631@gmail.com', 7, 326, '新農街24號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test12', 'u477Uz79', '郭汶瑋', '2019-10-30', '0934960786', 'riperton4256@outlook.com', 7, 338, '上竹四街66號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test13', 'agb38xh8', '溫冠琦', '1995-03-15', '0987408646', 'maria8056@yahoo.com', 16, 842, '竹箋寮巷81號之12', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test14', '57L6KzDb', '劉山杉', '1966-06-07', '0956902732', 'chet8352@gmail.com', 7, 334, '豐田三路64號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test15', 'bL38ZAC6', '蘇以冠', '1995-01-01', '0989153074', 'cassidy975@hotmail.com', 11, 557, '大明路36號3樓', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test16', '5372EWU5', '張嬋艾', '2002-12-11', '0923010423', 'anna5108@outlook.com', 18, 961, '民富路30號之4', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (1, 'test17', '9746y72E', '林森楚', '1987-01-13', '0933318243', 'bailey5829@hotmail.com', 9, 411, '大源十六街26號3樓', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (2, 'test18', 'gddrXw8f', '張泓鑾', '1976-03-12', '0927778560', 'jalen2425@gmail.com', 12, 300031, '後厝仔67號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (3, 'test19', 'cLK858CE', '巫月樹', '1996-08-19', '0963280161', 'donovan8470@gmail.com', 15, 712, '茄冬坑78號', 0, 'chris', 'chris');
+insert into member (memberLvId, account, password, name, birthDt, phone, email, cntCode, distCode, address, status, createdBy, lastUpdatedBy) values (4, 'test20', '3Q6x3nV6', '黎天洪', '1982-10-09', '0970521356', 'morgan7795@yahoo.com', 2, 231, '直潭六街17號', 0, 'chris', 'chris');
 
 #商品基本資料
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '巧克力慕斯蛋糕', 350, 5, 10, 0, 0, 1, '濃郁巧克力口感，入口即化，帶來無與倫比的甜蜜享受。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '草莓奶油蛋糕', 400, 5, 20, 0, 0, 1, '新鮮草莓搭配香濃奶油，甜美可口，讓人一試成主顧。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '綜合水果蛋糕', 450, 5, 30, 0, 0, 1, '多種新鮮水果搭配，清新美味，帶來豐富的口感層次。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (3, '檸檬塔', 250, 5, 15, 0, 0, 1, '酸甜檸檬餡，搭配酥脆塔皮，每一口都是酸甜爽口的享受。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '巧克力慕斯蛋糕', 350, 5, 10, 0, 0, 0, '濃郁巧克力口感，入口即化，帶來無與倫比的甜蜜享受。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '草莓奶油蛋糕', 400, 5, 20, 0, 0, 0, '新鮮草莓搭配香濃奶油，甜美可口，讓人一試成主顧。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '綜合水果蛋糕', 450, 5, 30, 0, 0, 0, '多種新鮮水果搭配，清新美味，帶來豐富的口感層次。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (3, '檸檬塔', 250, 5, 15, 0, 0, 0, '酸甜檸檬餡，搭配酥脆塔皮，每一口都是酸甜爽口的享受。', 'chris', 'chris');
 insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '芒果乳酪蛋糕', 380, 5, 25, 0, 0, 0, '芒果香甜，乳酪濃郁滑順，讓人無法抗拒的美味組合。', 'chris', 'chris');
 insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '藍莓起司蛋糕', 420, 5, 5, 0, 0, 0, '藍莓酸甜，起司香濃，口感豐富，讓人一口接一口。', 'chris', 'chris');
 insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '綠茶紅豆蛋糕', 360, 5, 10, 0, 0, 0, '綠茶濃郁，紅豆香甜，日式風味，獨特又美味。', 'chris', 'chris');
 insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '核桃咖啡蛋糕', 320, 5, 20, 0, 0, 0, '核桃脆口，咖啡香氣濃郁，完美搭配。', 'chris', 'chris');
 insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '抹茶生巧克力蛋糕', 370, 5, 30, 0, 0, 0, '抹茶濃郁，巧克力滑順，帶來雙重口感享受。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '玫瑰香草蛋糕', 430, 5, 10, 0, 0, 1, '玫瑰香氣撲鼻，香草細膩柔和，口感豐富。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '奶油酥餅', 180, 5, 20, 0, 0, 1, '奶油香濃，酥脆可口，每一口都令人回味無窮。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '杏仁餅乾', 150, 5, 30, 0, 0, 1, '杏仁香氣濃郁，口感酥脆，讓人一吃就停不下來。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '花生奶油餅乾', 160, 5, 30, 0, 0, 1, '花生香濃，奶油滑順，口感豐富，是茶點的最佳選擇。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '可可曲奇餅', 200, 5, 15, 0, 0, 1, '可可香濃，酥脆可口，每一口都是濃郁的可可享受。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (4, '香草馬卡龍', 220, 5, 25, 0, 0, 1, '馬卡龍香脆，香草濃郁，甜而不膩，令人愛不釋手。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '檸檬酥餅', 190, 5, 30, 0, 0, 1, '檸檬清新，酥脆爽口，帶來清爽的味蕾享受。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '蔓越莓餅乾', 170, 5, 15, 0, 0, 1, '蔓越莓酸甜，餅乾酥脆，口感豐富，是下午茶的絕佳搭配。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '巧克力布朗尼', 300, 5, 25, 0, 0, 1, '濃郁巧克力，口感濕潤，每一口都是絕佳的巧克力體驗。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '太妃糖核桃蛋糕', 40, 5, 20, 0, 0, 1, '太妃糖香甜，核桃香脆，甜而不膩，讓人回味無窮。', 'chris', 'chris');
-insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '紅絲絨蛋糕', 410, 5, 30, 0, 0, 1, '絲絨般細膩，奶油濃郁，每一口都是甜蜜的享受。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '玫瑰香草蛋糕', 430, 5, 10, 0, 0, 0, '玫瑰香氣撲鼻，香草細膩柔和，口感豐富。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '奶油酥餅', 180, 5, 20, 0, 0, 0, '奶油香濃，酥脆可口，每一口都令人回味無窮。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '杏仁餅乾', 150, 5, 30, 0, 0, 0, '杏仁香氣濃郁，口感酥脆，讓人一吃就停不下來。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '花生奶油餅乾', 160, 5, 30, 0, 0, 0, '花生香濃，奶油滑順，口感豐富，是茶點的最佳選擇。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '可可曲奇餅', 200, 5, 15, 0, 0, 0, '可可香濃，酥脆可口，每一口都是濃郁的可可享受。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (4, '香草馬卡龍', 220, 5, 25, 0, 0, 0, '馬卡龍香脆，香草濃郁，甜而不膩，令人愛不釋手。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '檸檬酥餅', 190, 5, 30, 0, 0, 0, '檸檬清新，酥脆爽口，帶來清爽的味蕾享受。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (1, '蔓越莓餅乾', 170, 5, 15, 0, 0, 0, '蔓越莓酸甜，餅乾酥脆，口感豐富，是下午茶的絕佳搭配。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '巧克力布朗尼', 300, 5, 25, 0, 0, 0, '濃郁巧克力，口感濕潤，每一口都是絕佳的巧克力體驗。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '太妃糖核桃蛋糕', 40, 5, 20, 0, 0, 0, '太妃糖香甜，核桃香脆，甜而不膩，讓人回味無窮。', 'chris', 'chris');
+insert into productInfo (productTypeId, proName, proPrice, proSafetyStock, totalCount, commentUsers, commentStars, proStatus, proDesc, createdBy, lastUpdatedBy) values (2, '紅絲絨蛋糕', 410, 5, 30, 0, 0, 0, '絲絨般細膩，奶油濃郁，每一口都是甜蜜的享受。', 'chris', 'chris');
 
 #促銷活動
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('元旦迎新甜點禮', '2024-1-1', '2024-1-5', 8.00, 2, '元旦期間推出特別組合禮盒，餅乾與蛋糕組合特價8折優惠，讓您迎接新年更添甜美滋味。', 'chris', 'chris');
@@ -464,9 +464,9 @@ insert into event (eventName, startDt, endDt, eventDiscount, status, eventConten
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('元宵節燈籠甜點派對', '2024-2-22', '2024-2-24', 9.00, 2, '元宵節全館9折優惠，購買任何商品即贈精美手工燈籠一個，搭配特色糕點，讓節日氣氛更加濃厚。', 'chris', 'chris');
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('母親節感恩蛋糕禮', '2024-5-1', '2024-5-12', 8.00, 2, '母親節期間購買指定蛋糕，享8折優惠，再加贈特製心形餅乾，感恩母愛無價。', 'chris', 'chris');
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('端午粽香糕點饗宴', '2024-6-1', '2024-6-10', 9.50, 2, '端午節期間購買任一蛋糕享95折，即贈送迷你粽子兩顆，與家人共享甜蜜與傳統的美好滋味。', 'chris', 'chris');
-insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('父親節尊榮甜點禮遇', '2024-8-1', '2024-8-8', 8.80, 1, '父親節期間購買任何蛋糕，即可享88折優惠，並贈送特製尊榮餅乾一盒，表達對父親的敬意。', 'chris', 'chris');
-insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('七夕情人節甜蜜雙重奏', '2024-8-1', '2024-8-10', 5.00, 1, '七夕情人節限定雙人甜點禮盒，享半價優惠，與摯愛共度甜蜜浪漫時光。', 'chris', 'chris');
-insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('中元普渡糕點福袋', '2024-8-10', '2024-8-24', 7.00, 1, '中元節期間購買特製普渡糕點福袋，再享7折優惠，讓普渡更加圓滿豐盛。', 'chris', 'chris');
+insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('父親節尊榮甜點禮遇', '2024-8-1', '2024-8-8', 8.80, 0, '父親節期間購買任何蛋糕，即可享88折優惠，並贈送特製尊榮餅乾一盒，表達對父親的敬意。', 'chris', 'chris');
+insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('七夕情人節甜蜜雙重奏', '2024-8-1', '2024-8-10', 5.00, 0, '七夕情人節限定雙人甜點禮盒，享半價優惠，與摯愛共度甜蜜浪漫時光。', 'chris', 'chris');
+insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('中元普渡糕點福袋', '2024-8-10', '2024-8-24', 7.00, 0, '中元節期間購買特製普渡糕點福袋，再享7折優惠，讓普渡更加圓滿豐盛。', 'chris', 'chris');
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('中秋月圓禮盒特惠', '2024-9-1', '2024-9-17', 9.00, 0, '中秋節期間購買精選月餅禮盒，全館享9折優惠，並贈送手工餅乾一包。', 'chris', 'chris');
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('重陽節敬老糕點禮盒', '2024-10-1', '2024-10-9', 5.00, 0, '重陽節期間購買雙份糕點禮盒，享半價優惠，送給長輩最貼心的敬老禮物。', 'chris', 'chris');
 insert into event (eventName, startDt, endDt, eventDiscount, status, eventContent, createdBy, lastUpdatedBy) values ('周年慶感恩大回饋', '2024-11-1', '2024-11-3', 8.50, 0, '周年慶期間全店蛋糕與餅乾全面85折，並享滿額贈活動，感謝顧客的支持與厚愛。', 'chris', 'chris');
@@ -484,11 +484,11 @@ insert into staff (password ,name ,phone ,email ,employDt ,status ,permission ,c
 
 #訂單紀錄
 insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (1, null, null, '2024-07-01', 2500, 0, 0, 2500, 3, 1, 3, 1, 0, 0, '陳沛聖', '2045675498763421', 30, '05', '123', 2, '', 'AZS873', '陳沛聖', '0952780126', 14, 643, '公園79號', '陳沛聖', 'chris');
-insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (1, null, null, '2024-08-09', 2800, 0, 0, 2800, 1, 1, 0, 2, 0, 0, '陳沛聖', '2045675498763421', 30, '05', '123', 1, '', '', '陳沛聖', '0952780126', 14, 643, '公園79號', '陳沛聖', 'chris');
-insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (2, null, null, '2024-06-20', 3500, 300, 200, 3000, 3, 2, 3, 2, 1, 1, '黎拓苑', '', null, '', '', 1, '', '', '黎拓苑', '0987448924', 16, 829, '忠孝街19號', '黎拓苑', 'chris');
+insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (1, null, null, '2024-08-09', 2800, 0, 0, 2800, 1, 1, 0, 2, 0, 0, '陳沛聖', '2045675498763421', 30, '05', '123', 0, '', '', '陳沛聖', '0952780126', 14, 643, '公園79號', '陳沛聖', 'chris');
+insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (2, null, null, '2024-06-20', 3500, 300, 200, 3000, 3, 2, 3, 2, 1, 0, '黎拓苑', '', null, '', '', 0, '', '', '黎拓苑', '0987448924', 16, 829, '忠孝街19號', '黎拓苑', 'chris');
 insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (2, null, null, '2024-08-08', 1200, 200, 0, 1000, 0, 1, 0, 1, 1, 0, '黎拓苑', '3628463895746374', 28, '01', '456', 2, '13275647', '', '黎拓苑', '0987448924', 16, 829, '忠孝街19號', '黎拓苑', 'chris');
-insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (3, null, null, '2024-02-07', 2100, 0, 100, 2000, 1, 1, 1, 1, 0, 1, '廖嘉銀', '5463987612658830', 26, '02', '232', 2, '', 'BJH469', '廖嘉銀', '0913556230', 8, 350, '福德路22號', '廖嘉銀', 'chris');
-insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (3, null, null, '2024-05-31', 4700, 0, 350, 4350, 1, 2, 1, 2, 0, 1, '廖嘉銀', '', null, '', '', 2, '', 'BJH469', '廖嘉銀', '0913556230', 8, 350, '福德路22號', '廖嘉銀', 'chris');
+insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (3, null, null, '2024-02-07', 2100, 0, 100, 2000, 1, 1, 1, 1, 0, 0, '廖嘉銀', '5463987612658830', 26, '02', '232', 2, '', 'BJH469', '廖嘉銀', '0913556230', 8, 350, '福德路22號', '廖嘉銀', 'chris');
+insert into orderList (memberId, couponId, eventId, orderDt, orderAmount, couponUsedAmount, coinUsedAmount, payAmount, orderStatus, paymentMethod, paymentStatus, pickupMethod, useCoupon, useCoin, cardHolder, cardNumber, cardYy, cardMm, cardVerifyCode, invoiceWay, invoiceTaxNo, invoiceMobileCode, recipientName, recipientPhone, recipientCnt, recipientDist, recipientAddress, createdBy, lastUpdatedBy) values (3, null, null, '2024-05-31', 4700, 0, 350, 4350, 1, 2, 1, 2, 0, 0, '廖嘉銀', '', null, '', '', 2, '', 'BJH469', '廖嘉銀', '0913556230', 8, 350, '福德路22號', '廖嘉銀', 'chris');
 
 #門市資料
 insert into store (storeName, cntCode, distCode, storeAddress, longitude, latitude, storePhone, openingHours, storeMail, createdBy, lastUpdatedBy) values ('慶城店', 1, 105, '台北市松山區慶城街2號', '25.2', '23.2', '0227163388', '09:00-21:00', 'teamagichand@gmail.com', 'chris', 'chris');
@@ -498,57 +498,28 @@ insert into store (storeName, cntCode, distCode, storeAddress, longitude, latitu
 #優惠券
 INSERT INTO coupon (couponCode, couponName, couponStatus, startDt, endDt, discType, discAmount, discPercentage, createdBy, lastUpdatedBy)
 VALUES
-    ('MOTHERSDAY', '母親節感恩優惠: 全館82折', 1, '2024-05-08', '2024-05-12', 2, NULL, 0.82, 'Nicole Kidman', 'Nicole Kidman'),
-    ('QINGMING', '清明節追思優惠: 折抵80元', 1, '2024-04-04', '2024-04-06', 1, 80, NULL, 'Jackie Chan', 'Jackie Chan'),
-    ('SHOPPING618', '618購物節: 全場68折', 1, '2024-06-18', '2024-06-20', 2, NULL, 0.68, 'Gal Gadot', 'Gal Gadot'),
-    ('CNNEWYEAR', '農曆春節大禮包: 折抵288元', 1, '2025-01-29', '2025-02-02', 1, 288, NULL, 'Keanu Reeves', 'Keanu Reeves'),
-    ('FATHERSDAY', '父親節感謝優惠: 全館88折', 1, '2024-08-08', '2024-08-09', 2, NULL, 0.88, 'Dwayne Johnson', 'Dwayne Johnson'),
-    ('NEWYEAR2024', '新年優惠: 全館9折', 1, '2024-01-01', '2024-01-15', 2, NULL, 0.90, 'Emma Watson', 'Emma Watson'),
-    ('VALENTINE14', '情人節特惠: 折抵100元', 1, '2024-02-10', '2024-02-14', 1, 100, NULL, 'Tom Hardy', 'Tom Hardy'),
-    ('MARCH8WOMEN', '三八婦女節: 全館85折', 1, '2024-03-06', '2024-03-08', 2, NULL, 0.85, 'Scarlett Johansson', 'Scarlett Johansson'),
-    ('FOOL1APR', '愚人節促銷: 折抵50元', 1, '2024-04-01', '2024-04-02', 1, 50, NULL, 'Chris Hemsworth', 'Chris Hemsworth'),
-    ('LABORMAY1', '勞動節優惠: 全館88折', 1, '2024-04-29', '2024-05-01', 2, NULL, 0.88, 'Natalie Portman', 'Natalie Portman'),
-    ('DRAGONBOAT', '端午節折扣: 折抵150元', 1, '2024-06-10', '2024-06-12', 1, 150, NULL, 'Robert Downey Jr.', 'Robert Downey Jr.'),
-    ('SUMMER2024', '夏日清涼價: 全館8折', 1, '2024-07-01', '2024-07-31', 2, NULL, 0.80, 'Jennifer Lawrence', 'Jennifer Lawrence'),
-    ('GHOST95', '中元節全館95折', 1, '2024-08-15', '2024-08-30', 2, NULL, 0.95, 'Chris Evans', 'Chris Evans'),
-    ('MOONFEST', '中秋節優惠: 折抵200元', 1, '2024-09-15', '2024-09-17', 1, 200, NULL, 'Margot Robbie', 'Margot Robbie'),
-    ('NATIONAL10', '國慶日特惠: 全館9折', 1, '2024-10-01', '2024-10-07', 2, NULL, 0.90, 'Ryan Gosling', 'Ryan Gosling'),
-    ('SINGLES11', '光棍節促銷: 折抵111元', 1, '2024-11-11', '2024-11-11', 1, 111, NULL, 'Emma Stone', 'Emma Stone'),
-    ('XMAS2024', '聖誕節大促: 全館75折', 1, '2024-12-24', '2024-12-26', 2, NULL, 0.75, 'Hugh Jackman', 'Hugh Jackman'),
-    ('YEAREND24', '年終大清倉: 全館7折', 1, '2024-12-28', '2024-12-31', 2, NULL, 0.70, 'Anne Hathaway', 'Anne Hathaway'),
-    ('NEWMEMBER', '會員優惠: 折抵50元', 1, '2024-01-01', '2024-12-31', 1, 50, NULL, 'Leonardo DiCaprio', 'Leonardo DiCaprio'),
-    ('BDAYTREAT', '周年慶優惠: 全館85折', 1, '2024-01-01', '2024-12-31', 2, NULL, 0.85, 'Meryl Streep', 'Meryl Streep'),
-    ('VIPCLUB', 'VIP會員專屬: 全館88折', 1, '2024-01-01', '2024-12-31', 2, NULL, 0.88, 'Brad Pitt', 'Brad Pitt'),
+    ('MOTHERSDAY', '母親節感恩優惠: 全館82折', 0, '2024-05-08', '2024-05-12', 2, NULL, 0.82, 'Nicole Kidman', 'Nicole Kidman'),
+    ('QINGMING', '清明節追思優惠: 折抵80元', 0, '2024-04-04', '2024-04-06', 1, 80, NULL, 'Jackie Chan', 'Jackie Chan'),
+    ('SHOPPING618', '618購物節: 全場68折', 0, '2024-06-18', '2024-06-20', 2, NULL, 0.68, 'Gal Gadot', 'Gal Gadot'),
+    ('CNNEWYEAR', '農曆春節大禮包: 折抵288元', 0, '2025-01-29', '2025-02-02', 1, 288, NULL, 'Keanu Reeves', 'Keanu Reeves'),
+    ('FATHERSDAY', '父親節感謝優惠: 全館88折', 0, '2024-08-08', '2024-08-09', 2, NULL, 0.88, 'Dwayne Johnson', 'Dwayne Johnson'),
+    ('NEWYEAR2024', '新年優惠: 全館9折', 0, '2024-01-01', '2024-01-15', 2, NULL, 0.90, 'Emma Watson', 'Emma Watson'),
+    ('VALENTINE14', '情人節特惠: 折抵100元', 0, '2024-02-10', '2024-02-14', 1, 100, NULL, 'Tom Hardy', 'Tom Hardy'),
+    ('MARCH8WOMEN', '三八婦女節: 全館85折', 0, '2024-03-06', '2024-03-08', 2, NULL, 0.85, 'Scarlett Johansson', 'Scarlett Johansson'),
+    ('FOOL1APR', '愚人節促銷: 折抵50元', 0, '2024-04-01', '2024-04-02', 1, 50, NULL, 'Chris Hemsworth', 'Chris Hemsworth'),
+    ('LABORMAY1', '勞動節優惠: 全館88折', 0, '2024-04-29', '2024-05-01', 2, NULL, 0.88, 'Natalie Portman', 'Natalie Portman'),
+    ('DRAGONBOAT', '端午節折扣: 折抵150元', 0, '2024-06-10', '2024-06-12', 1, 150, NULL, 'Robert Downey Jr.', 'Robert Downey Jr.'),
+    ('SUMMER2024', '夏日清涼價: 全館8折', 0, '2024-07-01', '2024-07-31', 2, NULL, 0.80, 'Jennifer Lawrence', 'Jennifer Lawrence'),
+    ('GHOST95', '中元節全館95折', 0, '2024-08-15', '2024-08-30', 2, NULL, 0.95, 'Chris Evans', 'Chris Evans'),
+    ('MOONFEST', '中秋節優惠: 折抵200元', 0, '2024-09-15', '2024-09-17', 1, 200, NULL, 'Margot Robbie', 'Margot Robbie'),
+    ('NATIONAL10', '國慶日特惠: 全館9折', 0, '2024-10-01', '2024-10-07', 2, NULL, 0.90, 'Ryan Gosling', 'Ryan Gosling'),
+    ('SINGLES11', '光棍節促銷: 折抵111元', 0, '2024-11-11', '2024-11-11', 1, 111, NULL, 'Emma Stone', 'Emma Stone'),
+    ('XMAS2024', '聖誕節大促: 全館75折', 0, '2024-12-24', '2024-12-26', 2, NULL, 0.75, 'Hugh Jackman', 'Hugh Jackman'),
+    ('YEAREND24', '年終大清倉: 全館7折', 0, '2024-12-28', '2024-12-31', 2, NULL, 0.70, 'Anne Hathaway', 'Anne Hathaway'),
+    ('NEWMEMBER', '會員優惠: 折抵50元', 0, '2024-01-01', '2024-12-31', 1, 50, NULL, 'Leonardo DiCaprio', 'Leonardo DiCaprio'),
+    ('BDAYTREAT', '周年慶優惠: 全館85折', 0, '2024-01-01', '2024-12-31', 2, NULL, 0.85, 'Meryl Streep', 'Meryl Streep'),
+    ('VIPCLUB', 'VIP會員專屬: 全館88折', 0, '2024-01-01', '2024-12-31', 2, NULL, 0.88, 'Brad Pitt', 'Brad Pitt'),
     ('FLASHSALE', '限時閃購: 全館7折', 0, '2024-05-01', '2024-05-03', 2, NULL, 0.70, 'Angelina Jolie', 'Angelina Jolie'),
-    ('FREESHIP100', '限時免運', 1, '2024-03-01', '2024-03-31', 1, 80, NULL, 'Tom Hanks', 'Tom Hanks'),
-    ('GREENEARTH', '餅乾85折優惠', 1, '2024-04-22', '2024-04-22', 2, NULL, 0.85, 'Julia Roberts', 'Julia Roberts'),
-    ('BACKSCHOOL', '開學季折扣: 折抵100元', 1, '2024-08-20', '2024-09-05', 1, 100, NULL, 'Will Smith', 'Will Smith');
-
-#優惠券
-INSERT INTO coupon (couponCode, couponName, couponStatus, startDt, endDt, discType, discAmount, discPercentage, createdBy, lastUpdatedBy)
-VALUES
-    ('MOTHERSDAY', '母親節感恩優惠: 全館82折', 1, '2024-05-08', '2024-05-12', 2, NULL, 0.82, 'Nicole Kidman', 'Nicole Kidman'),
-    ('QINGMING', '清明節追思優惠: 折抵80元', 1, '2024-04-04', '2024-04-06', 1, 80, NULL, 'Jackie Chan', 'Jackie Chan'),
-    ('SHOPPING618', '618購物節: 全場68折', 1, '2024-06-18', '2024-06-20', 2, NULL, 0.68, 'Gal Gadot', 'Gal Gadot'),
-    ('CNNEWYEAR', '農曆春節大禮包: 折抵288元', 1, '2025-01-29', '2025-02-02', 1, 288, NULL, 'Keanu Reeves', 'Keanu Reeves'),
-    ('FATHERSDAY', '父親節感謝優惠: 全館88折', 1, '2024-08-08', '2024-08-09', 2, NULL, 0.88, 'Dwayne Johnson', 'Dwayne Johnson'),
-    ('NEWYEAR2024', '新年優惠: 全館9折', 1, '2024-01-01', '2024-01-15', 2, NULL, 0.90, 'Emma Watson', 'Emma Watson'),
-    ('VALENTINE14', '情人節特惠: 折抵100元', 1, '2024-02-10', '2024-02-14', 1, 100, NULL, 'Tom Hardy', 'Tom Hardy'),
-    ('MARCH8WOMEN', '三八婦女節: 全館85折', 1, '2024-03-06', '2024-03-08', 2, NULL, 0.85, 'Scarlett Johansson', 'Scarlett Johansson'),
-    ('FOOL1APR', '愚人節促銷: 折抵50元', 1, '2024-04-01', '2024-04-02', 1, 50, NULL, 'Chris Hemsworth', 'Chris Hemsworth'),
-    ('LABORMAY1', '勞動節優惠: 全館88折', 1, '2024-04-29', '2024-05-01', 2, NULL, 0.88, 'Natalie Portman', 'Natalie Portman'),
-    ('DRAGONBOAT', '端午節折扣: 折抵150元', 1, '2024-06-10', '2024-06-12', 1, 150, NULL, 'Robert Downey Jr.', 'Robert Downey Jr.'),
-    ('SUMMER2024', '夏日清涼價: 全館8折', 1, '2024-07-01', '2024-07-31', 2, NULL, 0.80, 'Jennifer Lawrence', 'Jennifer Lawrence'),
-    ('GHOST95', '中元節全館95折', 1, '2024-08-15', '2024-08-30', 2, NULL, 0.95, 'Chris Evans', 'Chris Evans'),
-    ('MOONFEST', '中秋節優惠: 折抵200元', 1, '2024-09-15', '2024-09-17', 1, 200, NULL, 'Margot Robbie', 'Margot Robbie'),
-    ('NATIONAL10', '國慶日特惠: 全館9折', 1, '2024-10-01', '2024-10-07', 2, NULL, 0.90, 'Ryan Gosling', 'Ryan Gosling'),
-    ('SINGLES11', '光棍節促銷: 折抵111元', 1, '2024-11-11', '2024-11-11', 1, 111, NULL, 'Emma Stone', 'Emma Stone'),
-    ('XMAS2024', '聖誕節大促: 全館75折', 1, '2024-12-24', '2024-12-26', 2, NULL, 0.75, 'Hugh Jackman', 'Hugh Jackman'),
-    ('YEAREND24', '年終大清倉: 全館7折', 1, '2024-12-28', '2024-12-31', 2, NULL, 0.70, 'Anne Hathaway', 'Anne Hathaway'),
-    ('NEWMEMBER', '會員優惠: 折抵50元', 1, '2024-01-01', '2024-12-31', 1, 50, NULL, 'Leonardo DiCaprio', 'Leonardo DiCaprio'),
-    ('BDAYTREAT', '周年慶優惠: 全館85折', 1, '2024-01-01', '2024-12-31', 2, NULL, 0.85, 'Meryl Streep', 'Meryl Streep'),
-    ('VIPCLUB', 'VIP會員專屬: 全館88折', 1, '2024-01-01', '2024-12-31', 2, NULL, 0.88, 'Brad Pitt', 'Brad Pitt'),
-    ('FLASHSALE', '限時閃購: 全館7折', 0, '2024-05-01', '2024-05-03', 2, NULL, 0.70, 'Angelina Jolie', 'Angelina Jolie'),
-    ('FREESHIP100', '限時免運', 1, '2024-03-01', '2024-03-31', 1, 80, NULL, 'Tom Hanks', 'Tom Hanks'),
-    ('GREENEARTH', '餅乾85折優惠', 1, '2024-04-22', '2024-04-22', 2, NULL, 0.85, 'Julia Roberts', 'Julia Roberts'),
-    ('BACKSCHOOL', '開學季折扣: 折抵100元', 1, '2024-08-20', '2024-09-05', 1, 100, NULL, 'Will Smith', 'Will Smith');
+    ('FREESHIP100', '限時免運', 0, '2024-03-01', '2024-03-31', 1, 80, NULL, 'Tom Hanks', 'Tom Hanks'),
+    ('GREENEARTH', '餅乾85折優惠', 0, '2024-04-22', '2024-04-22', 2, NULL, 0.85, 'Julia Roberts', 'Julia Roberts'),
+    ('BACKSCHOOL', '開學季折扣: 折抵100元', 0, '2024-08-20', '2024-09-05', 1, 100, NULL, 'Will Smith', 'Will Smith');
