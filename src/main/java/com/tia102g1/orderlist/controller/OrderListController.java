@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,6 +137,18 @@ public class OrderListController {
 		model.addAttribute("orderListVO", orderListVO);
 		return "/orderList/addOrderList";
 	}
+	
+	@PostMapping("showOrderDetails")
+    public String showOrderDetails(Model model, HttpSession session) {
+        String orderListId = (String) session.getAttribute("orderListId");
+        List<OrderListInfoVO> orderListInfoListDataById = orderListInfoService.getOrderListInfosByOrderListId(Integer.valueOf(orderListId));
+        System.out.println("");
+        model.addAttribute("orderListId", orderListId);
+        model.addAttribute("orderListInfoListDataById", orderListInfoListDataById);
+
+        return "/orderList/listOneOrderList"; // 返回渲染的 Thymeleaf 模板名称
+    }
+		
 
 	@PostMapping("insert")
 	public String insert(@Valid OrderListVO orderListVO, BindingResult result, ModelMap model) throws IOException {

@@ -15,6 +15,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.google.gson.annotations.Expose;
 import com.tia102g1.county.model.CountyVO;
 import com.tia102g1.store.model.StoreVO;
@@ -35,6 +36,7 @@ public class DistVO implements java.io.Serializable {
 	@ManyToOne
 	@JoinColumn(name = "CNTCODE", referencedColumnName = "CNTCODE")
 	@OrderBy("cntCode asc")
+	@JsonBackReference
 	private CountyVO countyVO;
 	
 	@Column(name = "DISTNAME")

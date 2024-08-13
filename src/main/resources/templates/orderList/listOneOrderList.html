@@ -256,14 +256,38 @@ a:hover, a:active {
 					</div>
 				</div>
 					
-				<div class="card-body" style="border: 0px; width: 100%; ">
+        		<div th:replace="OrderListInfo/viewOrderListInfos :: orderDetails(orderListInfos=${orderListInfos}, orderListId=${orderListId})"></div>
 				
-				
-			<!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! -->
-			<!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! -->
-			<!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! -->
+<!-- 			<!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! -->
+<!-- 			<!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! -->
+<!-- 			<!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! --><!-- 插入商品明細!!!!!!!!!!!!!!!! -->
 			
-				</div>
+<!-- 				</div> -->
+
+<!-- 			<div class="card-body" style="border: 0px; width: 100%;"> -->
+<!-- 			    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #f5f7fa;"> -->
+<!-- 			    <thead> -->
+<!-- 			        <tr>      -->
+<!-- 			            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 15%;">商品</th> -->
+<!-- 			            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 20%;">商品圖片</th> -->
+<!-- 			            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 10%;">單價</th> -->
+<!-- 			            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 10%;">數量</th> -->
+<!-- 			            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 10%;">總價</th> -->
+<!-- 			        </tr> -->
+<!-- 			    </thead> -->
+<!-- 			    <tbody> -->
+<!-- 			        <tr th:each="orderListInfoVO : ${orderListInfoListDataById}"> -->
+<!-- 			            <td th:text="${orderListInfoVO.productInfo.productId} + '-' + ${orderListInfoVO.productInfo.proName}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td> -->
+<!-- 			            <td style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"><img th:src="@{/productInfo/ProductInfoReader} + '?productId=' + ${orderListInfoVO.productInfo.productId}" style="width: 50px; height: auto;"></td> -->
+<!-- 			            <td th:text="${orderListInfoVO.purchasedPrice}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td> -->
+<!-- 			            <td th:text="${orderListInfoVO.proQuantity}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td> -->
+<!-- 			            <td th:text="${orderListInfoVO.purchasedPrice * orderListInfoVO.proQuantity}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td> -->
+<!-- 			        </tr> -->
+<!-- 			    </tbody> -->
+<!-- 				</table> -->
+			
+<!-- 			    </div> -->
+<!-- 			   </div> -->
 			
 				<div class="card-body" style="border: 0px; width: 49%; display: inline-block;">
 				</div>		

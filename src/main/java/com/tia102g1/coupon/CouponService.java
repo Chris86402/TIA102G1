@@ -2,13 +2,13 @@ package com.tia102g1.coupon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service("CouponService")
 public class CouponService {

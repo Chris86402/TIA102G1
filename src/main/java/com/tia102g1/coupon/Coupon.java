@@ -1,8 +1,9 @@
 package com.tia102g1.coupon;
 
+import com.tia102g1.orderlist.model.OrderListVO;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import com.tia102g1.orderlist.model.OrderListVO;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;

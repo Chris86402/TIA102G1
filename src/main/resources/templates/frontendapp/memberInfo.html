@@ -73,7 +73,7 @@
 <main>
     <div class="main-content">
         <h4>編輯會員資料</h4>
-        <form th:action="@{/member/myaccount/{memberId}/updateMemberInfo(memberId=${member.memberId})}"
+        <form th:action="@{/member/{memberId}/updateMemberInfo(memberId=${member.memberId})}"
               th:object="${member}" method="post">
 
             <div class="form-group">

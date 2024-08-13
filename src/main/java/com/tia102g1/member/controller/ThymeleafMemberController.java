@@ -208,7 +208,7 @@ public class ThymeleafMemberController {
      * @param model
      * @return
      */
-    @GetMapping("/myaccount/{memberId}")
+    @GetMapping("/{memberId}/account")
     public String getMyAccount(@PathVariable Integer memberId, Model model) {
         Member member = memberService.getMemberById(memberId);
         if (member == null) {
@@ -225,7 +225,7 @@ public class ThymeleafMemberController {
      * @param model
      * @return
      */
-    @GetMapping("/myaccount/{memberId}/memberInfo")
+    @GetMapping("/{memberId}/memberInfo")
     public String showMemberInfo(@PathVariable Integer memberId, Model model) {
         Member member = memberService.getMemberById(memberId);
         if (member == null) {
@@ -246,7 +246,7 @@ public class ThymeleafMemberController {
      * @param
      * @return
      */
-    @PostMapping("/myaccount/{memberId}/updateMemberInfo")
+    @PostMapping("/{memberId}/updateMemberInfo")
     public String updateMemberInfo(@PathVariable Integer memberId,
                                    @Validated @ModelAttribute("member") MemberUpdateDto memberUpdateDto,
                                    BindingResult bindingResult,
@@ -262,7 +262,7 @@ public class ThymeleafMemberController {
 
         // 如果沒有錯誤，執行更新操作並重定向到會員資料頁面
         memberService.updateMember(memberId, memberUpdateDto);
-        return "redirect:/member/myaccount/" + memberId;
+        return "redirect:/member/" + memberId+"/account?success";
     }
 
 

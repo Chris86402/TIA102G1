@@ -39,4 +39,7 @@ public class OrderListInfoService {
 		return repository.findAll();
 	}
 	
+	public List<OrderListInfoVO> getOrderListInfosByOrderListId(Integer orderListId) {
+        return repository.findByOrderListVOOrderListId(orderListId);
+    }
 }

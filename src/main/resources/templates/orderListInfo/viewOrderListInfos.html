@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>Order Details</title>
+    
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa; /* 修改背景顏色 */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #f5f7fa; /* 使用你提供的灰色背景 */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        th {
+            background-color: #d0e7ff;
+            color: #333;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+
+        .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quantity span {
+            margin: 0 5px;
+        }
+
+        .quantity input {
+            width: 40px;
+            text-align: center;
+        }
+
+        .amount {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Order Details</h1>
+    <div th:fragment="orderDetails(orderListInfos, orderListId)">
+    <div class="card-body" style="border: 0px; width: 100%;">
+    <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background-color: #f5f7fa;">
+    <thead>
+        <tr>     
+            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 15%;">訂單編號</th>
+            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 15%;">商品</th>
+            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 20%;">商品圖片</th>
+            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 10%;">單價</th>
+            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 10%;">數量</th>
+            <th style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc;background-color: #d0e7ff;color: #333;width: 10%;">總價</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="orderListInfoVO : ${orderListInfoListDataById}">
+            <td th:text="${orderListInfoVO.productInfoId}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td>        	
+            <td th:text="${orderListInfoVO.productInfo.productId} + '-' + ${orderListInfoVO.productInfo.proName}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td>
+            <td style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"><img th:src="@{/productInfo/ProductInfoReader} + '?productId=' + ${orderListInfoVO.productInfo.productId}" style="width: 50px; height: auto;"></td>
+            <td th:text="${orderListInfoVO.purchasedPrice}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td>
+            <td th:text="${orderListInfoVO.proQuantity}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td>
+            <td th:text="${orderListInfoVO.purchasedPrice * orderListInfoVO.proQuantity}" style="padding: 10px;text-align: center;border-bottom: 1px dashed #ccc; vertical-align: middle;"></td>
+        </tr>
+    </tbody>
+	</table>
+
+    </div>
+    </div>
+</body>
+</html>

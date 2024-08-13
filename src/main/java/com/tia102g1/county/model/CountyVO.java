@@ -13,6 +13,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.gson.annotations.Expose;
 import com.tia102g1.dist.model.DistVO;
 import com.tia102g1.store.model.StoreVO;
@@ -50,6 +51,7 @@ public class CountyVO implements java.io.Serializable {
 	@OneToMany(mappedBy = "countyVO", fetch=FetchType.EAGER)
 	@OrderBy("distCode asc")
 	@Expose
+	@JsonManagedReference
 	private Set<DistVO> dists = new HashSet<DistVO>();
 
 	public CountyVO() {

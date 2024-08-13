@@ -217,7 +217,8 @@
 				<th:block th:each="orderListVO : ${orderListData}">
 					<tr>
 						<td>
-			                <a th:href="@{listOneOrderList(orderListId=${orderListVO.orderListId})}" th:text="${orderListVO.orderListId}"></a>
+							<a th:href="@{listOneOrderList(orderListId=${orderListVO.orderListId})}" th:text="${orderListVO.orderListId}"></a></button>
+							
 			            </td>
 						<td th:text="${orderListVO.member.memberId}"></td>
 						<td th:text="${#dates.format(orderListVO.orderDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
