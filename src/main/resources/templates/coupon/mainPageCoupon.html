@@ -32,6 +32,7 @@
 <!-- Content Wrapper. Contains page content -->
 <!-- 儀錶板上面那排 -->
 <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -68,8 +69,12 @@
                         <div class="col mb-3">
                             <div class="e-panel card">
                                 <div class="card-body">
+                                    <div class="card-title">
+                                        <h6 class="mr-2"></h6>
+                                    </div>
+
                                     <div class="e-table">
-                                        <div class="table-responsive table-lg mt-3">
+                                        <div th:if="${not #lists.isEmpty(couponList)}" class="table-responsive table-lg mt-3">
                                             <table class="table table-bordered">
                                                 <thead>
                                                 <tr class="text-nowrap">
@@ -127,6 +132,10 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <!-- 當沒有搜尋結果時顯示的訊息 -->
+                                        <div th:if="${isSearchOperation != null and isSearchOperation and #lists.isEmpty(couponList)}" class="alert alert-info">
+                                            查無結果，請嘗試其他搜尋條件。
+                                        </div>
                                 <!-- ====== 分頁 =========-->
                                         <div class="d-flex justify-content-center">
                                             <ul class="pagination mt-3 mb-0">
@@ -148,57 +157,56 @@
                         <div class="col-12 col-lg-3 mb-3">
                             <div class="card">
                                 <div class="card-body">
+                                    <hr class="my-3">
                                     <div class="text-center px-xl-3">
                                         <button class="btn btn-success btn-block" type="button" data-toggle="modal" data-target="#addCouponModal">
                                             新增優惠券
                                         </button>
                                     </div>
-                                    <hr class="my-3">
+                                    <br>
+
                                         <div class="form-group">
-                                            <form method="get" th:action="@{CompositeQuery_Coupon}">
+                                            <form method="get" th:action="@{/coupon/search}">
                                                 <h5 class="">查詢優惠券</h5>
                                                 <div><br> </div>
 
                                                 <div class="">
-                                                    <label>輸入開始日期</label>
+                                                    <label for="startDt">輸入開始日期</label>
+                                                    <input name="startDt" class="form-control flatpickr-input" type="date">
                                                 </div>
-                                            <div>
-                                                <input name="" class="form-control flatpickr-input" type="date">
-                                            </div>
                                                 <div><br> </div>
+
                                                 <div class="">
-                                                    <label>輸入結束日期</label>
+                                                    <label for="endDt">輸入結束日期</label>
+                                                    <input name="endDt" class="form-control flatpickr-input" type="date">
                                                 </div>
-                                            <div>
-                                                <input name="" class="form-control flatpickr-input" type="date">
-                                            </div>
                                                 <div><br> </div>
 
-                                                <label>優惠券名稱</label>
-                                            <input name="" class="form-control w-100" type="text" placeholder="輸入優惠券名稱" value="">
+                                                <label for="couponName">優惠券名稱</label>
+                                            <input name="couponName" class="form-control w-100" type="text" placeholder="輸入優惠券名稱" value="">
                                                 <div><br> </div>
 
-                                                <label>優惠碼</label>
-                                                <input name="" class="form-control" placeholder="輸入優惠碼" type="text" value="">
+                                                <label for="couponCode">優惠碼</label>
+                                                <input name="couponCode" class="form-control" placeholder="輸入優惠碼" type="text" value="">
 
                                                 <div><br> </div>
 
-                                                <label>優惠類型</label>
-
-                                                <select class="form-control form-select form-select-sm" aria-label=".form-select-sm example">
-                                                    <option selected>請選擇</option>
-                                                    <option value="1">售價折扣</option>
+                                                <label for="discType">優惠類型</label>
+                                                <!-- 資料庫: 1=現金抵用; 2=售價折扣-->
+                                                <select name="discType" class="form-control form-select form-select-sm" aria-label=".form-select-sm example">
+                                                    <option selected value="">請選擇</option>
+                                                    <option value="2">售價折扣</option>
                                                     <option value="1">現金抵用</option>
                                                 </select>
 
                                                 <div><br> </div>
 
-                                                <label>啟用狀態</label>
-
-                                                <select class="form-control form-select form-select-sm" aria-label=".form-select-sm example">
-                                                    <option selected>請選擇</option>
+                                                <label for="couponStatus">啟用狀態</label>
+                                                <!-- 資料庫: 1=啟用 ; 0=停用 -->
+                                                <select name="couponStatus" class="form-control form-select form-select-sm" aria-label=".form-select-sm example">
+                                                    <option selected value="">請選擇</option>
                                                     <option value="1">啟用</option>
-                                                    <option value="1">停用</option>
+                                                    <option value="0">停用</option>
                                                 </select>
 
                                                 <div><br> </div>

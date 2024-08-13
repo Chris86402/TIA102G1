@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class CouponController {
 
 
     @GetMapping({"admin/coupon", "/coupon/mainPageCoupon" })
-    public String mainPageCoupon(Model model) {
+    public String listAllCoupon(Model model) {
         List<Coupon> couponList = couponService.getAllCoupons();
         model.addAttribute("couponList", couponList);
         return "/coupon/mainPageCoupon";
@@ -129,9 +130,19 @@ public class CouponController {
      * @return
      */
 
+//    @GetMapping("coupon/search")
+//    public ResponseEntity<List<Coupon>> searchCoupons(@RequestParam Map<String, String> searchParams) {
+//        List<Coupon> coupons = couponService.searchCoupons(searchParams);
+//        return ResponseEntity.ok(coupons);
+//    }
+
     @GetMapping("coupon/search")
-    public ResponseEntity<List<Coupon>> searchCoupons(@RequestParam Map<String, String> searchParams) {
-        List<Coupon> coupons = couponService.searchCoupons(searchParams);
-        return ResponseEntity.ok(coupons);
+    public String searchResult(@RequestParam(required = false) Map<String, String> searchParams, Model model) {
+        List<Coupon> couponList = couponService.searchCoupons(searchParams);
+        model.addAttribute("couponList", couponList);
+
+        model.addAttribute("isSearchOperation", true);
+
+        return "coupon/mainPageCoupon";
     }
 }

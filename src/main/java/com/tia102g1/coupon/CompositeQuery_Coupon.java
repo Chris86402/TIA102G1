@@ -69,10 +69,11 @@ public class CompositeQuery_Coupon {
             }
         }
 
-        criteriaQuery.where(builder.and(predicateList.toArray(new Predicate[0])));
+        if (!predicateList.isEmpty()) {
+            criteriaQuery.where(builder.and(predicateList.toArray(new Predicate[0])));
+        }
         criteriaQuery.orderBy(builder.asc(root.get("couponId")));
 
-        return entityManager.createQuery(criteriaQuery).getResultList();
-    }
+        return entityManager.createQuery(criteriaQuery).getResultList();    }
 
 }
