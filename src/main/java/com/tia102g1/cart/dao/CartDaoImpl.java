@@ -23,7 +23,7 @@ public class CartDaoImpl implements CartDao {
     @Override
     public List<Cart> getAllItems() {
 //        Integer memberId = memberService.getMemberId();
-        Integer memberId = 1;//暫時先假設
+        Integer memberId = 10;//暫時先假設
         String sql = "SELECT * FROM cart WHERE memberId=:memberId";
         Map<String, Object> map = new HashMap<>();
         map.put("memberId", memberId);
