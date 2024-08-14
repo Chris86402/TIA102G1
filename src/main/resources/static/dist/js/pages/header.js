@@ -1,9 +1,5 @@
 let { createApp, ref, computed, onMounted, toRaw  } = Vue;
 
-console.log("this is header.js");
-
-
-
 createApp({
     setup() {
         const carts = ref([{ proAmount: 1, proPrice: 200}, { proAmount: 3, proPrice: 170}]);

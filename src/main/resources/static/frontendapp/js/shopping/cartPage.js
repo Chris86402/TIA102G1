@@ -4,9 +4,9 @@
 /*
 todo 判斷用戶->
      未登入: 存入sessionStorage
-     登入: 透過cookie取得emberId
+     登入: 透過cookie取得memberId
  */
-let memberId = "10";
+let memberId = "1";
 const cartURL = "http://localhost:8080/cart/";
 const couponURL = "http://localhost:8080/coupon/";
 const productURL = "frontendapp/img/products/";
@@ -48,7 +48,6 @@ createApp({
         const discountAmount = ref(0);
         const coupons = ref([]);
         const selectedItems = ref([]); // 選擇的商品
-
         // 全選狀態的計算屬性
         const allSelected = computed({
             get() {
@@ -138,6 +137,16 @@ createApp({
             }
         };
 
+
+        async function checkOutHandler(){
+            // items.value.forEach(item => console.log(toRaw(item)))
+            const buyItemList = items.value.map(item => ( {"productId": item.productId, "quantity": item.proAmount} ));
+            const postData = {buyItemList};
+
+            const response = await axios.post("http://localhost:8080/checkout",postData)
+            console.log(response);
+        }
+
         return {
             items,
             sum: selectedSum, //選中商品的總金額
@@ -146,6 +155,7 @@ createApp({
             codeInput,
             deleteItem,
             discountHandler,
+            checkOut: checkOutHandler,
             selectedItems,
             allSelected
         }
