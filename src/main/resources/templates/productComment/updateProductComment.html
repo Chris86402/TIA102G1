@@ -1,0 +1,170 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>商品評價管理</title>
+		
+		<style >
+		.wrapper {
+				min-height: 0 !important;
+			}
+			
+		</style>
+	</head>
+	
+	<body class="hold-transition sidebar-mini layout-fixed">
+	
+	<!-- header-css etc. -->
+		<div th:insert="~{/comPage1}"></div>
+		
+		<script	src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>        
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" /> 		
+
+	
+	<!-- side bar -->
+	<div th:insert="~{/comPage2}"></div>
+	
+	<!-- Content Wrapper. Contains page content -->
+    <!-- 儀錶板上面那排 -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">加購商品關係管理</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+              
+              	<li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+				<!-- ==============後台人員登入登出用 =============-->
+				<div class="breadcrumb-item"><a th:insert="~{/comLogin}"></div>
+				<li class="breadcrumb-item"><a th:href="@{mainPageProductComment}">商品評價總覽</a></li>
+				<li class="breadcrumb-item active">回覆商品評價</li>
+        	</ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+		<!-- 功能內容開始 -->
+	<section class="content">
+	
+	<form th:action="@{update}" method="post" th:object="${productCommentVO}" enctype="multipart/form-data" >
+				<div class="card-body">
+
+					<div class="form-group">
+					    <label>會員</label>
+						<input type="text" class="form-control" 
+		           		th:value="${productCommentVO.member.memberId + ' - ' + productCommentVO.member.name}"
+		           		style="border: 1px solid #ccc; background-color: #f5f5f5; font-weight: bold;" readonly />					  
+					</div>
+					
+					<div class="form-group">
+					    <label>商品</label>
+						<input type="text" class="form-control" 
+		           		th:value="${productCommentVO.productInfo.productId + ' - ' + productCommentVO.productInfo.proName}"
+		           		style="border: 1px solid #ccc; background-color: #f5f5f5; font-weight: bold;" readonly />					  
+					</div>
+					
+					<div class="form-group">
+					    <label>評論內容</label>
+						<input type="text" class="form-control" 
+		           		th:field="*{commentText}" readonly />					  
+					</div>
+					
+					<div class="form-group">
+					    <label>滿意度</label>
+						<input type="text" class="form-control" 
+		           		th:field="*{commentRate}" readonly />					  
+					</div>
+		
+					<div class="form-group">
+						<label for="exampleInputFile">評論圖片</label>
+						<div class="input-group">
+							<input type="file" th:field="*{commentPic}" onclick="previewImage()"
+								multiple="multiple"  />
+							<div id="blob_holder"></div>
+					</div>
+					
+					<div class="form-group">
+					    <label for="staffId">回覆評價員工</label>
+					    <select id="staffId" name="staffId" class="form-control" th:field="*{staffVO.staffId}">
+					        <option value="" disabled selected>請選擇員工</option>
+					        <!--動態生成的選項 -->
+					        <option th:each="staffVO : ${staffListData}"
+					            th:value="${staffVO.staffId}"
+					            th:text="|${staffVO.staffId} - ${staffVO.name}|"></option>
+					    </select>
+					</div>
+					
+					<div class="form-group">
+						<label>店家回覆</label> 
+							<input type="text" class="form-control"
+							th:field="*{storeReply}" style="border: 0px; font-weight: bold;"  onclick="hideContent('storeReply.errors')"/>
+							<span
+							th:if="${#fields.hasErrors('storeReply')}" th:errors="*{storeReply}"
+							class="error" id="storeReply.errors"></span>
+					</div>
+					
+					
+					
+					<div class="form-group">
+					    <label>最後更新者</label>
+					    <input type="text" class="form-control"
+					        name="lastUpdatedBy" placeholder="輸入建檔者" th:field="*{lastUpdatedBy}"
+					        onclick="hideContent('lastUpdatedBy.errors');" required />
+					    <span th:if="${#fields.hasErrors('lastUpdatedBy')}"
+					        th:errors="*{lastUpdatedBy}" class="error" id="lastUpdatedBy.errors"></span>
+					</div>
+
+				</div>
+				<input type="hidden" th:field="*{proCommentId}" />
+				<input type="hidden" th:field="*{member.memberId}"/>
+				<input type="hidden" th:field="*{productInfo.productId}"/>
+				<input type="hidden" th:field="*{orderListInfoVO.orderListInfoId}"/>
+				<input type="hidden" th:field="*{commentDate}"/>				
+				<input type="hidden" th:field="*{dateCreated}"/>
+				<input type="hidden" th:field="*{createdBy}"/>
+				
+				<!-- /.card-body -->
+
+				<div class="card-footer">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+	
+	</section>
+	<!-- 功能內容結束 -->
+	
+	<!-- footer and script link -->
+	<div th:insert="~{/comPage3}"></div>
+	
+	
+	<script type="text/javascript">
+	//清除提示信息
+	function hideContent(d) {
+	     document.getElementById(d).style.display = "none";
+	}
+	
+	document.getElementById("addAddOn").addEventListener("submit", function(event) {
+	    // 取得加購商品下拉選單選擇的選項
+	    var selectedProductOption = document.getElementById("updateProductInfoAdd").selectedOptions[0];	    
+	    // 取得加購商品的價錢
+	    var proPrice = selectedProductOption.getAttribute("data-proprice");
+	    // 取得輸入的加購價
+	    var addOnPrice = document.getElementById("updateAddOnPrice").value;
+	    // 驗證加購價是否低於加購商品的價錢
+	    if (parseFloat(addOnPrice) > parseFloat(proPrice)) {
+	        alert("加購價必須低於加購商品的價錢 (" + proPrice + ")");
+	        event.preventDefault(); // 防止表單提交
+	    }
+	});
+
+    
+	</script>
+
+	</body>
+</html>

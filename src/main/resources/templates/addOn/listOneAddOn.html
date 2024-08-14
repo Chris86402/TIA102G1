@@ -1,0 +1,171 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>加購商品關係管理</title>
+		
+		<style >
+		.wrapper {
+				min-height: 0 !important;
+			}
+			
+		</style>
+	</head>
+	
+	<body class="hold-transition sidebar-mini layout-fixed">
+	
+	<!-- header-css etc. -->
+		<div th:insert="~{/comPage1}"></div>
+		
+		<script	src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>        
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.jqueryui.min.css" /> 		
+
+	
+	<!-- side bar -->
+	<div th:insert="~{/comPage2}"></div>
+	
+	<!-- Content Wrapper. Contains page content -->
+    <!-- 儀錶板上面那排 -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">加購商品關係管理</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+              
+              	<li class="breadcrumb-item"><a th:href="@{/}">首頁</a></li>
+				<!-- ==============後台人員登入登出用 =============-->
+				<div class="breadcrumb-item"><a th:insert="~{/comLogin}"></div>
+				<li class="breadcrumb-item"><a th:href="@{mainPageAddOn}">加購商品關係總覽</a></li>
+				<li class="breadcrumb-item active">查看加購商品關係</li>
+        	</ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+		<!-- 功能內容開始 -->
+	<section class="content">
+	
+	<form th:action="@{update}" method="post" th:object="${addOn}">
+				<div class="card-body">
+
+					<div class="form-group">
+					    <label>主商品</label>
+						<input type="text" id="productInfoMain" class="form-control" 
+		           		th:value="${addOn.productInfoMain.productId + ' - ' + addOn.productInfoMain.proName}"
+		           		style="border: 1px solid #ccc; background-color: #f5f5f5; font-weight: bold;" readonly />					  
+					</div>
+		
+					<div class="form-group">
+    <label>選擇加購商品</label>
+    <select class="form-control" name="productTypeId" th:field="*{productInfoAdd.productId}" disabled>
+        <!-- 動態生成的選項 -->
+        <option th:each="productInfo : ${productInfoListData}"
+                th:value="${productInfo.productId}"
+                th:text="|${productInfo.productId} - ${productInfo.proName}|">
+        </option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label>加購折扣價格</label>
+    <input type="number" class="form-control" name="addOnPrice" placeholder="請輸入商品介紹" th:field="*{addOnPrice}" readonly>
+    <span th:if="${#fields.hasErrors('addOnPrice')}" th:errors="*{addOnPrice}" class="error" id="addOnPrice.errors"></span>
+</div>
+
+<div class="select one">
+    <label>勾選加購關係狀態</label><br>
+    <input type="radio" th:field="*{status}" value="0" disabled> <a>已停用</a>
+    <input type="radio" th:field="*{status}" value="1" disabled> <a>啟用中</a>
+</div>
+
+<br>
+
+<div class="form-group">
+    <label>最後更新者</label>
+    <input type="text" class="form-control" name="lastUpdatedBy" placeholder="輸入建檔者" th:field="*{lastUpdatedBy}" readonly>
+    <span th:if="${#fields.hasErrors('lastUpdatedBy')}" th:errors="*{lastUpdatedBy}" class="error" id="lastUpdatedBy.errors"></span>
+</div>
+
+				</div>
+				<input type="hidden" th:field="*{addOnId}"/>
+				<input type="hidden" th:field="*{dateCreated}"/>
+				<input type="hidden" th:field="*{createdBy}"/>
+				
+				<!-- /.card-body -->
+
+				<div class="card-footer">
+					<a th:href="@{mainPageAddOn}" class="btn btn-primary">回首頁</a>
+				</div>
+			</form>
+	
+	</section>
+	<!-- 功能內容結束 -->
+	
+	<!-- footer and script link -->
+	<div th:insert="~{/comPage3}"></div>
+	
+	
+	<script type="text/javascript">
+	//清除提示信息
+	function hideContent(d) {
+	     document.getElementById(d).style.display = "none";
+	}
+	
+	function validateForm(){
+		var mainProId = document.getElementById("productInfoMain").value;
+		var status = document.getElementById("status").value;
+		if(mainProId === "" && status === ""){
+			alert("編號請勿空白!!!!");
+			return false;
+		}
+		return true;
+	}
+	
+	document.getElementById("addAddOn").addEventListener("submit", function(event) {
+	    // 取得加購商品下拉選單選擇的選項
+	    var selectedProductOption = document.getElementById("updateProductInfoAdd").selectedOptions[0];	    
+	    // 取得加購商品的價錢
+	    var proPrice = selectedProductOption.getAttribute("data-proprice");
+	    // 取得輸入的加購價
+	    var addOnPrice = document.getElementById("updateAddOnPrice").value;
+	    // 驗證加購價是否低於加購商品的價錢
+	    if (parseFloat(addOnPrice) > parseFloat(proPrice)) {
+	        alert("加購價必須低於加購商品的價錢 (" + proPrice + ")");
+	        event.preventDefault(); // 防止表單提交
+	    }
+	});
+		
+    // 在表單提交之前，將 createdBy 的值賦予 lastUpdatedBy
+    document.getElementById('addAddOn').addEventListener('submit', function() {
+        var createdByValue = document.getElementById('createdBy').value;
+        document.getElementById('lastUpdatedBy').value = createdByValue;
+    });
+    
+	 // 在表單提交前設置 dateCreated 和 lastUpdated 的值
+	 document.getElementById('addAddOnForm').addEventListener('submit', function() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var day = ("0" + now.getDate()).slice(-2);
+        var hours = ("0" + now.getHours()).slice(-2);
+        var minutes = ("0" + now.getMinutes()).slice(-2);
+        var seconds = ("0" + now.getSeconds()).slice(-2);
+        
+        var formattedDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+        
+        document.getElementById('dateCreated').value = formattedDateTime;
+        document.getElementById('lastUpdated').value = formattedDateTime;
+    });
+
+    
+	</script>
+
+	</body>
+</html>

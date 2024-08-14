@@ -58,10 +58,7 @@ public class Staff {
 	@Column(name = "lastUpdated")
 	private Timestamp lastUpdated;
 
-	// 此員工下關聯的商品評價紀錄
-	@OneToMany(mappedBy = "staff", fetch = FetchType.EAGER)
-	@OrderBy("proCommentId asc")
-	private Set<ProductCommentVO> productCommentVO = new HashSet<ProductCommentVO>();
+	
 
 	public Staff() {
 		super();
@@ -69,8 +66,8 @@ public class Staff {
 	}
 
 	public Staff(Integer staffId, String password, String name, String phone, String email, Date employDt, Date leaveDt,
-			Integer status, String createdBy, Timestamp dateCreated, String lastUpdatedBy, Timestamp lastUpdated,
-			Set<ProductCommentVO> productCommentVO) {
+			Integer status, String createdBy, Timestamp dateCreated, String lastUpdatedBy, Timestamp lastUpdated
+			) {
 		super();
 		this.staffId = staffId;
 		this.password = password;
@@ -84,7 +81,7 @@ public class Staff {
 		this.dateCreated = dateCreated;
 		this.lastUpdatedBy = lastUpdatedBy;
 		this.lastUpdated = lastUpdated;
-		this.productCommentVO = productCommentVO;
+		
 	}
 
 	public Integer getStaffId() {
@@ -183,20 +180,14 @@ public class Staff {
 		this.lastUpdated = lastUpdated;
 	}
 
-	public Set<ProductCommentVO> getProductCommentVO() {
-		return productCommentVO;
-	}
-
-	public void setProductCommentVO(Set<ProductCommentVO> productCommentVO) {
-		this.productCommentVO = productCommentVO;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Staff [staffId=" + staffId + ", password=" + password + ", name=" + name + ", phone=" + phone
 				+ ", email=" + email + ", employDt=" + employDt + ", leaveDt=" + leaveDt + ", status=" + status
 				+ ", createdBy=" + createdBy + ", dateCreated=" + dateCreated + ", lastUpdatedBy=" + lastUpdatedBy
-				+ ", lastUpdated=" + lastUpdated + ", productCommentVO=" + productCommentVO + "]";
+				+ ", lastUpdated=" + lastUpdated + "]";
 	}
 
 	

@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import com.tia102g1.member.model.Member;
 import com.tia102g1.orderlistinfo.model.OrderListInfoVO;
 import com.tia102g1.productinfo.entity.ProductInfo;
-import com.tia102g1.staff.entity.Staff;
+import com.tia102g1.staff.model.StaffVO;
 
 @Entity
 @Table(name = "productComment")
@@ -51,7 +51,7 @@ public class ProductCommentVO implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "staffId", referencedColumnName = "staffId")
-	private Staff staff;
+	private StaffVO staffVO;
 //	@Column(name = "staffId")
 //	private Integer staffId;
 	
@@ -94,7 +94,7 @@ public class ProductCommentVO implements Serializable{
 	}
 
 	public ProductCommentVO(Integer proCommentId, Member member, ProductInfo productInfo,
-			OrderListInfoVO orderListInfoVO, Staff staff, String storeReply,
+			OrderListInfoVO orderListInfoVO, StaffVO staffVO, String storeReply,
 			@NotEmpty(message = "評論內容: 請勿空白") String commentText, byte[] commentPic,
 			@NotNull(message = "滿意度: 請勿空白") Integer commentRate, Timestamp commentDate, Timestamp replyTime,
 			String createdBy, Timestamp dateCreated, @NotEmpty(message = "最後更新者: 請勿空白") String lastUpdatedBy,
@@ -104,7 +104,7 @@ public class ProductCommentVO implements Serializable{
 		this.member = member;
 		this.productInfo = productInfo;
 		this.orderListInfoVO = orderListInfoVO;
-		this.staff = staff;
+		this.staffVO = staffVO;
 		this.storeReply = storeReply;
 		this.commentText = commentText;
 		this.commentPic = commentPic;
@@ -149,12 +149,12 @@ public class ProductCommentVO implements Serializable{
 		this.orderListInfoVO = orderListInfoVO;
 	}
 
-	public Staff getStaff() {
-		return staff;
+	public StaffVO getStaffVO() {
+		return staffVO;
 	}
 
-	public void setStaff(Staff staff) {
-		this.staff = staff;
+	public void setStaffVO(StaffVO staffVO) {
+		this.staffVO = staffVO;
 	}
 
 	public String getStoreReply() {
@@ -241,16 +241,8 @@ public class ProductCommentVO implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductCommentVO [proCommentId=" + proCommentId + ", member=" + member + ", productInfo=" + productInfo
-				+ ", orderListInfoVO=" + orderListInfoVO + ", staff=" + staff + ", storeReply=" + storeReply
-				+ ", commentText=" + commentText + ", commentPic=" + Arrays.toString(commentPic) + ", commentRate="
-				+ commentRate + ", commentDate=" + commentDate + ", replyTime=" + replyTime + ", createdBy=" + createdBy
-				+ ", dateCreated=" + dateCreated + ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdated=" + lastUpdated
-				+ "]";
-	}
-	
+
+
 	
 
 }

@@ -21,6 +21,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.tia102g1.addon.model.AddOn;
 import com.tia102g1.orderlistinfo.model.OrderListInfoVO;
 import com.tia102g1.productcomment.model.ProductCommentVO;
 import com.tia102g1.producttype.model.ProductTypeVO;
@@ -100,6 +101,16 @@ public class ProductInfo implements java.io.Serializable {
 	@OrderBy("proCommentId asc")
 	private Set<ProductCommentVO> productCommentVO = new HashSet<ProductCommentVO>();
 
+	// 此商品下關聯的加購商品紀錄
+	@OneToMany(mappedBy = "productInfoMain", fetch = FetchType.EAGER)
+	@OrderBy("addOnId asc")
+	private Set<AddOn> addOnMain = new HashSet<AddOn>();
+
+	// 此商品下關聯的被加購商品紀錄
+	@OneToMany(mappedBy = "productInfoAdd", fetch = FetchType.EAGER)
+	@OrderBy("addOnId asc")
+	private Set<AddOn> addOnAdd = new HashSet<AddOn>();
+
 	public ProductInfo() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -113,7 +124,8 @@ public class ProductInfo implements java.io.Serializable {
 			byte[] proPic, @NotNull(message = "商品狀態: 請勿空白") Integer proStatus,
 			@NotEmpty(message = "商品描述: 請勿空白") String proDesc, String createdBy, Timestamp dateCreated,
 			@NotEmpty(message = "最後更新者: 請勿空白") String lastUpdatedBy, Timestamp lastUpdated,
-			Set<OrderListInfoVO> orderListInfoVO, Set<ProductCommentVO> productCommentVO) {
+			Set<OrderListInfoVO> orderListInfoVO, Set<ProductCommentVO> productCommentVO, Set<AddOn> addOnMain,
+			Set<AddOn> addOnAdd) {
 		super();
 		this.productId = productId;
 		this.productTypeVO = productTypeVO;
@@ -132,6 +144,8 @@ public class ProductInfo implements java.io.Serializable {
 		this.lastUpdated = lastUpdated;
 		this.orderListInfoVO = orderListInfoVO;
 		this.productCommentVO = productCommentVO;
+		this.addOnMain = addOnMain;
+		this.addOnAdd = addOnAdd;
 	}
 
 	public Integer getProductId() {
@@ -270,19 +284,26 @@ public class ProductInfo implements java.io.Serializable {
 		this.productCommentVO = productCommentVO;
 	}
 
+	public Set<AddOn> getAddOnMain() {
+		return addOnMain;
+	}
+
+	public void setAddOnMain(Set<AddOn> addOnMain) {
+		this.addOnMain = addOnMain;
+	}
+
+	public Set<AddOn> getAddOnAdd() {
+		return addOnAdd;
+	}
+
+	public void setAddOnAdd(Set<AddOn> addOnAdd) {
+		this.addOnAdd = addOnAdd;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductInfo [productId=" + productId + ", productTypeVO=" + productTypeVO + ", proName=" + proName
-				+ ", proPrice=" + proPrice + ", proSafetyStock=" + proSafetyStock + ", totalCount=" + totalCount
-				+ ", commentUsers=" + commentUsers + ", commentStars=" + commentStars + ", proPic="
-				+ Arrays.toString(proPic) + ", proStatus=" + proStatus + ", proDesc=" + proDesc + ", createdBy="
-				+ createdBy + ", dateCreated=" + dateCreated + ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdated="
-				+ lastUpdated + ", orderListInfoVO=" + orderListInfoVO + ", productCommentVO=" + productCommentVO + "]";
-	}
-
+	
 	
 }

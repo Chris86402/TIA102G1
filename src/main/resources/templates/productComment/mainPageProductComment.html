@@ -11,6 +11,10 @@
 			    width: 100%;
 			}
 			
+			.dataTables_wrapper no-footer{
+				font-size: 1rem;
+			}
+			
 			.wrapper {
 				min-height: 0 !important;
 			}
@@ -30,6 +34,14 @@
 	
 	        .form-container select {
 	            width: 50%;
+			}
+			
+			#example_wrapper{
+				padding: 1.25rem;
+			}
+			
+			#example{
+				padding: 0;
 			}
 		</style>
 	</head>
@@ -149,6 +161,7 @@
 					</div>
 					<div class="form-group">
 					<button type="submit" class="btn btn-primary">查　詢</button>
+					
 					</div>
 			</form>
 				</div></div>
@@ -156,28 +169,45 @@
 
 		
 			
-			<table id="example" class="table display" style="width: 100%">
+			<table id="example" class="table display" style="width: 100% ;">
 				<thead>
 					<tr>
 						<th>會員編號:</th>
-						<th>商品編號:</th>
+						<th>商品:</th>
 						<th>回覆評價員工:</th>
 						<th>店家回覆:</th>
 						<th>評論內容:</th>
 						<th>評論圖片:</th>
 						<th>滿意度:</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<th:block th:each="productCommentVO : ${productCommentListData}">
 						<tr>
-							<td th:text="${productCommentVO.member.memberId} + '-[' + ${productCommentVO.member.memberId} + ']'"></td>
-							<td th:text="${productCommentVO.productInfo.productId} + '[' + ${productCommentVO.productInfo.productId} + ']'"></td>
-							<td th:text="${productCommentVO.staff.staffId} + '[' +${productCommentVO.staff.staffId} + ']'"></td>
+							<td th:text="${productCommentVO.member.memberId} + '-[' + ${productCommentVO.member.name} + ']'"></td>
+							<td th:text="${productCommentVO.productInfo.productId} + '[' + ${productCommentVO.productInfo.proName} + ']'"></td>
+							<td>
+							    <span th:if="${productCommentVO.staffVO != null}" 
+							          th:text="${productCommentVO.staffVO.staffId} + ' [' + ${productCommentVO.staffVO.name} + ']'">
+							    </span>
+							    <span th:if="${productCommentVO.staffVO == null}" th:text="'尚未回覆'">
+							    </span>
+							</td>
 							<td th:text="${productCommentVO.storeReply}"></td>
 							<td th:text="${productCommentVO.commentText}"></td>
-							<td><img th:src="@{/productComment/ProductCommentReader} + '?proCommentId' +${productCommentVO.proCommentId}" width="100px"></td>
+							<td>
+    <span th:if="${productCommentVO.commentPic == null}" style="color: gray;">使用者未上傳圖片</span>
+    <img th:if="${productCommentVO.commentPic != null}" 
+         th:src="@{'/productComment/ProductCommentReader?proCommentId=' + ${productCommentVO.proCommentId}}" 
+         width="80px">
+</td>							
 							<td th:text="${productCommentVO.commentRate}"></td>
+							<td>
+								<form method="post" th:action="@{getOne_For_Update}">
+									<input type="submit" value="回覆評價"> <input type="hidden" name="proCommentId" th:value="${productCommentVO.proCommentId}">
+								</form>
+							</td>
 						</tr>
 					</th:block>
 				</tbody>

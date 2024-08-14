@@ -193,10 +193,10 @@ public class BackendController {
 //	}
 
 	// 加購商品關係
-	@GetMapping({ "/addOn", "/addOn/mainPageAddOn" })
-	public String mainPageAddOn(Model model) {
-		return "/addOn/mainPageAddOn";
-	}
+//	@GetMapping({ "/addOn", "/addOn/mainPageAddOn" })
+//	public String mainPageAddOn(Model model) {
+//		return "/addOn/mainPageAddOn";
+//	}
 
 
 	// 訂單紀錄

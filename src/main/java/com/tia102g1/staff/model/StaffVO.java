@@ -2,17 +2,24 @@ package com.tia102g1.staff.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.tia102g1.productcomment.model.ProductCommentVO;
 
 @Entity
 @Table(name = "STAFF")
@@ -63,6 +70,12 @@ public class StaffVO {
 	
 	@Column(name = "LASTUPDATED")
 	private Timestamp lastUpdated;
+	
+	// 此員工下關聯的商品評價紀錄
+		@OneToMany(mappedBy = "staffVO", fetch = FetchType.EAGER)
+		@OrderBy("proCommentId asc")
+		private Set<ProductCommentVO> productCommentVO = new HashSet<ProductCommentVO>();
+
 
 	public StaffVO() {
 		super();
@@ -172,5 +185,12 @@ public class StaffVO {
 		this.lastUpdated = lastUpdated;
 	}
 	
+	public Set<ProductCommentVO> getProductCommentVO() {
+		return productCommentVO;
+	}
+
+	public void setProductCommentVO(Set<ProductCommentVO> productCommentVO) {
+		this.productCommentVO = productCommentVO;
+	}
 	
 }

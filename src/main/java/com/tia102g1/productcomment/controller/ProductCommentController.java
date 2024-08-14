@@ -173,12 +173,12 @@ public class ProductCommentController {
 
 	// 回覆評價
 	@PostMapping("getOne_For_Update")
-	public String getOne_For_Update(@RequestParam("productCommentId") String productCommentId, ModelMap model) {
+	public String getOne_For_Update(@RequestParam("proCommentId") String proCommentId, ModelMap model) {
 		/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 ************************/
 		/*************************** 2.開始查詢資料 *****************************************/
 
 		// 先把指定id的VO物件查出來並顯示,準備交給updateEvent頁面做修改
-		ProductCommentVO productCommentVO = productCommentService.getOneProductCommentVO(Integer.valueOf(productCommentId));
+		ProductCommentVO productCommentVO = productCommentService.getOneProductCommentVO(Integer.valueOf(proCommentId));
 				
 		/*************************** 3.查詢完成,準備轉交(Send the Success view) **************/
 		model.addAttribute("productCommentVO", productCommentVO);
@@ -212,6 +212,7 @@ public class ProductCommentController {
 			return "/productComment/updateProductComment";
 		}
 		/*************************** 2.開始修改資料 *****************************************/
+		productCommentVO.setReplyTime(now);
 		productCommentVO.setLastUpdated(now);
 		productCommentService.updateProductCommentVO(productCommentVO);// 把更新好屬性的當前VO物件交給Service層做update
 
