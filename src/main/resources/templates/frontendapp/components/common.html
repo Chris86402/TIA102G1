@@ -34,8 +34,9 @@
                 <div class="container">
                     <div class="nav-left float-left">
                         <!-- todo Coupon優惠券 -->
-                        <div class="ttheader-service">
-                            父親節全館8折優惠, 折扣碼PA8888
+                        <div class="ttheader-service" id="copy">
+                            父親節全館8折優惠, 折扣碼<span id="discount-code">PA8888</span>
+                            <button id="copy-btn" class= "btn-primary-sm" style="text-align: center;">複製</button>
                         </div>
                     </div>
                     <div class="nav-right float-right d-flex">
@@ -769,6 +770,7 @@
         <script src="/frontendapp/js/imagesloaded.pkgd.min.js"></script>
         <script src="/frontendapp/js/jquery.zoom.min.js"></script>
         <script src="/frontendapp/js/jquery.lazy.min.js"></script>
+        <script src="/frontendapp/js/copy-text.js"></script>
     </th:block>
 
 </html>
