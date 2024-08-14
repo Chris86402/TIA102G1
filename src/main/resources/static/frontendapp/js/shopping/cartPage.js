@@ -1,5 +1,5 @@
-import { createApp, ref, computed, onMounted, toRaw } from 'https://unpkg.com/shopping@3/dist/shopping.esm-browser.prod.js';
-import axios from 'https://unpkg.com/axios@1.7.2/dist/esm/axios.min.js';
+// let { createApp, ref, computed, onMounted, toRaw  } = Vue;
+
 
 /*
 todo 判斷用戶->

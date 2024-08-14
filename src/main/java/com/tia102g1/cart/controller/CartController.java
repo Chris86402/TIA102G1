@@ -2,6 +2,7 @@ package com.tia102g1.cart.controller;
 
 import com.tia102g1.cart.model.Cart;
 import com.tia102g1.cart.service.CartService;
+import com.tia102g1.coupon.Coupon;
 import com.tia102g1.productinfo.model.ProductInfoServiceS;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,23 @@ public class CartController {
     public ResponseEntity<?> deleteItem(@PathVariable Integer cartId) {
         cartService.deleteItem(cartId);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    /**
+     * 買單商品
+     *
+     * @param map: 從前端拿的 key-value 對資料。
+     * @return: 未來會改成 String，重導到結帳頁面
+     */
+    @PostMapping("/api/checkout")  // 暫定 url
+    public ResponseEntity<?> checkout(@RequestBody Map<String, Object>map, Model model) {
+        var cartItems = (map.get("cartItems"));
+        System.out.println(cartItems);
+        Coupon coupon = (Coupon)map.get("coupon");
+        System.out.println(coupon);
+        model.addAttribute("cartListToCheckout", cartItems);
+        model.addAttribute("coupon", coupon);
+        return ResponseEntity.status(HttpStatus.OK).body("hello");
     }
 
 }
