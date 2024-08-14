@@ -139,14 +139,19 @@ public class StaffController {
 	}
 	
 	@GetMapping("staffLogin")
-	public String staffLogin(Model model) {
+	public String staffLogin(HttpServletRequest req,Model model) {
+		String referer = req.getHeader("Referer");
+		if(referer != null && !referer.contains("staffLogin")) {
+			req.getSession().setAttribute("location", referer);
+		}
+		
 		StaffVO staffVO = new StaffVO();
 		model.addAttribute("staffVO", staffVO);
 		return "staff/staffLogin";
 	}
 	
 	@PostMapping("login")
-	public String login(@RequestParam("staffId") String staffIdStr, @RequestParam("password") String password, @RequestParam(value = "redirect") String redirect,HttpServletRequest req,HttpSession session,Model model) {
+	public String login(@RequestParam("staffId") String staffIdStr, @RequestParam("password") String password, HttpServletRequest req,HttpSession session,Model model) {
 		
 		if(staffIdStr == null || staffIdStr.trim().length() == 0 || !staffIdStr.matches("^\\d{4}$")) {
 			model.addAttribute("errorMessage", "請輸入員工編號");
@@ -171,11 +176,14 @@ public class StaffController {
 			session.setAttribute("staffName", staff.getName());
 			session.setAttribute("permission",staff.getPermission());
 			session.setAttribute("staffId", staffIdStr);
-			if(redirect == null || redirect.trim().length() == 0) {
-				redirect = "/";
+
+			String location = (String) session.getAttribute("location");
+			
+			if(location == null || location.trim().length() == 0) {
+				location = "/";
 			}
 			session.removeAttribute("location");
-			return "redirect:" + redirect;
+			return "redirect:" + location;
 		}else {
 			model.addAttribute("errorMessage", "登入失敗!!!");
 			return "staff/staffLogin";
