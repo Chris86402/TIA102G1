@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CartService {
 
-    List<Cart> getAllItems();
+    List<Cart> getAllItems(Integer memberId);
 
-    Cart getCartByPK(Integer cartId);
+    Cart getCartByPK(Integer cartId, Integer memberId);
 
     Cart addItem(Cart cart);
 
