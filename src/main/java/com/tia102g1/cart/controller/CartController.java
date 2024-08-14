@@ -3,6 +3,7 @@ package com.tia102g1.cart.controller;
 import com.tia102g1.cart.model.Cart;
 import com.tia102g1.cart.service.CartService;
 import com.tia102g1.productinfo.model.ProductInfoServiceS;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,13 +50,12 @@ public class CartController {
     /**
      * 新增商品至購物車
      *
-     * @param cart
+     * @param
      * @return newCart
      */
     @PostMapping("/cart/{memberId}")
-    public ResponseEntity<Cart> addItem(@RequestBody Cart cart) {
-        Cart newCart = cartService.addItem(cart);
-
+    public ResponseEntity<?> addItem(@RequestBody Cart cart) {
+        val newCart = cartService.addItem(cart);
         return ResponseEntity.status(HttpStatus.CREATED).body(newCart);
     }
 

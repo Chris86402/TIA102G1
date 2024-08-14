@@ -1,4 +1,4 @@
-import { createApp, ref, computed, onMounted, toRaw } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js';
+import { createApp, ref, computed, onMounted, toRaw } from 'https://unpkg.com/shopping@3/dist/shopping.esm-browser.prod.js';
 import axios from 'https://unpkg.com/axios@1.7.2/dist/esm/axios.min.js';
 
 /*

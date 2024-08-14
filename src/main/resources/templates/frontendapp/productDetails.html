@@ -20,7 +20,7 @@
 
 				<div class="left-columm col-lg-5 col-md-5">
 
-<!--					商品圖 proPic -->
+<!--				todo 商品圖 proPic -->
 					<div class="product-large-image tab-content">
 						<div class="tab-pane active" id="product-01" role="tabpanel" aria-labelledby="product-tab-01">
 							<div class="single-img img-full">
@@ -41,65 +41,58 @@
 						<h4 class="product-title text-capitalize float-left w-100">
 							<!-- 商品名稱 proName -->
 							<div class="float-left w-100" th:text="${product.proName}">
-								<p>商品名稱</p>
 							</div>
 						</h4>
 <!--						商品描述 proDesc -->
 						<div class="description" th:text="${product.proDesc}">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis viverra purus, non viverra
-							nulla. Sed vehicula libero eu lectus eleifend volutpat. Sed et placerat arcu. Proin mi leo,
-							interdum eu tortor at, euismod gravida velit. Fusce non enim lectus. Duis euismod, lorem vitae
-							pharetra rhoncus, ligula risus elementum nunc, at interdum eros nunc eget augue. Donec dapibus
-							nec diam ut tempor. Duis malesuada neque turpis, ut congue ipsum euismod eget. Sed egestas ipsum
-							enim, sed semper magna auctor non.
 						</div>
 
 						<div class="rating">
-							<p th:text="${averageRating}"></p>
 <!--							平均星星數 commentStars/commentUsers -->
+<!--							<p th:text="${averageRating}"></p>-->
 							<div class="product-ratings d-inline-block align-middle">
-								<span class="fa fa-stack"><i class="material-icons">star</i></span>
-								<span class="fa fa-stack"><i class="material-icons">star</i></span>
-								<span class="fa fa-stack"><i class="material-icons">star</i></span>
-								<span class="fa fa-stack"><i class="material-icons off">star</i></span>
-								<span class="fa fa-stack"><i class="material-icons off">star</i></span>
+								<div class="product-ratings d-inline-block align-middle">
+									<span class="fa fa-stack" th:each="i : ${#numbers.sequence(1, 5)}">
+										<i class="material-icons" th:classappend="${i <= averageRating} ? '' : 'off'">star</i>
+									</span>
+								</div>
 							</div>
 							<a href="#" class="review-down">(查看評價)</a>
-
 						</div>
 
 						<div class="price float-left w-100 d-flex">
 <!--							商品價格 proPrice-->
-							<div class="regular-price">$100.00</div>
-<!--							<div class="old-price">$150.00</div>-->
+							<div class="regular-price" th:text="${'$' + product.proPrice}"></div>
 						</div>
 
 						<div class="btn-cart d-flex align-items-center float-left w-100">
 
 							<h5>數量:</h5>
-							<!-- 商品數量 -->
+							<!-- 根據商品數量加入購物車 -->
 							<form>
 								<label>
 									<input value="1" type="number">
 								</label>
-
+<!--								<p th:text="${product.productId}"></p>-->
 								<button type="button" class="btn btn-primary btn-cart m-0" data-target="#cart-pop"
-										data-toggle="modal">
+										data-toggle="modal" th:value="${product.productId}"
+										id="addToCartBtn">
+<!--									todo 會員id先假設 value="10", 要改掉-->
+									<input type="hidden" id="memberId" value="10">
 									<i class="material-icons">shopping_cart</i>
 									加入購物車
 								</button>
 							</form>
 						</div>
 
+<!--                 todo 加入最愛, 不跳轉, 顯示popout, 前端渲染-->
 						<div class="tt-links d-flex align-items-center float-left w-100 mb-15">
 							<a href="wishlist.html" class="link btn-wishlist">
 								<i class="material-icons">favorite</i>
 								<span>加入最愛</span>
 							</a>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -107,6 +100,7 @@
 
 	<div class="product-tab-area float-left w-100">
 		<div class="container">
+<!--		切換商品資訊和評價-->
 			<div class="tabs">
 				<ul class="nav nav-tabs justify-content-start">
 					<li class="nav-item">
@@ -125,20 +119,10 @@
 			<div class="tab-content float-left w-100">
 				<div class="tab-pane active" id="product-tab1" role="tabpanel" aria-labelledby="tab1">
 <!--					商品描述 proDesc-->
-					<div class="description">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis viverra purus, non viverra
-						nulla. Sed vehicula libero eu lectus eleifend volutpat. Sed et placerat arcu. Proin mi leo, interdum
-						eu tortor at, euismod gravida velit. Fusce non enim lectus. Duis euismod, lorem vitae pharetra
-						rhoncus, ligula risus elementum nunc, at interdum eros nunc eget augue. Donec dapibus nec diam ut
-						tempor. Duis malesuada neque turpis, ut congue ipsum euismod eget. Sed egestas ipsum enim, sed
-						semper magna auctor non. Praesent risus nunc, ultricies vel velit nec, fringilla venenatis sem. Nunc
-						condimentum, elit sed posuere accumsan, mauris nisl ornare metus, nec hendrerit quam velit ut nibh.
-						Vivamus sodales neque vel sodales porta. Mauris hendrerit felis in mi auctor posuere. Mauris a
-						consequat sapien, eget condimentum risus. Curabitur iaculis lorem non pretium varius. In hac
-						habitasse platea dictumst.
-					</div>
+					<div th:text="${product.proDesc}" class="description"></div>
 				</div>
-<!-- =========== 商品評價紀錄 資料庫table: productComment ============= -->
+
+<!-- =========== todo 商品評價紀錄 資料庫table: productComment ============= -->
 				<div class="tab-pane" id="product-tab2" role="tabpanel" aria-labelledby="tab2">
 					<div class="reviews-tab  float-left w-100">
 <!--						總評價人數 commentUsers 動態產生div數量-->
@@ -169,7 +153,6 @@
 								orci vel, commodo cursus augue.
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -181,12 +164,12 @@
 			<div class="row">
 				<div class="tt-title d-inline-block float-none w-100 text-center">推薦商品</div>
 
-<!--				隨機推薦商品  -->
+<!--				todo 隨機推薦商品  -->
 				<div class="product-accessories-content products grid owl-carousel">
-<!--					動態產生div數量-->
+<!--					todo 動態產生此div數量-->
 					<div class="product-layouts">
 						<div class="product-thumb">
-<!--							商品圖片-->
+<!--							todo 商品圖片-->
 							<div class="image zoom">
 								<a href="product-details.html">
 									<img src="img/products/01.jpg" alt="01"/>
@@ -197,39 +180,50 @@
 							<div class="thumb-description">
 								<div class="caption">
 									<h4 class="product-title text-capitalize">
-<!--										商品名稱-->
+<!--										todo 商品名稱-->
 										<a href="product-details.html">
 											aliquam quaerat voluptatem
 										</a>
 									</h4>
 								</div>
 
+<!--							todo 隨機商品的平均星星數 如何從此頁拿到其他商品的averageRating? -->
 								<div class="rating">
-<!--									平均星星數-->
+									<!-- commentStars/commentUsers -->
+									<p th:text="${averageRating}"></p>
 									<div class="product-ratings d-inline-block align-middle">
-										<span class="fa fa-stack"><i class="material-icons">star</i></span>
-										<span class="fa fa-stack"><i class="material-icons">star</i></span>
-										<span class="fa fa-stack"><i class="material-icons">star</i></span>
-										<span class="fa fa-stack"><i class="material-icons off">star</i></span>
-										<span class="fa fa-stack"><i class="material-icons off">star</i></span>
+										<div class="product-ratings d-inline-block align-middle">
+											<span class="fa fa-stack" th:each="i : ${#numbers.sequence(1, 5)}">
+												<i class="material-icons" th:classappend="${i <= averageRating} ? '' : 'off'">star</i>
+											</span>
+
+											<span class="fa fa-stack"><i class="material-icons">star</i></span>
+											<span class="fa fa-stack"><i class="material-icons">star</i></span>
+											<span class="fa fa-stack"><i class="material-icons">star</i></span>
+											<span class="fa fa-stack"><i class="material-icons off">star</i></span>
+											<span class="fa fa-stack"><i class="material-icons off">star</i></span>
+										</div>
 									</div>
 								</div>
 
 								<div class="price">
-<!--									商品價格-->
+<!--									todo 隨機商品的價格-->
 									<div class="regular-price">$100.00</div>
 								</div>
 
 								<div class="button-wrapper">
 									<div class="button-group text-center">
+
+<!--										todo 加入購物車-->
 										<button type="button" class="btn btn-primary btn-cart" data-target="#cart-pop"
 												data-toggle="modal"><i class="material-icons">shopping_cart</i><span>Add to cart</span>
 										</button>
 
+<!--										todo 加入最愛-->
 										<a href="wishlist.html" class="btn btn-primary btn-wishlist"><i
 												class="material-icons">favorite</i><span>wishlist</span></a>
 
-<!--										商品預覽modal 要去common綁定-->
+<!--										todo 跳出商品預覽modal 去common綁定-->
 										<button type="button" class="btn btn-primary btn-quickview" data-toggle="modal"
 												data-target="#product_view"><i class="material-icons">visibility</i><span>Quick View</span>
 										</button>
@@ -238,7 +232,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -246,6 +239,9 @@
 
 	<!-- 把你的內容貼在這裡-->
 </main>
+
+<!--加入購物車按鈕-->
+<script src="/frontendapp/js/shopping/addToCart.js"></script>
 
 <!-- 共用元件 footer和一些按鈕功能 -->
 <div th:replace="~{frontendapp/components/common :: app-footer}"></div>
