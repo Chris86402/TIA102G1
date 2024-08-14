@@ -3,11 +3,13 @@ package com.tia102g1.cart.controller;
 import com.tia102g1.cart.model.Cart;
 import com.tia102g1.cart.service.CartService;
 import com.tia102g1.coupon.Coupon;
+//import com.tia102g1.productinfo.entity.ProductInfo;
 import com.tia102g1.productinfo.model.ProductInfoServiceS;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,14 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class CartController {
 
     @Autowired
     private CartService cartService;
 
-    @Autowired
-    private ProductInfoServiceS productInfoService;
+//    @Autowired
+//    private ProductInfoServiceS productInfoService;
 
     /**
      * 取得購物車內容
@@ -97,18 +99,15 @@ public class CartController {
     /**
      * 買單商品
      *
-     * @param map: 從前端拿的 key-value 對資料。
-     * @return: 未來會改成 String，重導到結帳頁面
+     * @param obj: 從前端拿到的資料，結構為 obj= {"buyItemList"= [
+     *           {productId=1001, quantity=2},{productId=1002, quantity=3} ]}。
+     * @return: 將資料存進 model 中的 buyItemList 屬性，然後重導到結帳頁面
      */
-    @PostMapping("/api/checkout")  // 暫定 url
-    public ResponseEntity<?> checkout(@RequestBody Map<String, Object>map, Model model) {
-        var cartItems = (map.get("cartItems"));
-        System.out.println(cartItems);
-        Coupon coupon = (Coupon)map.get("coupon");
-        System.out.println(coupon);
-        model.addAttribute("cartListToCheckout", cartItems);
-        model.addAttribute("coupon", coupon);
-        return ResponseEntity.status(HttpStatus.OK).body("hello");
+    @PostMapping("api/checkout")  // 暫定 url
+    public String checkout(@RequestBody Object obj, Model model) {
+        model.addAttribute("buyItemList", obj);
+        System.out.println(obj);
+        return "redirect:/checkout";
     }
 
 }
