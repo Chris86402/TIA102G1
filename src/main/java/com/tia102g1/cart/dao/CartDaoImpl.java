@@ -21,9 +21,7 @@ public class CartDaoImpl implements CartDao {
 
     //取得購物車內容
     @Override
-    public List<Cart> getAllItems() {
-//        Integer memberId = memberService.getMemberId();
-        Integer memberId = 10;//暫時先假設
+    public List<Cart> getAllItems(Integer memberId) {
         String sql = "SELECT * FROM cart WHERE memberId=:memberId";
         Map<String, Object> map = new HashMap<>();
         map.put("memberId", memberId);
@@ -33,8 +31,8 @@ public class CartDaoImpl implements CartDao {
 
     //取得購物車一筆商品資料
     @Override
-    public Cart getCartByPK(Integer cartId) {
-        List<Cart> cartList = getAllItems();
+    public Cart getCartByPK(Integer cartId, Integer memberId) {
+        List<Cart> cartList = getAllItems(memberId);
         for (Cart cart : cartList) {
             if (cart.getCartId().equals(cartId)) {
                 return cart;
