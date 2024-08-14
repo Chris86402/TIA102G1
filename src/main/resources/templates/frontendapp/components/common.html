@@ -23,7 +23,7 @@
 </th:block>
 
     <!-- 共用元件 header:圖示按鈕, navbar...-->
-    <header th:fragment="app-header" class="header-area header-sticky text-center header-default">
+    <header th:fragment="app-header" class="header-area header-sticky text-center header-default" id="vue-header">
 
         <style>
 
@@ -42,6 +42,8 @@
             }
 
         </style>
+        <script src="/dist/js/vue.global.prod.js"></script>
+        <script src="/dist/js/axios.min.js"></script>
         
         <!-- loader icon (ajax-loader.gif)-->
         <div class="ttloading-bg"></div>
@@ -52,6 +54,7 @@
                 <div class="container">
                     <div class="nav-left float-left">
                         <!-- Coupon 優惠券 -->
+                        <!-- todo Coupon 優惠券接 api，顯示唯一一筆啟用的，沒有就關掉 -->
                         <div class="ttheader-service d-flex align-items-center mx-1" id="copy">
                             父親節全館8折優惠, 折扣碼<span id="discount-code">PA8888</span>
 <!--                            <button id="copy-btn" class= "btn-primary-sm" style="text-align: center;">複製</button>-->
@@ -84,6 +87,7 @@
                             </div>
                         </div>
                         <div class="header-right d-flex d-xs-flex d-sm-flex justify-content-end float-right">
+                            <!-- TODO 跳轉到所有商品頁，並加上 filter 效果 -->
                             <!-- 搜尋商品列 -->
                             <div class="search-wrapper">
                                 <a>
@@ -106,28 +110,28 @@
                             <div class="cart-wrapper">
                                 <button type="button" class="btn">
                                     <i class="material-icons">shopping_cart</i>
-                                    <!-- todo 購物車旁的數字綁定 -->
-                                    <span class="ttcount">2</span> </button>
+                                    <span class="ttcount">{{ttcount}}</span> </button>
                                 <div id="cart-dropdown" class="cart-menu">
                                     <ul class="w-100 float-left">
                                         <li>
                                             <table class="table table-striped">
                                                 <tbody>
                                                     <tr>
-                                                        <!-- todo 跟購物車綁定，動態資料 -->
                                                         <td class="text-center"><a href="#"><img
                                                                 src="/frontendapp/img/products/01.jpg" alt="01" title="01"
                                                                 height="104" width="80"></a></td>
                                                         <td class="text-left product-name"><a href="#">商品總共</a>
-                                                            <div class="quantity float-left w-100">
-                                                                <span class="cart-qty">1 × </span>
-                                                                <span class="text-left price"> $20.00</span>
+                                                            <div class="quantity float-left w-100" v-for="cart in carts">
+                                                                <span class="cart-qty">{{cart.proAmount}} × </span>
+                                                                <span class="text-left price"> ${{cart.proPrice}}</span>
                                                             </div>
                                                         </td>
-                                                        <!-- fixme close按鍵無效 -->
+                                                        <!-- fixme close按鍵無效. 在 custom.js 200行，左右跟 $("#cart-dropdown") 有關 -->
                                                         <td class="text-center close">
                                                             <a class="close-cart">
-                                                                <i class="material-icons">close</i>
+                                                                <div @click="hideCartDropDown">
+                                                                    <i class="material-icons">close</i>
+                                                                </div>
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -139,8 +143,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="text-left"><strong>總金額</strong></td>
-                                                        <!-- todo 跟購物車綁定，動態資料 -->
-                                                        <td class="text-right"><strong>$2,122.00</strong></td>
+                                                        <td class="text-right"><strong>${{sum}}.00</strong></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -152,7 +155,7 @@
                                             </form>
                                             <form action="checkout_page.html">
                                                 <input class="btn pull-right mt_10 btn-primary btn-rounded w-100"
-                                                    value="去買單" type="submit">
+                                                       value="去買單" type="button" @click="checkoutHandler">
                                             </form>
                                         </li>
                                     </ul>
@@ -362,6 +365,7 @@
             </div>
         </div>
 
+        <script src="/dist/js/pages/header.js"></script>
     </header>
 
     <!-- 共用元件(index除外) bread crumb -->
