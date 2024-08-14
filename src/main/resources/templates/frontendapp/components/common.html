@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!--  xmlns:th="http://www.thymeleaf.org"讓IDE能提示Thymeleaf相關的指令, 如 th:for等常見功能 -->
 
-    <!-- 共同引入 headTag-import meta tag-->
-    <th:block th:fragment="headtag-import">
+<!-- 共同引入 headTag-import meta tag-->
+<th:block th:fragment="headtag-import">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/x-icon" th:href="@{/frontendapp/img/favicon-16.ico}">
@@ -11,11 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />    <!-- Bootstrap core CSS -->
 
     <!-- Bootstrap core CSS -->
     <link href="/frontendapp/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Bootstrap core CSS -->
     <link href="/frontendapp/css/styles.css" rel="stylesheet">
     <link href="/frontendapp/css/animate.css" rel="stylesheet">
     <link href="/frontendapp/css/owl-carousel.css" rel="stylesheet">
@@ -25,6 +24,23 @@
 
     <!-- 共用元件 header:圖示按鈕, navbar...-->
     <header th:fragment="app-header" class="header-area header-sticky text-center header-default">
+
+        <style>
+            #copy-btn {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: inherit;
+                margin-left: 0.5rem;
+            }
+
+            .material-symbols-outlined {
+                font-size: 20px;
+                line-height: 1;
+                vertical-align: middle;
+            }
+        </style>
+        
         <!-- loader icon (ajax-loader.gif)-->
         <div class="ttloading-bg"></div>
         <div class="header-main-sticky">
@@ -34,9 +50,12 @@
                 <div class="container">
                     <div class="nav-left float-left">
                         <!-- todo Coupon優惠券 -->
-                        <div class="ttheader-service" id="copy">
+                        <div class="ttheader-service d-flex align-items-center mx-1" id="copy">
                             父親節全館8折優惠, 折扣碼<span id="discount-code">PA8888</span>
-                            <button id="copy-btn" class= "btn-primary-sm" style="text-align: center;">複製</button>
+<!--                            <button id="copy-btn" class= "btn-primary-sm" style="text-align: center;">複製</button>-->
+                                <a id="copy-btn" class="ml-2 d-flex align-items-center" href="#">
+                                    <i class="material-symbols-outlined">content_copy</i>
+                                </a>
                         </div>
                     </div>
                     <div class="nav-right float-right d-flex">
