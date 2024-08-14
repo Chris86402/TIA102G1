@@ -40,7 +40,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .mvcMatchers("/css/**", "/js/**", "/frontendapp/**", "/plungins/**").permitAll()
                 .mvcMatchers("/members/register", "/index", "/register", "/login/**").permitAll()
-                .mvcMatchers("/member/myaccount/**").authenticated()
+                .mvcMatchers("/member/{memberId}/account/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

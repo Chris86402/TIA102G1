@@ -25,27 +25,34 @@
             <input type="text" id="name" th:field="*{name}" class="form-control"/>
             <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">錯誤訊息</div>
         </div>
-        <input type="hidden" id="phone" th:field="*{phone}" class="form-control"/>
+        <div class="form-group">
+            <label for="phone">電話</label>
+            <input type="text" id="phone" th:field="*{phone}" class="form-control"/>
+            <div class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">錯誤訊息</div>
+        </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" th:field="*{email}" class="form-control"/>
-            <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">錯誤訊息</div>
+            <input type="email" id="email" th:field="*{email}" class="form-control" required/>
+            <div class="text-danger" th:if="${#fields.hasErrors('email') || emailError != null}">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                <span th:if="${emailError != null}" th:text="${emailError}"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="cntCode">縣市</label>
-            <input type="text" id="cntCode" th:field="*{cntCode}" class="form-control"/>
-            <div class="text-danger" th:if="${#fields.hasErrors('cntCode')}" th:errors="*{cntCode}">錯誤訊息</div>
-        </div>
-        <div class="form-group">
-            <label for="distCode">鄉鎮市</label>
-            <input type="text" id="distCode" th:field="*{distCode}" class="form-control"/>
-            <div class="text-danger" th:if="${#fields.hasErrors('distCode')}" th:errors="*{distCode}">錯誤訊息</div>
-        </div>
-        <div class="form-group">
-            <label for="address">地址</label>
-            <input type="text" id="address" th:field="*{address}" class="form-control"/>
-            <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">錯誤訊息</div>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="cntCode">縣市</label>-->
+<!--            <input type="text" id="cntCode" th:field="*{cntCode}" class="form-control"/>-->
+<!--            <div class="text-danger" th:if="${#fields.hasErrors('cntCode')}" th:errors="*{cntCode}">錯誤訊息</div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="distCode">鄉鎮市</label>-->
+<!--            <input type="text" id="distCode" th:field="*{distCode}" class="form-control"/>-->
+<!--            <div class="text-danger" th:if="${#fields.hasErrors('distCode')}" th:errors="*{distCode}">錯誤訊息</div>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="address">地址</label>-->
+<!--            <input type="text" id="address" th:field="*{address}" class="form-control"/>-->
+<!--            <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">錯誤訊息</div>-->
+<!--        </div>-->
         <div class="form-group">
             <label for="accumulate">累計消費</label>
             <input type="text" id="accumulate" th:field="*{accumulate}" class="form-control"/>
@@ -67,7 +74,7 @@
                 <option th:each="status : ${T(com.tia102g1.member.constant.AccountStatus).values()}"
                         th:value="${status}"
                         th:text="${status.name()}"
-                        th:selected="${member.status == status}">
+                        th:selected="${status == member.status}">
                 </option>
             </select>
             <div class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">錯誤訊息</div>
@@ -81,6 +88,9 @@
 
         <input type="hidden" th:field="*{password}" th:value="${member.password}"/>
         <input type="hidden" th:field="*{lastUpdatedBy}" th:value="${member.lastUpdatedBy}"/>
+        <input type="hidden" th:field="*{cntCode}" th:value="${member.cntCode}"/>
+        <input type="hidden" th:field="*{distCode}" th:value="${member.distCode}"/>
+        <input type="hidden" th:field="*{address}" th:value="${member.address}"/>
         <button type="submit" class="btn btn-primary">更新</button>
         <button type="button" class="btn btn-secondary" onclick="window.location.href='/member/mainPageMember'">回到上一頁</button>
     </form>

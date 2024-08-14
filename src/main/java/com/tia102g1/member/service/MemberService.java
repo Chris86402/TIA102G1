@@ -104,4 +104,14 @@ public interface MemberService {
      */
     void forgetPassword(ForgetPasswordRequest forgetPasswordRequest);
 
+    /**
+     * 修改密碼的功能
+     * @param memberId 要修改密碼的ID
+     * @param currentPassword 當前密碼
+     * @param newPassword 新密碼
+     * @param confirmPassword 確認新密碼
+     * @return 返回修改密碼的會員ID、加密的新密碼
+     */
+    Integer updateMemberPassword(Integer memberId, String currentPassword, String newPassword,
+                                 String confirmPassword);
 }

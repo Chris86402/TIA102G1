@@ -111,7 +111,15 @@ public class MemberServiceImpl implements MemberService {
 //            // 如果密碼沒有更改，保持現有的加密密碼
 //            memberUpdateDto.setPassword(member.getPassword());
 //        }
-
+        // 檢查信箱是否更改過，如果沒更改就和資料庫判斷emil是否相同
+        if (!member.getEmail().equals(memberUpdateDto.getEmail())) {
+            //getMemberByEmailForRegister是藉由email查詢member的方法 (方法名不準)
+            Member member2 = memberDao.getMemberByEmailForRegister(memberUpdateDto.getEmail());
+            if (member2 != null && member2.getEmail().equals(memberUpdateDto.getEmail())) {
+                log.warn("該信箱 {} 已經被註冊，請更換一個信箱", memberUpdateDto.getEmail());
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "信箱已經被註冊，請更換信箱");
+            }
+        }
 
 
         //如果有設置黑名單的話，要將停權日期更新
@@ -190,6 +198,28 @@ public class MemberServiceImpl implements MemberService {
         emailForForgetPassword.sendPlainText(forgetPasswordRequest.getEmail(), subject, content);
     }
 
+    @Override
+    public Integer updateMemberPassword(Integer memberId, String currentPassword, String newPassword,
+                                        String confirmPassword) {
+        //1.取得會員資料
+        Member member = memberDao.getMemberById(memberId);
+        //2.驗證原密碼是否輸入正確，輸入正確才能修改密碼
+        if (!passwordEncoder.matches(currentPassword, member.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "原密碼輸入錯誤");
+        }
+        //3. 驗證新密碼格式
+        if (!newPassword.matches("^[a-z0-9]{6,10}$")) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "密碼必須是6到10個字符，並且只能包含小寫字母和數字");
+        }
+        //4.檢查新密碼和確認新密碼是否相同 (確認相同後再加密存入資料庫)
+        if (!newPassword.equals(confirmPassword)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "兩次輸入的密碼不相同，請重新輸入");
+        }
+        String hashedPassword = passwordEncoder.encode(newPassword);
+        member.setPassword(hashedPassword);
+
+        return memberDao.updateMemberPassword(memberId, hashedPassword);
+    }
 
     /**
      * 隨機生成密碼的方法，用於忘記密碼的功能
@@ -206,5 +236,6 @@ public class MemberServiceImpl implements MemberService {
         }
         return password.toString();
     }
+
 
 }
