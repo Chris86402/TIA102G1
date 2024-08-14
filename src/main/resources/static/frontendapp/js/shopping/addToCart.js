@@ -36,7 +36,7 @@ addToCartBtn.addEventListener('click', function(event) {
         .then(data => {
 
             alert('商品已成功加入購物車！');
-            // 這裡可以更新購物車旁的數字顯示
+            // todo 這裡可以更新購物車旁的數字顯示
         })
         .catch((error) => {
             console.error('Error:', error);
