@@ -15,14 +15,14 @@ public class CartServiceImpl implements CartService {
 
     //取得購物車內容
     @Override
-    public List<Cart> getAllItems() {
-        return cartDao.getAllItems();
+    public List<Cart> getAllItems(Integer memberId) {
+        return cartDao.getAllItems(memberId);
     }
 
     //取得購物車一筆商品資料
     @Override
-    public Cart getCartByPK(Integer cartId) {
-        return cartDao.getCartByPK(cartId);
+    public Cart getCartByPK(Integer cartId, Integer memberId) {
+        return cartDao.getCartByPK(cartId, memberId);
     }
 
     //新增商品至購物車
