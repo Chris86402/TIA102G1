@@ -24,6 +24,7 @@ public class productInfoUserController {
      * @param productId
      * @return
      */
+    //測api
     @GetMapping("product/api/{productId}")
     public ResponseEntity<?> getProduct(@PathVariable Integer productId){
         ProductInfo product = productInfoServiceS.getOneProductInfo(productId);
@@ -40,11 +41,10 @@ public class productInfoUserController {
         ProductInfo product = productInfoServiceS.getOneProductInfo(productId);
         model.addAttribute("product", product);
 
-        // TODO, 計算商品的平均星星數,塞到 modal 裡面
-        model.addAttribute("averageRating", 4.5);
+        // TODO, 計算商品的平均星星數,放到 modal 裡面
+        Integer averageRating = product.getCommentStars() / product.getCommentUsers();
+        model.addAttribute("averageRating", averageRating);
 //        System.out.println(product.toString());
         return "/frontendapp/productDetails";
     }
-
-
 }

@@ -48,16 +48,16 @@
       ["type", /^(text\/)?(x-)?less$/i, "text/x-less"]
     ],
     template: [
-      ["lang", /^vue-template$/i, "vue"],
+      ["lang", /^vue-template$/i, "shopping"],
       ["lang", /^pug$/i, "pug"],
       ["lang", /^handlebars$/i, "handlebars"],
       ["type", /^(text\/)?(x-)?pug$/i, "pug"],
       ["type", /^text\/x-handlebars-template$/i, "handlebars"],
-      [null, null, "vue-template"]
+      [null, null, "shopping-template"]
     ]
   };
 
-  CodeMirror.defineMode("vue-template", function (config, parserConfig) {
+  CodeMirror.defineMode("shopping-template", function (config, parserConfig) {
     var mustacheOverlay = {
       token: function (stream) {
         if (stream.match(/^\{\{.*?\}\}/)) return "meta mustache";
@@ -68,10 +68,10 @@
     return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), mustacheOverlay);
   });
 
-  CodeMirror.defineMode("vue", function (config) {
+  CodeMirror.defineMode("shopping", function (config) {
     return CodeMirror.getMode(config, {name: "htmlmixed", tags: tagLanguages});
   }, "htmlmixed", "xml", "javascript", "coffeescript", "css", "sass", "stylus", "pug", "handlebars");
 
-  CodeMirror.defineMIME("script/x-vue", "vue");
-  CodeMirror.defineMIME("text/x-vue", "vue");
+  CodeMirror.defineMIME("script/x-shopping", "shopping");
+  CodeMirror.defineMIME("text/x-shopping", "shopping");
 });
