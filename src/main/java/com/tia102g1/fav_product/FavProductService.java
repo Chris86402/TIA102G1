@@ -14,9 +14,6 @@ public class FavProductService {
     @Autowired
     FavProductRepository repository;
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
     /**
      * 新增最愛商品
      *

@@ -6,7 +6,7 @@ todo 判斷用戶->
      未登入: 存入sessionStorage
      登入: 透過cookie取得emberId
  */
-let memberId = "1";
+let memberId = "10";
 const cartURL = "http://localhost:8080/cart/";
 const couponURL = "http://localhost:8080/coupon/";
 const productURL = "frontendapp/img/products/";

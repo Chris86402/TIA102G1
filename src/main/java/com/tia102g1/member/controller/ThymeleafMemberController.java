@@ -124,9 +124,26 @@ public class ThymeleafMemberController {
             model.addAttribute("member", memberUpdateDto);
             return "member/update";  // 如果有錯誤，返回更新頁面
         }
+        try {
+            // 檢查並更新會員資料，並拋出自定義異常
+            memberService.updateMember(id, memberUpdateDto);
+        } catch (ResponseStatusException ex) {
+            String reason = ex.getReason();
+            if (reason != null) {
+                if (reason.contains("信箱")) {
+                    model.addAttribute("emailError", reason);
+                }
+            }
+            List<CountyVO> counties = countyService.getAllCounties();
+            model.addAttribute("counties", counties);
+            model.addAttribute("member", memberUpdateDto);
+            return "member/update";  // 返回更新頁面並顯示錯誤訊息
+        }
+
         memberService.updateMember(id, memberUpdateDto);
         return "redirect:/member/mainPageMember"; //成功後回到 mainPageMember
     }
+
 
     /**
      * 刪除後台某筆會員資料的控制器(後台用)
@@ -252,8 +269,24 @@ public class ThymeleafMemberController {
                                    BindingResult bindingResult,
                                    Model model) {
 
+        // 驗證表單是否有錯誤
         if (bindingResult.hasErrors()) {
-            // 如果有驗證錯誤，將錯誤訊息和當前輸入的數據返回到原頁面
+            List<CountyVO> counties = countyService.getAllCounties();
+            model.addAttribute("counties", counties);
+            model.addAttribute("member", memberUpdateDto);
+            return "frontendapp/memberInfo";  // 返回更新頁面並顯示錯誤訊息
+        }
+
+        try {
+            // 檢查並更新會員資料，並拋出自定義異常
+            memberService.updateMember(memberId, memberUpdateDto);
+        } catch (ResponseStatusException ex) {
+            String reason = ex.getReason();
+            if (reason != null) {
+                if (reason.contains("信箱")) {
+                    model.addAttribute("emailError", reason);
+                }
+            }
             List<CountyVO> counties = countyService.getAllCounties();
             model.addAttribute("counties", counties);
             model.addAttribute("member", memberUpdateDto);
@@ -261,13 +294,13 @@ public class ThymeleafMemberController {
         }
 
         // 如果沒有錯誤，執行更新操作並重定向到會員資料頁面
-        memberService.updateMember(memberId, memberUpdateDto);
-        return "redirect:/member/" + memberId+"/account?success";
+        return "redirect:/member/" + memberId + "/account?success";
     }
 
 
     /**
      * 獲取所有縣市的API
+     *
      * @return
      */
     @GetMapping("/api/counties")
@@ -278,6 +311,7 @@ public class ThymeleafMemberController {
 
     /**
      * 根據縣市代碼獲取對應的鄉鎮市區
+     *
      * @param cntCode
      * @return
      */
@@ -286,4 +320,52 @@ public class ThymeleafMemberController {
     public List<DistVO> getDistrictsByCountyCode(@RequestParam("cntCode") Integer cntCode) {
         return distService.getDistrictsByCountyCode(cntCode);
     }
+
+
+    /**
+     * 跳轉到修改密碼的頁面(前台)
+     * @param memberId
+     * @param model
+     * @return
+     */
+    @GetMapping("/{memberId}/updatePassword")
+    public String showUpdatePassword(@PathVariable Integer memberId, Model model) {
+        Member member = memberService.getMemberById(memberId);
+        if (member == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "會員不存在");
+        }
+
+        model.addAttribute("member", member);
+        return "frontendapp/updateMemberPassword";
+    }
+
+    /**
+     * 修改密碼的控制器(前台)
+     * @param memberId
+     * @param currentPassword
+     * @param newPassword
+     * @param confirmNewPassword
+     * @param model
+     * @return
+     */
+    @PostMapping("/{memberId}/updatePassword")
+    public String updateMemberPassword(@PathVariable Integer memberId,
+                                       @RequestParam("currentPassword") String currentPassword,
+                                       @RequestParam("newPassword") String newPassword,
+                                       @RequestParam("confirmNewPassword") String confirmNewPassword,
+                                       Model model) {
+        try {
+            // 使用 Service 執行密碼更新邏輯
+            memberService.updateMemberPassword(memberId, currentPassword, newPassword, confirmNewPassword);
+        } catch (ResponseStatusException ex) {
+            // 如果發生錯誤，將錯誤訊息傳遞給模板並返回到修改密碼頁面
+            model.addAttribute("error", ex.getReason());
+            Member member = memberService.getMemberById(memberId);
+            model.addAttribute("member", member);
+            return "frontendapp/updateMemberPassword";
+        }
+
+        return "redirect:/member/" + memberId + "/account?passwordUpdated=true";
+    }
+
 }

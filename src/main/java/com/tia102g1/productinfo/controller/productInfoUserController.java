@@ -41,10 +41,9 @@ public class productInfoUserController {
         ProductInfo product = productInfoServiceS.getOneProductInfo(productId);
         model.addAttribute("product", product);
 
-        // TODO, 計算商品的平均星星數,放到 modal 裡面
+        //計算商品的平均星星數
         Integer averageRating = product.getCommentStars() / product.getCommentUsers();
         model.addAttribute("averageRating", averageRating);
-//        System.out.println(product.toString());
         return "/frontendapp/productDetails";
     }
 }

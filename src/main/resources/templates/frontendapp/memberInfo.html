@@ -5,18 +5,13 @@
     <title>會員資料</title>
     <meta th:replace="~{frontendapp/components/common :: headtag-import}">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
         .main-content {
             margin-left: auto;
             margin-right: auto;
             padding: 20px;
-            max-width: 600px;
-            background-color: #f9f9f9;
+            width: 60%;  /* 調整寬度，讓內容更居中 */
+            max-width: 800px;  /* 根據需要調整最大寬度 */
+            background-color: #ffffff;
             border-radius: 8px;
             text-align: left;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,19 +38,39 @@
 
         .form-footer {
             margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-primary, .btn-secondary {
+            width: 48%; /* 調整按鈕的寬度，使它們能併排 */
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
             text-align: center;
         }
 
         .btn-primary {
             background-color: #1e3a8a;
-            border-color: #1e3a8a;
-            width: 100%;
+            border: none;
+            color: #fff;
         }
 
         .btn-primary:hover {
             background-color: #0d2558;
-            border-color: #0d2558;
         }
+
+        .btn-secondary {
+            background-color: #ffc107;
+            border: none;
+            color: #000;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0a800;
+        }
+
 
         .required {
             color: red;
@@ -64,6 +79,9 @@
         .text-danger {
             color: red;
         }
+
+
+
     </style>
 </head>
 <body>
@@ -72,7 +90,7 @@
 
 <main>
     <div class="main-content">
-        <h4>編輯會員資料</h4>
+        <h4 style="text-align: center;">編輯會員資料</h4>
         <form th:action="@{/member/{memberId}/updateMemberInfo(memberId=${member.memberId})}"
               th:object="${member}" method="post">
 
@@ -88,25 +106,26 @@
 
             <div class="form-group">
                 <label for="name">姓名 <span class="required">*</span></label>
-                <input type="text" id="name" th:field="*{name}" class="form-control"/>
+                <input type="text" id="name" th:field="*{name}" class="form-control" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">錯誤訊息</div>
             </div>
 
             <div class="form-group">
                 <label for="phone">電話 <span class="required">*</span></label>
-                <input type="text" id="phone" th:field="*{phone}" class="form-control"/>
+                <input type="text" id="phone" th:field="*{phone}" class="form-control" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">錯誤訊息</div>
             </div>
 
             <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
-                <input type="email" id="email" th:field="*{email}" class="form-control"/>
-                <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">錯誤訊息</div>
+                <input type="email" id="email" th:field="*{email}" class="form-control" required/>
+                <div class="text-danger" th:if="${#fields.hasErrors('email') || emailError != null}"
+                     th:text="${#fields.hasErrors('email') ? #fields.error('email').message : emailError}"></div>
             </div>
 
             <div class="form-group">
                 <label for="county-select">縣市區</label>
-                <select id="county-select" th:field="*{cntCode}" class="form-control" onchange="loadDistricts()">
+                <select id="county-select" th:field="*{cntCode}" class="form-control" onchange="loadDistricts()" required>
                     <option value="" disabled>選擇縣市</option>
                     <option th:each="county : ${counties}"
                             th:value="${county.cntCode}"
@@ -119,7 +138,7 @@
 
             <div class="form-group">
                 <label for="district-select">鄉鎮市區</label>
-                <select id="district-select" th:field="*{distCode}" class="form-control">
+                <select id="district-select" th:field="*{distCode}" class="form-control" required>
                     <option value="" disabled>選擇鄉鎮市區</option>
                 </select>
                 <div class="text-danger" th:if="${#fields.hasErrors('distCode')}" th:errors="*{distCode}">錯誤訊息</div>
@@ -127,10 +146,9 @@
 
             <div class="form-group">
                 <label for="address">地址</label>
-                <input type="text" id="address" th:field="*{address}" class="form-control"/>
+                <input type="text" id="address" th:field="*{address}" class="form-control" required/>
                 <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">錯誤訊息</div>
             </div>
-
 
             <input type="hidden" th:field="*{password}">
             <input type="hidden" th:field="*{accumulate}">
@@ -141,6 +159,8 @@
 
             <div class="form-footer">
                 <button type="submit" class="btn btn-primary">儲存</button>
+                <button type="button" class="btn-secondary" th:onclick="'window.location.href=\'/member/' + ${member.memberId} + '/account\''">返回會員中心</button>
+
             </div>
         </form>
     </div>

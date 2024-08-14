@@ -65,7 +65,8 @@
             <div class="section-title">👤 個人</div>
             <div class="button-grid">
                 <a th:href="@{/member/{memberId}/memberInfo(memberId=${member.memberId})}" class="button">會員資料管理</a>
-                <div class="info">LV.2 黃金會員</div>
+                <a th:href="@{/member/{memberId}/updatePassword(memberId=${member.memberId})}" class="button">修改密碼</a>
+<!--                <div class="info">LV.2 黃金會員</div>-->
             </div>
         </div>
 
@@ -74,11 +75,11 @@
             <div class="section-title">🔒 訂單</div>
             <div class="button-grid">
                 <a href="#" class="button">訂單紀錄</a>
-                <div class="info">已出貨 1</div>
+<!--                <div class="info">已出貨 1</div>-->
                 <a href="#" class="button">優惠券管理</a>
-                <div class="info">可用優惠券 2</div>
+<!--                <div class="info">可用優惠券 2</div>-->
                 <a href="#" class="button">購物金管理</a>
-                <div class="info">可用購物金 430</div>
+<!--                <div class="info">可用購物金 430</div>-->
             </div>
         </div>
 
