@@ -25,6 +25,13 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+    
+	<repositories>
+	    <repository>
+	        <id>aspose-repo</id>
+	        <url>https://repository.aspose.com/repo/</url>
+	    </repository>
+	</repositories>
 
 	<dependencies>
 		<dependency><!-- ＠用途說明2: Add typical dependencies for a web application -->
@@ -171,9 +178,13 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-
-
 		
+		<dependency>
+		    <groupId>com.aspose</groupId>
+		    <artifactId>aspose-cells</artifactId>
+		    <version>23.1</version>
+		</dependency>
+
 		<!-- ========================================================================================== -->
 		<!-- ●以下為 JSR 303/349/380 Bean Validation Framework 預備使用● -->
 

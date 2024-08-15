@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,14 +39,17 @@
 	<section class="content">
 		
 	<p>報表分析管理 主頁 測試</p>
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	<!-- 把你的內容貼在這裡 -->
-	
+	<div class="container">
+        <h1>主頁面</h1>
+        <a class="button" href="/report/generateChart">生成圖表</a>
+		<img th:if="${chartPath != null and chartPath != ''}" th:src="${chartPath}" alt="Sales Chart">			
+    </div>  
+	<div th:if="${errorMessage}" class="alert alert-danger">
+	    <p th:text="${errorMessage}"></p>
+	</div>
 	
 	</section>
-	<!-- 功能內容結束 -->
-	
+	 
 	<!-- footer and script link -->
 	<body th:insert="~{/comPage3}"></body>
 

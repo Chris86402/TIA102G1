@@ -1,7 +1,6 @@
 package com.tia102g1.orderlistinfo.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 
 import com.tia102g1.orderlist.model.OrderListVO;
@@ -72,6 +72,26 @@ public class OrderListInfoVO implements Serializable{
 	@OrderBy("proCommentId asc")
 	private Set<ProductCommentVO> productCommentVO = new HashSet<ProductCommentVO>();
 
+	
+	//訂單明細RowMapper中的商品資訊相關擴充欄位
+	//訂單主檔ID(無關聯的)
+	@Transient
+	private Integer orderListIdRM;
+	
+	//商品資料ID(無關聯的)
+	@Transient
+	private Integer productIdRM;
+	
+	//商品名稱
+	@Transient
+	private String proName;
+	
+	//商品圖片
+	@Transient
+	private byte[] proPic;
+	
+	
+	
 	public OrderListInfoVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -176,6 +196,39 @@ public class OrderListInfoVO implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+
+	public Integer getOrderListIdRM() {
+		return orderListIdRM;
+	}
+
+	public void setOrderListIdRM(Integer orderListIdRM) {
+		this.orderListIdRM = orderListIdRM;
+	}
+
+	public Integer getProductIdRM() {
+		return productIdRM;
+	}
+
+	public void setProductIdRM(Integer productIdRM) {
+		this.productIdRM = productIdRM;
+	}
+
+	public String getProName() {
+		return proName;
+	}
+
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
+	public byte[] getProPic() {
+		return proPic;
+	}
+
+	public void setProPic(byte[] proPic) {
+		this.proPic = proPic;
 	}
 
 	@Override

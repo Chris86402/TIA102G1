@@ -1,7 +1,6 @@
 package com.tia102g1.productinfo.entity;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -111,6 +111,11 @@ public class ProductInfo implements java.io.Serializable {
 	@OrderBy("addOnId asc")
 	private Set<AddOn> addOnAdd = new HashSet<AddOn>();
 
+	//商品資訊RowMapper中的相關擴充欄位
+	//商品類型id(無關聯的)
+	@Transient
+	private Integer ProductTypeIdRM;
+	
 	public ProductInfo() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -302,6 +307,14 @@ public class ProductInfo implements java.io.Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Integer getProductTypeIdRM() {
+		return ProductTypeIdRM;
+	}
+
+	public void setProductTypeIdRM(Integer productTypeIdRM) {
+		ProductTypeIdRM = productTypeIdRM;
 	}
 
 	

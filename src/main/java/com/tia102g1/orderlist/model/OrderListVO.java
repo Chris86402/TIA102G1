@@ -2,7 +2,9 @@ package com.tia102g1.orderlist.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -157,9 +160,34 @@ public class OrderListVO implements Serializable {
 	private Set<MemberCoinVO> memCoins = new HashSet<MemberCoinVO>();
 
 	// 此訂單主檔下關聯的訂單紀錄
+//	@OneToMany(mappedBy = "orderListVO", fetch = FetchType.EAGER)
+//	@OrderBy("orderListInfoId asc")
+//	private Set<OrderListInfoVO> orderListInfoVO = new HashSet<OrderListInfoVO>();
+	
 	@OneToMany(mappedBy = "orderListVO", fetch = FetchType.EAGER)
 	@OrderBy("orderListInfoId asc")
-	private Set<OrderListInfoVO> orderListInfoVO = new HashSet<OrderListInfoVO>();
+	private List<OrderListInfoVO> orderListInfoVO = new ArrayList<OrderListInfoVO>();
+	
+	//訂單主檔RowMapper中的相關擴充欄位
+	//會員id(無關連的)
+	@Transient
+	private Integer MemberIdRM;
+	
+	//優惠券id(無關連的)
+	@Transient
+	private Integer CouponIdRM;
+	
+	//促銷活動id(無關連的)
+	@Transient
+	private Integer EventIdRM;
+	
+	//縣市代碼(無關連的)
+	@Transient
+	private Integer RecipientCntRM;
+	
+	//鄉鎮區代碼(無關連的)
+	@Transient
+	private Integer RecipientDistRM;
 
 	public OrderListVO() {
 		super();
@@ -174,7 +202,7 @@ public class OrderListVO implements Serializable {
 			@Pattern(regexp = "\\d+", message = "收件人電話: 請輸入數字") String recipientPhone, CountyVO countyVO, DistVO distVO,
 			@NotBlank(message = "收件人地址: 請勿空白") String recipientAddress, String createdBy, Timestamp dateCreated,
 			@NotEmpty(message = "最後更新者: 請勿空白") String lastUpdatedBy, Timestamp lastUpdated, Set<MemberCoinVO> memCoins,
-			Set<OrderListInfoVO> orderListInfoVO) {
+			List<OrderListInfoVO> orderListInfoVO) {
 		super();
 		this.orderListId = orderListId;
 		this.member = member;
@@ -476,16 +504,57 @@ public class OrderListVO implements Serializable {
 		this.memCoins = memCoins;
 	}
 
-	public Set<OrderListInfoVO> getOrderListInfoVO() {
+	public List<OrderListInfoVO> getOrderListInfoVO() {
 		return orderListInfoVO;
 	}
 
-	public void setOrderListInfoVO(Set<OrderListInfoVO> orderListInfoVO) {
+	public void setOrderListInfoVO(List<OrderListInfoVO> orderListInfoVO) {
 		this.orderListInfoVO = orderListInfoVO;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+
+	public Integer getMemberIdRM() {
+		return MemberIdRM;
+	}
+
+	public void setMemberIdRM(Integer memberIdRM) {
+		MemberIdRM = memberIdRM;
+	}
+
+	public Integer getCouponIdRM() {
+		return CouponIdRM;
+	}
+
+	public void setCouponIdRM(Integer couponIdRM) {
+		CouponIdRM = couponIdRM;
+	}
+
+	public Integer getEventIdRM() {
+		return EventIdRM;
+	}
+
+	public void setEventIdRM(Integer eventIdRM) {
+		EventIdRM = eventIdRM;
+	}
+
+	public Integer getRecipientCntRM() {
+		return RecipientCntRM;
+	}
+
+	public void setRecipientCntRM(Integer recipientCntRM) {
+		RecipientCntRM = recipientCntRM;
+	}
+
+	public Integer getRecipientDistRM() {
+		return RecipientDistRM;
+	}
+
+	public void setRecipientDistRM(Integer recipientDistRM) {
+		RecipientDistRM = recipientDistRM;
 	}
 
 	@Override

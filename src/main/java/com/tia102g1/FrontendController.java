@@ -3,12 +3,17 @@ package com.tia102g1;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tia102g1.coupon.Coupon;
+import com.tia102g1.coupon.CouponService;
 import com.tia102g1.news.model.NewsService;
 import com.tia102g1.news.model.NewsVO;
 
@@ -17,6 +22,9 @@ public class FrontendController {
 	
 	@Autowired
 	NewsService newsSvc;
+	
+	@Autowired
+	CouponService couponService;
 
 	/* ======================= 前台使用者頁面 ======================= */
 	// 首頁
@@ -29,6 +37,12 @@ public class FrontendController {
 	protected List<NewsVO> referenceNewsListData(Model model) {
 		List<NewsVO> list = newsSvc.getAll();
 		return list;
+	}
+	
+	@ModelAttribute("couponList")
+    public List<Coupon> getAllCoupons(ModelMap modelMap) {
+        List<Coupon> couponList = couponService.getAllCoupons();
+        return couponList;
 	}
 
 	/* ====== 會員 ====== */
