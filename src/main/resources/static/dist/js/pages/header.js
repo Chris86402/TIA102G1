@@ -23,3 +23,13 @@ createApp({
         }
     }
 }).mount('#vue-header')
+
+window.onclick = clickListenerToCloseCartDropDown;
+
+function clickListenerToCloseCartDropDown(event) {
+    const cartModal = document.getElementById('cart-dropdown');
+    if (event.target !== cartModal) {
+        $("#cart-dropdown").slideToggle("fast");
+        cartModal.setAttribute("style", "display: none");
+    }
+}

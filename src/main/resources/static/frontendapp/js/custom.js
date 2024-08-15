@@ -146,7 +146,6 @@ $(document).ready(function() {
 	$(".search-wrapper a").click(function() {
 		$('.search-form').parent().toggleClass('active');
 		$("#cart-dropdown").css('display', 'none');
-	    $("#user-dropdown").css('display', 'none');
 		$('.search-form').toggle('fast', function() {
 		});
 		 $('.header-right > div.search-wrapper .search-form input').attr('autofocus', 'autofocus').focus();
@@ -183,22 +182,21 @@ $(document).ready(function() {
 		$('body').toggleClass('active');
 	});
 	/*---------------- Start User-info ---------------- */
-	$('.user-info .btn').click(function(event){
-		$(this).toggleClass('active');
-		event.stopPropagation();
-		$("#user-dropdown").slideToggle("fast");
-		$("#cart-dropdown").css('display', 'none');
-		$(".search-form").css('display', 'none');
-		 $(".search-wrapper").removeClass("active");
-		return false;
-	});
+	// $('.user-info .btn').click(function(event){
+	// 	$(this).toggleClass('active');
+	// 	event.stopPropagation();
+	// 	$("#user-dropdown").slideToggle("fast");
+	// 	$("#cart-dropdown").css('display', 'none');
+	// 	$(".search-form").css('display', 'none');
+	// 	 $(".search-wrapper").removeClass("active");
+	// 	return false;
+	// });
 	/*---------------- End User-info ---------------- */
 	/*---------------- Start cart ---------------- */
 	$('.cart-wrapper > .btn').click(function(event){
 		$(this).toggleClass('active');
 		event.stopPropagation();
 		$("#cart-dropdown").slideToggle("fast");
-		$("#user-dropdown").css('display', 'none');
 		$(".search-form").css('display', 'none');
 		 $(".search-wrapper").removeClass("active");
 		return false;
@@ -232,7 +230,6 @@ $(document).ready(function() {
 			event.stopPropagation();
 			$("#currency-dropdown").slideToggle("fast");
 			$("#cart-dropdown").css('display', 'none');
-			$("#user-dropdown").css('display', 'none');
 			$("#language-dropdown").css('display', 'none');
 			$(".search-form").css('display', 'none');
 			$(".search-wrapper").removeClass("active");
@@ -260,7 +257,6 @@ $(document).ready(function() {
 			event.stopPropagation();
 			$("#language-dropdown").slideToggle("fast");
 			$("#cart-dropdown").css('display', 'none');
-			$("#user-dropdown").css('display', 'none');
 			$("#currency-dropdown").css('display', 'none');
 			$(".search-form").css('display', 'none');
 			$(".search-wrapper").removeClass("active");

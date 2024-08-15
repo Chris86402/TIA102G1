@@ -51,11 +51,11 @@ public class FrontendController {
 //	public String frontendRegister(Model model) {
 //		return "/frontendapp/register";
 //	}
-	// 登入
-//	@GetMapping({ "/login", "/login.html" })
-//	public String frontendLoginSignup(Model model) {
-//		return "/frontendapp/login";
-//	}
+	// 登入，/login 跟後台管理登入重名，會報錯故改成 member/login
+	@RequestMapping({ "member/login", "member/login.html" })
+	public String frontendLoginSignup(Model model) {
+		return "/frontendapp/login";
+	}
 
 	// 我的最愛
 	@GetMapping({ "/favproduct", "/favProduct.html" })
