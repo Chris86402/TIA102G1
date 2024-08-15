@@ -5,6 +5,23 @@
 	<title>商品資訊</title>
 	<!-- 共同引入 headTag-import meta tag-->
 	<meta th:replace="~{frontendapp/components/common :: headtag-import}">
+	<script src="path/to/your/script.js" defer></script> <!-- 確保 JS 腳本在 DOM 加載後執行 -->
+	 <style>
+        .product-large-image {
+            text-align: center; /* 水平置中 */
+            height: 100%;       /* 確保容器有高度 */
+        }
+
+        .single-img {
+            display: inline-block; /* 使容器適應內容的寬度 */
+        }
+
+        #product-image {
+            height: 200px; /* 設定圖片高度 */
+            object-fit: cover; /* 避免圖片變形 */
+        }
+    </style>
+	
 </head>
 <body id="product">
 <!-- 共用元件 header:圖示按鈕, navbar...-->
@@ -17,16 +34,14 @@
 	<div class="product-deatils-section float-left w-100">
 		<div class="container">
 			<div class="row">
-
 				<div class="left-columm col-lg-5 col-md-5">
 
 <!--				todo 商品圖 proPic -->
 					<div class="product-large-image tab-content">
 						<div class="tab-pane active" id="product-01" role="tabpanel" aria-labelledby="product-tab-01">
 							<div class="single-img img-full">
-								<a href="img/products/01.jpg">
-									<img src="img/products/01.jpg" class="img-fluid zoomImg" alt="">
-								</a>
+								<img id="product-image" alt="Product Image" style="height: 200px; object-fit: cover;">
+
 							</div>
 						</div>
 					</div>
@@ -242,6 +257,23 @@
 
 <!--加入購物車按鈕-->
 <script src="/frontendapp/js/shopping/addToCart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 獲取當前 URL 的路徑
+    const path = window.location.pathname; // 例如 /product/1001
+
+    // 提取 URL 中的 ID (假設 URL 是 /product/1001)
+    const segments = path.split('/');
+    const productId = segments[segments.length - 1]; // 獲取最後一個段落
+
+    // 構建圖片 URL
+    const imgSrc = `/productInfo/ProductInfoReader?productId=${productId}`;
+
+    // 設置圖片的 src 屬性
+    document.getElementById('product-image').src = imgSrc;
+});
+
+</script>
 
 <!-- 共用元件 footer和一些按鈕功能 -->
 <div th:replace="~{frontendapp/components/common :: app-footer}"></div>

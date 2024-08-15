@@ -71,10 +71,10 @@ public class FrontendController {
 
 	/* ====== 購物流程 ====== */
 	// 商品總覽
-	@GetMapping({ "/productcategory", "/productCategory.html" })
-	public String frontendCategory(Model model) {
-		return "/frontendapp/productCategory";
-	}
+//	@GetMapping({ "/productcategory", "/productCategory.html" })
+//	public String frontendCategory(Model model) {
+//		return "/frontendapp/productCategory";
+//	}
 
 	// 商品詳細資訊
 	@GetMapping({ "/productdetails", "/productDetails.html" })
