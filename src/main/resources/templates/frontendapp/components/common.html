@@ -42,8 +42,8 @@
             }
 
         </style>
-        <script src="/dist/js/vue.global.prod.js"></script>
-        <script src="/dist/js/axios.min.js"></script>
+        <script src="/frontendapp/js/vue.global.prod.js"></script>
+        <script src="/frontendapp/js/axios.min.js"></script>
         <!-- loader icon (ajax-loader.gif)-->
         <div class="ttloading-bg"></div>
         <div class="header-main-sticky">
@@ -126,8 +126,8 @@
                                                                 height="104" width="80"></a></td>
                                                         <td class="text-left product-name"><a href="#">商品總共</a>
                                                             <div class="quantity float-left w-100" v-for="cart in carts">
-                                                                <span class="cart-qty">{{cart.proAmount}} × </span>
-                                                                <span class="text-left price"> ${{cart.proPrice}}</span>
+                                                                <span class="cart-qty float-none">{{cart.proAmount}} × </span>
+                                                                <span class=" text-left price"> ${{cart.proPrice}}</span>
                                                             </div>
                                                         </td>
                                                         <!-- fixme close按鍵無效. 在 custom.js 200行，左右跟 $("#cart-dropdown") 有關 -->
@@ -369,7 +369,7 @@
                 </div>
             </div>
         </div>
-        <script src="/dist/js/pages/header.js"></script>
+        <script src="/frontendapp/js/header.js"></script>
     </header>
 
     <!-- 共用元件(index除外) bread crumb -->
