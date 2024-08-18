@@ -17,4 +17,5 @@ public interface ChartOrderListRepository extends JpaRepository<ChartOrderListVO
             "GROUP BY DATE_FORMAT(orderDt, '%Y-%m') " +
             "ORDER BY DATE_FORMAT(orderDt, '%Y-%m')", nativeQuery = true)
 	List<Object[]>  findOrderSummary();
+	
 }
